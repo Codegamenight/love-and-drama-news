@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love & Drama - Relationship News Daily | Powered by His&Hers</title>
+    <meta name="description" content="Fresh relationship news, celebrity cheating scandals, viral love stories, and dating trends updated daily">
+    <style>
+        :root {
+            --primary: #e11d48;
+            --primary-dark: #be123c;
+            --secondary: #6366f1;
+            --accent: #f59e0b;
+            --dark: #0f0a0a;
+            --card: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --gradient-1: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+            --gradient-2: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-fade { animation: fadeIn 0.6s ease-out; }
+        .animate-pulse { animation: pulse 2s infinite; }
+
+        /* Breaking News Ticker */
+        .ticker-wrap {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.75rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 3rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .ticker-label {
+            background: white;
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark);
+            color: white;
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .subscribe-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(225, 29, 72, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
+            color: white;
+            padding: 4rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.3) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* News Categories */
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .category-tab.active {
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+        }
+
+        .category-tab:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Featured Article */
+        .featured-article {
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image::before {
+            content: '💔';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.3;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .featured-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-tag {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .featured-excerpt {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .category-scandal { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
+        .category-love { background: rgba(16, 185, 129, 0.1); color: #059669; }
+        .category-drama { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .category-advice { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
+
+        .article-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .article-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-widget {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trending-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+
+        .trending-item:hover {
+            color: var(--primary);
+        }
+
+        .trending-rank {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-right: 0.75rem;
+        }
+
+        .trending-text {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Newsletter */
+        .newsletter-widget {
+            background: var(--gradient-2);
+            color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .newsletter-widget h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-widget p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .newsletter-form input {
+            padding: 0.875rem 1rem;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.875rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* App Promo */
+        .app-promo {
+            background: var(--dark);
+            color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-promo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.2) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .app-promo-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-promo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-promo p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .app-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+
+        /* Refresh Indicator */
+        .refresh-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--card);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            z-index: 1000;
+            border: 1px solid var(--border);
+        }
+
+        .refresh-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                min-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Breaking News Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker" id="news-ticker">
+            <div class="ticker-item"><span class="ticker-label">BREAKING</span> Kelsea Ballerini & Chase Stokes - On again, off again drama continues into 2026</div>
+            <div class="ticker-item"><span class="ticker-label">EXCLUSIVE</span> New study reveals 74% of young women haven't dated in the past year - "Dating Recession" deepens</div>
+            <div class="ticker-item"><span class="ticker-label">SCANDAL</span> Celebrity couple caught in cheating scandal - photos surface online</div>
+            <div class="ticker-item"><span class="ticker-label">TRENDING</span> "Lemonade" effect: Why more women are staying after infidelity</div>
+            <div class="ticker-item"><span class="ticker-label">UPDATE</span> Justin Timberlake & Jessica Biel - Marriage under strain after recent events</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">💔</span>
+                <div>
+                    <div class="logo-text">Love & Drama</div>
+                    <div class="logo-tagline">Relationship News Daily</div>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#scandals">Scandals</a></li>
+                    <li><a href="#love-stories">Love Stories</a></li>
+                    <li><a href="#advice">Advice</a></li>
+                    <li><a href="#trends">Trends</a></li>
+                </ul>
+            </nav>
+            <button class="subscribe-btn" onclick="showSubscribe()">Get Alerts</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🔥 Trending Now</div>
+            <h1>The <span>Dating Recession</span> Is Real: Why Young Americans Are Giving Up On Love</h1>
+            <p class="hero-subtitle">New 2026 study reveals shocking statistics: Only 1 in 3 eligible young adults are actively dating. 74% of women and 64% of men haven't had a single date this year.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">74%</div>
+                    <div class="stat-label">Women Not Dating</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">64%</div>
+                    <div class="stat-label">Men Not Dating</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">50%</div>
+                    <div class="stat-label">Drop Since 2010</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-area">
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="filterCategory('all', this)">All News</button>
+                <button class="category-tab" onclick="filterCategory('scandal', this)">💔 Cheating Scandals</button>
+                <button class="category-tab" onclick="filterCategory('love', this)">💕 Love Stories</button>
+                <button class="category-tab" onclick="filterCategory('drama', this)">🔥 Drama</button>
+                <button class="category-tab" onclick="filterCategory('advice', this)">💡 Advice</button>
+            </div>
+
+            <!-- Featured Article -->
+            <article class="featured-article animate-fade">
+                <div class="featured-image"></div>
+                <div class="featured-content">
+                    <span class="featured-tag">Exclusive Investigation</span>
+                    <h2 class="featured-title">Celebrity Couples Most Likely To Split In 2026: The Predictions</h2>
+                    <p class="featured-excerpt">From Kelsea Ballerini and Chase Stokes' exhausting on-again-off-again saga to Justin Timberlake and Jessica Biel's strained marriage, we analyze the relationships hanging by a thread.</p>
+                    <div class="featured-meta">
+                        <span>⏱️ 8 min read</span>
+                        <span>👁️ 24.5K views</span>
+                        <span>💬 1.2K comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid" id="articles-container">
+                <!-- Article 1 -->
+                <article class="article-card" data-category="drama">
+                    <div class="article-header">
+                        <span class="article-category category-drama">Drama</span>
+                        <span class="article-time">2 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Kelsea Ballerini & Chase Stokes: The Never-Ending Breakup Saga</h3>
+                    <p class="article-excerpt">They broke up in September, reconciled in November, posted New Year's kisses, then deleted all photos. Sources say the emotional rollercoaster is "exhausting everyone."</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 15.2K</span>
+                            <span>💬 892</span>
+                            <span>🔄 3.1K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card" data-category="scandal">
+                    <div class="article-header">
+                        <span class="article-category category-scandal">Scandal</span>
+                        <span class="article-time">4 hours ago</span>
+                    </div>
+                    <h3 class="article-title">The Try Guys Ned Fulmer: Where Are They Now After The Affair?</h3>
+                    <p class="article-excerpt">Two years after the workplace affair scandal that rocked YouTube, Ned and Ariel Fulmer have officially parted ways. Inside the divorce and the fall of an empire.</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 22.8K</span>
+                            <span>💬 1.5K</span>
+                            <span>🔄 5.2K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card" data-category="love">
+                    <div class="article-header">
+                        <span class="article-category category-love">Love Story</span>
+                        <span class="article-time">6 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Couples Who Survived Cheating: 15 Stories That Defied The Odds</h3>
+                    <p class="article-excerpt">From Beyoncé and Jay-Z's "Lemonade" era to David Boreanaz and Jaime Bergman's reconciliation, these couples proved that some relationships can survive even the ultimate betrayal.</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 31.4K</span>
+                            <span>💬 2.1K</span>
+                            <span>🔄 8.7K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="article-card" data-category="scandal">
+                    <div class="article-header">
+                        <span class="article-category category-scandal">Scandal</span>
+                        <span class="article-time">8 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Adam Levine's Alleged Affairs: One Year Later, The Marriage Survives</h3>
+                    <p class="article-excerpt">After multiple women came forward in 2022, Behati Prinsloo stood by her man. Sources say they're "weathering the storm" and focusing on their three children.</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 18.9K</span>
+                            <span>💬 956</span>
+                            <span>🔄 2.8K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="article-card" data-category="advice">
+                    <div class="article-header">
+                        <span class="article-category category-advice">Advice</span>
+                        <span class="article-time">12 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Why "Netflix And Chill" Died: The Real Reason Gen Z Stopped Dating</h3>
+                    <p class="article-excerpt">Experts point to social anxiety, digital addiction, and fear of vulnerability. Only 36% of young adults feel confident reading social cues on dates.</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 45.6K</span>
+                            <span>💬 3.2K</span>
+                            <span>🔄 12.1K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="article-card" data-category="drama">
+                    <div class="article-header">
+                        <span class="article-category category-drama">Drama</span>
+                        <span class="article-time">14 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Ariana Grande & Ethan Slater: Will The Scandalous Start End Badly?</h3>
+                    <p class="article-excerpt">Both left spouses for each other during "Wicked" filming. Now that press tours are over, sources say there's "no professional reason to stay together."</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 28.3K</span>
+                            <span>💬 1.8K</span>
+                            <span>🔄 6.4K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 7 -->
+                <article class="article-card" data-category="love">
+                    <div class="article-header">
+                        <span class="article-category category-love">Love Story</span>
+                        <span class="article-time">16 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Workplace Romances: 60% Of Adults Have Done It, 40% Involved Cheating</h3>
+                    <p class="article-excerpt">New Forbes survey reveals the office is still the #1 place affairs begin. Why do we keep falling for colleagues when the risks are so high?</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 19.7K</span>
+                            <span>💬 1.1K</span>
+                            <span>🔄 4.2K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+
+                <!-- Article 8 -->
+                <article class="article-card" data-category="scandal">
+                    <div class="article-header">
+                        <span class="article-category category-scandal">Scandal</span>
+                        <span class="article-time">18 hours ago</span>
+                    </div>
+                    <h3 class="article-title">The Most Shocking Celebrity Cheating Scandals Of All Time</h3>
+                    <p class="article-excerpt">From Kristen Stewart and Rupert Sanders' infamous photos to Tiger Woods' epic fall from grace, we count down the affairs that broke the internet.</p>
+                    <div class="article-footer">
+                        <div class="article-stats">
+                            <span>🔥 52.1K</span>
+                            <span>💬 4.5K</span>
+                            <span>🔄 15.3K</span>
+                        </div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+            </div>
+
+            <button class="btn btn-primary" style="margin-top: 2rem; width: 100%; padding: 1rem;" onclick="loadMore()">
+                Load More Stories
+            </button>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Trending Widget -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">🔥 Trending Now</h3>
+                <div class="trending-item" onclick="showArticle('trending-1')">
+                    <span class="trending-rank">1</span>
+                    <span class="trending-text">Dating recession statistics shock experts</span>
+                </div>
+                <div class="trending-item" onclick="showArticle('trending-2')">
+                    <span class="trending-rank">2</span>
+                    <span class="trending-text">Kelsea Ballerini relationship drama</span>
+                </div>
+                <div class="trending-item" onclick="showArticle('trending-3')">
+                    <span class="trending-rank">3</span>
+                    <span class="trending-text">Celebrity couples who survived cheating</span>
+                </div>
+                <div class="trending-item" onclick="showArticle('trending-4')">
+                    <span class="trending-rank">4</span>
+                    <span class="trending-text">Why Gen Z stopped dating</span>
+                </div>
+                <div class="trending-item" onclick="showArticle('trending-5')">
+                    <span class="trending-rank">5</span>
+                    <span class="trending-text">Workplace affair statistics</span>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="newsletter-widget">
+                <h3>Get The Drama First</h3>
+                <p>Fresh relationship news delivered to your inbox daily. No spam, just tea.</p>
+                <form class="newsletter-form" onsubmit="subscribe(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe Free</button>
+                </form>
+                <p style="font-size: 0.75rem; margin-top: 1rem; opacity: 0.7;">Join 250,000+ subscribers</p>
+            </div>
+
+            <!-- App Promo -->
+            <div class="app-promo">
+                <div class="app-promo-content">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">💜</div>
+                    <h3>His&Hers App</h3>
+                    <p>Build trust in your relationship with our new Trust Architecture System. Coming soon.</p>
+                    <a href="#" class="app-badge">
+                        <span>📱</span>
+                        <span>Get Early Access</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Latest Scandals -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">💔 Latest Scandals</h3>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444;">
+                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Ned Fulmer Divorce Final</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light);">Try Guys scandal ends in split</div>
+                    </div>
+                    <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444;">
+                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Justin & Jessica On The Rocks</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light);">Sources say marriage strained</div>
+                    </div>
+                    <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444;">
+                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Ariana & Ethan's Messy Start</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light);">Both left spouses for each other</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Love & Drama</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6;">Your daily source for relationship news, celebrity scandals, and love stories that matter.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Cheating Scandals</a></li>
+                    <li><a href="#">Love Stories</a></li>
+                    <li><a href="#">Dating Trends</a></li>
+                    <li><a href="#">Relationship Advice</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">His&Hers App</a></li>
+                    <li><a href="#">Advertise</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Love & Drama. All rights reserved. Powered by His&Hers.</p>
+        </div>
+    </footer>
+
+    <!-- Auto-refresh Indicator -->
+    <div class="refresh-indicator">
+        <div class="refresh-dot"></div>
+        <span>Live Updates</span>
+    </div>
+
+    <script>
+        // Category Filter
+        function filterCategory(category, btn) {
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            // Filter articles
+            const articles = document.querySelectorAll('.article-card');
+            articles.forEach(article => {
+                if (category === 'all' || article.dataset.category === category) {
+                    article.style.display = 'block';
+                    article.style.animation = 'fadeIn 0.5s ease-out';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Show Article Detail
+        function showArticle(id) {
+            alert('Article detail view coming soon! This would open the full article.');
+        }
+
+        // Load More
+        function loadMore() {
+            const container = document.getElementById('articles-container');
+            const newArticles = [
+                {
+                    category: 'scandal',
+                    title: 'Sebastian Lletget & Becky G: Back Together After Cheating Scandal',
+                    excerpt: 'The soccer star and singer reconciled after a 10-month split following extortion and cheating allegations.',
+                    time: '20 hours ago',
+                    stats: { fire: '12.4K', comments: '678', shares: '2.1K' }
+                },
+                {
+                    category: 'love',
+                    title: 'Oliver Hudson Admits Cheating Before Wedding - Still Married 18 Years Later',
+                    excerpt: 'The actor revealed he was unfaithful shortly before marrying Erinn Bartlett in 2006. They worked through it.',
+                    time: '22 hours ago',
+                    stats: { fire: '9.8K', comments: '445', shares: '1.8K' }
+                },
+                {
+                    category: 'drama',
+                    title: 'Michelle Branch & Patrick Carney: Arrest, Divorce Filing, Then Reconciliation',
+                    excerpt: 'The full timeline of their rollercoaster 2022: cheating accusations, a slap, divorce papers, and ultimately staying together.',
+                    time: '1 day ago',
+                    stats: { fire: '16.7K', comments: '923', shares: '3.4K' }
+                }
+            ];
+
+            newArticles.forEach(article => {
+                const categoryClass = 'category-' + article.category;
+                const categoryLabels = {
+                    'scandal': 'Scandal',
+                    'love': 'Love Story',
+                    'drama': 'Drama',
+                    'advice': 'Advice'
+                };
+
+                const html = `
+                    <article class="article-card animate-fade" data-category="${article.category}">
+                        <div class="article-header">
+                            <span class="article-category ${categoryClass}">${categoryLabels[article.category]}</span>
+                            <span class="article-time">${article.time}</span>
+                        </div>
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-footer">
+                            <div class="article-stats">
+                                <span>🔥 ${article.stats.fire}</span>
+                                <span>💬 ${article.stats.comments}</span>
+                                <span>🔄 ${article.stats.shares}</span>
+                            </div>
+                            <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                        </div>
+                    </article>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            showToast('More stories loaded!');
+        }
+
+        // Subscribe
+        function subscribe(e) {
+            e.preventDefault();
+            showToast('Welcome to Love & Drama! Check your inbox for confirmation.');
+            e.target.reset();
+        }
+
+        // Show Subscribe Modal
+        function showSubscribe() {
+            const email = prompt('Enter your email to get breaking relationship news:');
+            if (email) {
+                showToast('Subscribed! You\'ll get our daily drama digest.');
+            }
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--dark);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                font-weight: 600;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease-out;
+                box-shadow: var(--shadow);
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Auto-refresh simulation
+        setInterval(() => {
+            const ticker = document.getElementById('news-ticker');
+            // In a real implementation, this would fetch new news
+            console.log('Checking for updates...');
+        }, 60000); // Check every minute
+
+        // Simulate live updates
+        setTimeout(() => {
+            showToast('🔥 Breaking: New celebrity scandal just dropped!');
+        }, 10000);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Love & Drama - Relationship News Daily');
+            console.log('Powered by His&Hers Trust Architecture System');
+        });
+    </script>
+</body>
+</html>
