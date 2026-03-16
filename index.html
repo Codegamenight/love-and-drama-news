@@ -673,12 +673,58 @@
             margin-bottom: 1rem;
         }
 
+        /* Story Page Styles */
+        .story-page {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--card);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .story-page h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .story-page img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .story-page p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .source-link {
+            display: inline-block;
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero-stats { flex-direction: column; gap: 1rem; }
             .nav-links { display: none; }
             .featured-article { grid-template-columns: 1fr; }
             .featured-image { min-height: 200px; }
+            .story-page { padding: 1.5rem; margin: 1rem; }
+            .story-page h1 { font-size: 1.75rem; }
         }
     </style>
 </head>
@@ -706,10 +752,10 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#scandals">Scandals</a></li>
-                    <li><a href="#love-stories">Love Stories</a></li>
-                    <li><a href="#advice">Advice</a></li>
-                    <li><a href="#trends">Trends</a></li>
+                    <li><a href="/scandals/">Scandals</a></li>
+                    <li><a href="/love-stories/">Love Stories</a></li>
+                    <li><a href="/dating-trends/">Trends</a></li>
+                    <li><a href="/celebrity-breakups/">Breakups</a></li>
                 </ul>
             </nav>
             <button class="subscribe-btn" onclick="showSubscribe()">Get Alerts</button>
@@ -752,7 +798,7 @@
             </div>
 
             <!-- Featured Article -->
-            <a href="https://www.usmagazine.com/celebrity-news/news/kelsea-ballerini-chase-stokes-split-timeline/" target="_blank" class="featured-article animate-fade">
+            <a href="/story/celebrity-couples-2026-predictions" class="featured-article animate-fade">
                 <div class="featured-image"></div>
                 <div class="featured-content">
                     <span class="featured-tag">Exclusive Investigation</span>
@@ -784,23 +830,23 @@
             <!-- Trending Widget -->
             <div class="sidebar-widget">
                 <h3 class="widget-title">🔥 Trending Now</h3>
-                <a href="https://www.usmagazine.com/celebrity-news/news/kelsea-ballerini-chase-stokes-split-timeline/" target="_blank" class="trending-item">
+                <a href="/story/dating-recession-statistics" class="trending-item">
                     <span class="trending-rank">1</span>
                     <span class="trending-text">Dating recession statistics shock experts</span>
                 </a>
-                <a href="https://people.com/tv/kelsea-ballerini-chase-stokes-relationship-timeline/" target="_blank" class="trending-item">
+                <a href="/story/kelsea-ballerini-drama" class="trending-item">
                     <span class="trending-rank">2</span>
                     <span class="trending-text">Kelsea Ballerini relationship drama</span>
                 </a>
-                <a href="https://www.eonline.com/news/celebrity-couples" target="_blank" class="trending-item">
+                <a href="/story/celebrity-cheating-survivors" class="trending-item">
                     <span class="trending-rank">3</span>
                     <span class="trending-text">Celebrity couples who survived cheating</span>
                 </a>
-                <a href="https://www.pewresearch.org/short-reads/2023/02/14/key-facts-about-dating-and-relationships-in-the-u-s/" target="_blank" class="trending-item">
+                <a href="/story/gen-z-dating-decline" class="trending-item">
                     <span class="trending-rank">4</span>
                     <span class="trending-text">Why Gen Z stopped dating</span>
                 </a>
-                <a href="https://www.cnn.com/2023/09/12/business/workplace-romance-relationships/index.html" target="_blank" class="trending-item">
+                <a href="/story/workplace-affair-stats" class="trending-item">
                     <span class="trending-rank">5</span>
                     <span class="trending-text">Workplace affair statistics</span>
                 </a>
@@ -834,19 +880,19 @@
             <div class="sidebar-widget">
                 <h3 class="widget-title">💔 Latest Scandals</h3>
                 <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="https://www.usmagazine.com/celebrity-news/news/try-guys-ned-fulmer-ariel-fulmer-divorce-finalized/" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="/story/ned-fulmer-divorce-final" style="text-decoration: none; color: inherit;">
                         <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
                             <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Ned Fulmer Divorce Final</div>
                             <div style="font-size: 0.8rem; color: var(--text-light);">Try Guys scandal ends in split</div>
                         </div>
                     </a>
-                    <a href="https://www.eonline.com/news/1402482/justin-timberlake-jessica-biel-marriage-strained" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="/story/justin-jessica-marriage-strain" style="text-decoration: none; color: inherit;">
                         <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
                             <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Justin & Jessica On The Rocks</div>
                             <div style="font-size: 0.8rem; color: var(--text-light);">Sources say marriage strained</div>
                         </div>
                     </a>
-                    <a href="https://people.com/music/ariana-grande-ethan-slater-relationship-timeline/" target="_blank" style="text-decoration: none; color: inherit;">
+                    <a href="/story/ariana-ethan-messy-start" style="text-decoration: none; color: inherit;">
                         <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
                             <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Ariana & Ethan's Messy Start</div>
                             <div style="font-size: 0.8rem; color: var(--text-light);">Both left spouses for each other</div>
@@ -867,10 +913,10 @@
             <div class="footer-section">
                 <h4>Categories</h4>
                 <ul>
-                    <li><a href="https://www.usmagazine.com/celebrity-news/" target="_blank">Cheating Scandals</a></li>
-                    <li><a href="https://people.com/celebrity-couples/" target="_blank">Love Stories</a></li>
-                    <li><a href="https://www.pewresearch.org/short-reads/2023/02/14/key-facts-about-dating-and-relationships-in-the-u-s/" target="_blank">Dating Trends</a></li>
-                    <li><a href="https://www.psychologytoday.com/us/basics/relationships" target="_blank">Relationship Advice</a></li>
+                    <li><a href="/scandals/">Cheating Scandals</a></li>
+                    <li><a href="/love-stories/">Love Stories</a></li>
+                    <li><a href="/dating-trends/">Dating Trends</a></li>
+                    <li><a href="/celebrity-breakups/">Celebrity Breakups</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -903,112 +949,215 @@
     </div>
 
     <script>
-        // Real current stories with working links
-        const REAL_STORIES = [
-            {
-                title: "Kelsea Ballerini & Chase Stokes: The Never-Ending Breakup Saga",
-                excerpt: "They broke up in September, reconciled in November, posted New Year's kisses, then deleted all photos. Sources say the emotional rollercoaster is exhausting everyone.",
-                category: "drama",
-                time: "2 hours ago",
-                views: "15.2K",
-                comments: "892",
-                link: "https://www.usmagazine.com/celebrity-news/news/kelsea-ballerini-chase-stokes-split-timeline/"
-            },
-            {
-                title: "The Try Guys Ned Fulmer: Where Are They Now After The Affair?",
-                excerpt: "Two years after the workplace affair scandal that rocked YouTube, Ned and Ariel Fulmer have officially parted ways. Inside the divorce and the fall of an empire.",
-                category: "scandal",
-                time: "4 hours ago",
-                views: "22.8K",
-                comments: "1.5K",
-                link: "https://www.usmagazine.com/celebrity-news/news/try-guys-ned-fulmer-ariel-fulmer-divorce-finalized/"
-            },
-            {
-                title: "Justin Timberlake & Jessica Biel: Marriage Under Strain",
-                excerpt: "Sources close to the couple reveal that recent events have put their marriage to the test. Exclusive details on how they're working through it.",
-                category: "scandal",
-                time: "6 hours ago",
-                views: "18.5K",
-                comments: "2.1K",
-                link: "https://www.eonline.com/news/1402482/justin-timberlake-jessica-biel-marriage-strained"
-            },
-            {
-                title: "Ariana Grande & Ethan Slater: Love Born From Scandal",
-                excerpt: "Both left their spouses for each other. Now, sources say the couple is stronger than ever despite the messy beginnings.",
-                category: "love",
-                time: "8 hours ago",
-                views: "12.3K",
-                comments: "945",
-                link: "https://people.com/music/ariana-grande-ethan-slater-relationship-timeline/"
-            },
-            {
-                title: "The 'Dating Recession': Why Young Americans Are Giving Up",
-                excerpt: "New study shows 74% of young women and 64% of young men haven't dated this year. Experts weigh in on the causes and solutions.",
-                category: "advice",
-                time: "12 hours ago",
-                views: "45.6K",
-                comments: "3.2K",
-                link: "https://www.pewresearch.org/short-reads/2023/02/14/key-facts-about-dating-and-relationships-in-the-u-s/"
-            },
-            {
-                title: "Workplace Affairs: The Statistics That Will Shock You",
-                excerpt: "36% of affairs start at work. New data reveals which professions have the highest infidelity rates and why.",
-                category: "scandal",
-                time: "1 day ago",
-                views: "28.9K",
-                comments: "1.8K",
-                link: "https://www.cnn.com/2023/09/12/business/workplace-romance-relationships/index.html"
-            },
-            {
-                title: "Selena Gomez & Benny Blanco: Engagement Rumors Heat Up",
-                excerpt: "After going public with their relationship, sources say the couple is talking marriage. Friends say Benny is 'completely smitten' with Selena.",
-                category: "love",
-                time: "3 hours ago",
-                views: "31.2K",
-                comments: "2.5K",
-                link: "https://people.com/selena-gomez-benny-blanco-relationship-timeline-7968907.html"
-            },
-            {
-                title: "Tristan Thompson's Latest Cheating Scandal: What We Know",
-                excerpt: "The NBA player is facing new allegations of infidelity. Sources close to Khloe Kardashian say she's 'done for good this time.'",
-                category: "scandal",
-                time: "5 hours ago",
-                views: "19.8K",
-                comments: "1.2K",
-                link: "https://www.usmagazine.com/celebrity-news/news/tristan-thompson-cheating-scandal-timeline/"
-            }
+        // STEP 1: Multiple RSS Feed Sources
+        const RSS_FEEDS = [
+            "https://api.rss2json.com/v1/api.json?rss_url=https://people.com/feed",
+            "https://api.rss2json.com/v1/api.json?rss_url=https://www.usmagazine.com/feed",
+            "https://api.rss2json.com/v1/api.json?rss_url=https://www.eonline.com/news/rss",
+            "https://api.rss2json.com/v1/api.json?rss_url=https://www.tmz.com/rss.xml",
+            "https://api.rss2json.com/v1/api.json?rss_url=https://pagesix.com/feed/",
+            "https://api.rss2json.com/v1/api.json?rss_url=https://www.cosmopolitan.com/rss/all.xml",
+            "https://api.rss2json.com/v1/api.json?rss_url=https://www.dailymail.co.uk/tvshowbiz/index.rss"
         ];
 
-        // Load stories immediately
-        function loadStories() {
-            const container = document.getElementById('articles-container');
-            container.innerHTML = '';
+        // STEP 3: SEO Headline Rewriter
+        function rewriteTitle(title) {
+            const prefixes = [
+                "Fans React As",
+                "Internet Explodes After",
+                "Social Media Reacts To",
+                "Trending Now:",
+                "Breaking:"
+            ];
+            return prefixes[Math.floor(Math.random() * prefixes.length)] + " " + title;
+        }
+
+        // Generate slug for internal pages
+        function generateSlug(title) {
+            return title.toLowerCase()
+                .replace(/[^\w\s]/gi, '')
+                .replace(/\s+/g, '-')
+                .substring(0, 50);
+        }
+
+        // Categorize stories
+        function categorizeStory(title, description) {
+            const text = (title + ' ' + description).toLowerCase();
+            if (text.includes('cheat') || text.includes('affair') || text.includes('scandal')) return 'scandal';
+            if (text.includes('breakup') || text.includes('split') || text.includes('divorce')) return 'drama';
+            if (text.includes('love') || text.includes('engagement') || text.includes('wedding')) return 'love';
+            if (text.includes('dating') || text.includes('relationship advice')) return 'advice';
+            return 'drama';
+        }
+
+        // Fetch and process feeds
+        async function fetchFeeds() {
+            const allStories = [];
             
-            REAL_STORIES.forEach(story => {
-                const article = document.createElement('a');
-                article.href = story.link;
-                article.target = '_blank';
-                article.className = 'article-card animate-fade';
-                article.setAttribute('data-category', story.category);
-                
+            for (const feed of RSS_FEEDS) {
+                try {
+                    const response = await fetch(feed);
+                    const data = await response.json();
+                    
+                    if (data.items) {
+                        data.items.slice(0, 5).forEach(item => {
+                            const category = categorizeStory(item.title, item.description || '');
+                            allStories.push({
+                                title: rewriteTitle(item.title),
+                                originalTitle: item.title,
+                                excerpt: item.description ? item.description.replace(/<[^>]*>/g, '').substring(0, 150) : 'No description available',
+                                category: category,
+                                time: getTimeAgo(item.pubDate),
+                                link: item.link,
+                                slug: generateSlug(item.title),
+                                image: item.enclosure ? item.enclosure.link : 'https://via.placeholder.com/800x400/e11d48/ffffff?text=About+Loved'
+                            });
+                        });
+                    }
+                } catch (e) {
+                    console.log('Feed error:', e);
+                }
+            }
+            
+            return allStories.sort(() => Math.random() - 0.5).slice(0, 12);
+        }
+
+        function getTimeAgo(dateString) {
+            if (!dateString) return 'Recently';
+            const date = new Date(dateString);
+            const now = new Date();
+            const hours = Math.floor((now - date) / (1000 * 60 * 60));
+            
+            if (hours < 1) return 'Just now';
+            if (hours === 1) return '1 hour ago';
+            if (hours < 24) return `${hours} hours ago`;
+            return `${Math.floor(hours / 24)} days ago`;
+        }
+
+        // STEP 2 & 3: Display Articles with Internal Links
+        function displayArticles(articles) {
+            const container = document.getElementById("articles-container");
+            container.innerHTML = "";
+
+            articles.forEach(story => {
+                const article = document.createElement("a");
+                // Internal link structure for SEO
+                article.href = `/story/${story.slug}`;
+                article.className = "article-card animate-fade";
+                article.setAttribute("data-category", story.category);
+                article.setAttribute("data-original-link", story.link);
+
                 article.innerHTML = `
                     <div class="article-header">
-                        <span class="article-category category-${story.category}">${story.category.charAt(0).toUpperCase() + story.category.slice(1)}</span>
+                        <span class="article-category category-${story.category}">
+                            ${story.category}
+                        </span>
                         <span class="article-time">${story.time}</span>
                     </div>
                     <h3 class="article-title">${story.title}</h3>
-                    <p class="article-excerpt">${story.excerpt}</p>
+                    <p class="article-excerpt">${story.excerpt}...</p>
                     <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 ${story.views}</span>
-                            <span>💬 ${story.comments}</span>
-                        </div>
-                        <span class="read-more">Read More →</span>
+                        <span class="read-more">Read Full Story →</span>
                     </div>
                 `;
-                
+
+                // Click handler for internal pages
+                article.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openStoryPage(story);
+                });
+
                 container.appendChild(article);
             });
+
+            // Update sitemap
+            updateSitemap(articles);
+        }
+
+        // STEP 2: Internal Story Page
+        function openStoryPage(story) {
+            const storyHTML = `
+                <div class="story-page animate-fade">
+                    <span class="article-category category-${story.category}" style="margin-bottom: 1rem; display: inline-block;">
+                        ${story.category.toUpperCase()}
+                    </span>
+                    <h1>${story.title}</h1>
+                    <div style="color: var(--text-light); margin-bottom: 1.5rem;">
+                        ${story.time} • About Loved Exclusive
+                    </div>
+                    <img src="${story.image}" alt="${story.title}" onerror="this.src='https://via.placeholder.com/800x400/e11d48/ffffff?text=About+Loved'">
+                    <p>${story.excerpt}</p>
+                    <p style="color: var(--text-light); font-style: italic;">
+                        This story was originally reported by our partners. Read the complete coverage at the source below.
+                    </p>
+                    <a href="${story.link}" target="_blank" class="source-link">
+                        Read Full Story at Source →
+                    </a>
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                        <h3 style="margin-bottom: 1rem;">Related Stories</h3>
+                        <div id="related-stories"></div>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.main-content').innerHTML = storyHTML;
+            window.scrollTo(0, 0);
+            
+            // Update URL for SEO
+            history.pushState({}, '', `/story/${story.slug}`);
+        }
+
+        // STEP 5: Generate Sitemap
+        function updateSitemap(articles) {
+            const sitemap = {
+                urls: articles.map(a => ({
+                    loc: `https://aboutloved.com/story/${a.slug}`,
+                    lastmod: new Date().toISOString().split('T')[0],
+                    changefreq: 'daily',
+                    priority: '0.8'
+                }))
+            };
+            
+            // Store sitemap data (in real implementation, generate sitemap.xml)
+            window.siteMapData = sitemap;
+            console.log('Sitemap updated with', sitemap.urls.length, 'URLs');
+        }
+
+        // Load stories
+        async function loadStories() {
+            const container = document.getElementById('articles-container');
+            container.innerHTML = '<div class="loading-spinner"><div>📰</div><div style="color:var(--text-light);">Loading fresh relationship news...</div></div>';
+            
+            const stories = await fetchFeeds();
+            if (stories.length > 0) {
+                displayArticles(stories);
+            } else {
+                // Fallback stories
+                displayArticles(getFallbackStories());
+            }
+        }
+
+        function getFallbackStories() {
+            return [
+                {
+                    title: "Fans React As Kelsea Ballerini & Chase Stokes Drama Continues",
+                    excerpt: "The on-again, off-again couple has everyone guessing about their relationship status after latest social media activity",
+                    category: "drama",
+                    time: "2 hours ago",
+                    slug: "kelsea-ballerini-chase-stokes-drama",
+                    link: "https://www.usmagazine.com/celebrity-news/news/kelsea-ballerini-chase-stokes-split-timeline/",
+                    image: "https://via.placeholder.com/800x400/e11d48/ffffff?text=Breaking+News"
+                },
+                {
+                    title: "Internet Explodes After New Celebrity Cheating Scandal",
+                    excerpt: "Exclusive details on the latest affair that has Hollywood talking",
+                    category: "scandal",
+                    time: "4 hours ago",
+                    slug: "celebrity-cheating-scandal-latest",
+                    link: "https://www.tmz.com",
+                    image: "https://via.placeholder.com/800x400/e11d48/ffffff?text=Scandal"
+                }
+            ];
         }
 
         // Category Filter
@@ -1032,8 +1181,6 @@
         // Load More
         function loadMore() {
             showToast('Loading more stories...');
-            // Shuffle and reload for demo
-            REAL_STORIES.sort(() => Math.random() - 0.5);
             loadStories();
         }
 
@@ -1044,15 +1191,11 @@
             e.target.reset();
         }
 
-        // Show Subscribe Modal
         function showSubscribe() {
             const email = prompt('Enter your email to get breaking relationship news:');
-            if (email) {
-                showToast('Subscribed! You\'ll get our daily drama digest.');
-            }
+            if (email) showToast('Subscribed! You\'ll get our daily drama digest.');
         }
 
-        // Toast Notification
         function showToast(message) {
             const toast = document.createElement('div');
             toast.style.cssText = `
@@ -1071,14 +1214,20 @@
             `;
             toast.textContent = message;
             document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
+            setTimeout(() => toast.remove(), 3000);
         }
 
-        // Load on page load
-        document.addEventListener('DOMContentLoaded', loadStories);
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStories();
+            // STEP 6: Auto-refresh every 30 minutes
+            setInterval(loadStories, 1800000);
+        });
+
+        // Handle back button
+        window.addEventListener('popstate', () => {
+            location.reload();
+        });
 
         // Simulate breaking news
         setTimeout(() => {
