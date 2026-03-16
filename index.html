@@ -1,304 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Loved - Relationship News Daily | Powered by His&Hers</title>
-<meta name="description" content="Fresh relationship news, celebrity cheating scandals, viral love stories, and dating trends updated daily">
-<style>
-:root {
-    --primary: #e11d48;
-    --primary-dark: #be123c;
-    --secondary: #6366f1;
-    --accent: #f59e0b;
-    --dark: #0f0a0a;
-    --card: #ffffff;
-    --text: #1f2937;
-    --text-light: #6b7280;
-    --border: #e5e7eb;
-    --gradient-1: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
-    --gradient-2: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    --shadow: 0 10px 40px -10px rgba(0,0,0,0.15);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
-    color: var(--text);
-    line-height: 1.6;
-}
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.02);} }
-@keyframes ticker {0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
-.animate-fade { animation: fadeIn 0.6s ease-out; }
-.animate-pulse { animation: pulse 2s infinite; }
-.ticker-wrap { background: var(--gradient-1); color: white; padding: 0.75rem 0; overflow: hidden; position: relative; }
-.ticker { display:flex; white-space:nowrap; animation: ticker 30s linear infinite; }
-.ticker-item { padding:0 3rem; font-weight:600; font-size:0.9rem; }
-.ticker-label { background:white; color:var(--primary); padding:0.25rem 0.75rem; border-radius:4px; margin-right:0.5rem; font-size:0.75rem; text-transform:uppercase; }
-.header { background: var(--dark); color:white; padding:1.5rem; position:sticky; top:0; z-index:100; box-shadow: var(--shadow); }
-.header-content { max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-.logo { display:flex; align-items:center; gap:0.75rem; }
-.logo-icon { font-size:2rem; }
-.logo-text { font-size:1.75rem; font-weight:800; background: var(--gradient-1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.logo-tagline { font-size:0.75rem; color:var(--text-light); text-transform:uppercase; letter-spacing:0.1em; }
-.nav-links { display:flex; gap:2rem; list-style:none; }
-.nav-links a { color:white; text-decoration:none; font-weight:500; transition:color 0.3s; font-size:0.95rem; }
-.nav-links a:hover { color:var(--primary); }
-.subscribe-btn { background: var(--gradient-1); color:white; border:none; padding:0.75rem 1.5rem; border-radius:50px; font-weight:600; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
-.subscribe-btn:hover { transform:translateY(-2px); box-shadow:0 10px 20px -5px rgba(225,29,72,0.4); }
-.hero { background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%); color:white; padding:4rem 1.5rem; position:relative; overflow:hidden; }
-.hero::before { content:''; position:absolute; top:-50%; right:-10%; width:600px; height:600px; background: radial-gradient(circle, rgba(225,29,72,0.3) 0%, transparent 70%); animation:pulse 4s ease-in-out infinite; }
-.hero-content { max-width:1400px; margin:0 auto; position:relative; z-index:1; }
-.hero-badge { display:inline-block; background: rgba(255,255,255,0.1); backdrop-filter:blur(10px); padding:0.5rem 1rem; border-radius:50px; font-size:0.875rem; margin-bottom:1.5rem; border:1px solid rgba(255,255,255,0.2); }
-.hero h1 { font-size:3.5rem; font-weight:800; line-height:1.1; margin-bottom:1.5rem; max-width:800px; }
-.hero h1 span { background:var(--gradient-1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero-subtitle { font-size:1.25rem; color:rgba(255,255,255,0.8); max-width:600px; margin-bottom:2rem; }
-.hero-stats { display:flex; gap:3rem; margin-top:3rem; }
-.stat { text-align:center; }
-.stat-value { font-size:2.5rem; font-weight:800; color:var(--primary); }
-.stat-label { font-size:0.875rem; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:0.05em; }
-.main-content { max-width:1400px; margin:0 auto; padding:3rem 1.5rem; display:grid; grid-template-columns:1fr 350px; gap:3rem; }
-@media(max-width:1024px){.main-content{grid-template-columns:1fr;}}
-.category-tabs { display:flex; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
-.category-tab { padding:0.75rem 1.5rem; border-radius:50px; border:2px solid var(--border); background:white; cursor:pointer; font-weight:600; transition:all 0.3s; font-size:0.9rem; }
-.category-tab.active { background:var(--gradient-1); color:white; border-color:transparent; }
-.category-tab:hover:not(.active){ border-color:var(--primary); color:var(--primary); }
-.featured-article { background:var(--card); border-radius:20px; overflow:hidden; box-shadow:var(--shadow); margin-bottom:2rem; display:grid; grid-template-columns:1.2fr 1fr; cursor:pointer; transition:transform 0.3s; text-decoration:none; color:inherit; }
-.featured-article:hover { transform:translateY(-4px); }
-@media(max-width:768px){.featured-article{grid-template-columns:1fr;} .featured-image{min-height:200px;} .hero h1{font-size:2rem;} .hero-stats{flex-direction:column;gap:1rem;} .nav-links{display:none;} }
-.featured-image{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:400px; display:flex; align-items:center; justify-content:center; font-size:5rem; position:relative; overflow:hidden;}
-.featured-content{padding:2.5rem; display:flex; flex-direction:column; justify-content:center;}
-.featured-tag{display:inline-block;background:var(--gradient-1);color:white;padding:0.5rem 1rem;border-radius:50px;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:1rem;width:fit-content;}
-.featured-title{font-size:2rem;font-weight:800;margin-bottom:1rem;line-height:1.2;}
-.featured-excerpt{color:var(--text-light);font-size:1.1rem;margin-bottom:1.5rem;line-height:1.6;}
-.featured-meta{display:flex;align-items:center;gap:1rem;color:var(--text-light);font-size:0.875rem;}
-.articles-grid{display:grid;gap:1.5rem;}
-.article-card{background:var(--card); border-radius:16px; padding:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05); border:1px solid var(--border); transition:all 0.3s; cursor:pointer; text-decoration:none; color:inherit; display:block;}
-.article-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--primary);}
-.article-title{font-size:1.25rem;font-weight:700;margin:0.5rem 0;}
-.article-excerpt{color:var(--text-light);font-size:0.95rem;margin-bottom:0.5rem;}
-.article-image{border-radius:12px;height:200px; background-size:cover; background-position:center; margin-bottom:0.75rem;}
-.sidebar{display:flex;flex-direction:column;gap:2rem;}
-.sidebar-widget{background:var(--card);border-radius:16px;padding:1.5rem;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);border:1px solid var(--border);}
-.widget-title{font-size:1.1rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
-.trending-item{padding:1rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all 0.3s;text-decoration:none;color:inherit;display:block;}
-.trending-item:last-child{border-bottom:none;}
-.trending-item:hover{color:var(--primary);}
-.trending-rank{display:inline-block;width:28px;height:28px;background:var(--gradient-1);color:white;border-radius:50%;text-align:center;line-height:28px;font-weight:700;font-size:0.875rem;margin-right:0.75rem;}
-.trending-text{font-weight:600;font-size:0.95rem;}
-.newsletter-widget{background:var(--gradient-2);color:white;border-radius:16px;padding:2rem;text-align:center;}
-.newsletter-widget h3{font-size:1.5rem;margin-bottom:0.5rem;}
-.newsletter-widget p{opacity:0.9;margin-bottom:1.5rem;font-size:0.95rem;}
-.newsletter-form{display:flex;flex-direction:column;gap:0.75rem;}
-.newsletter-form input{padding:0.875rem 1rem;border-radius:12px;border:none;font-size:1rem;}
-.newsletter-form button{background:var(--primary);color:white;border:none;padding:0.875rem;border-radius:12px;font-weight:600;cursor:pointer;transition:transform 0.3s;}
-.newsletter-form button:hover{transform:translateY(-2px);}
-.footer{background:var(--dark);color:white;padding:3rem 1.5rem 2rem;margin-top:4rem;}
-.footer-content{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem;}
-.footer-section h4{font-size:1.1rem;margin-bottom:1rem;color:var(--primary);}
-.footer-section ul{list-style:none;}
-.footer-section ul li{margin-bottom:0.5rem;}
-.footer-section a{color:rgba(255,255,255,0.7);text-decoration:none;transition:color 0.3s;}
-.footer-section a:hover{color:white;}
-.footer-bottom{max-width:1400px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);text-align:center;color:rgba(255,255,255,0.5);font-size:0.875rem;}
-.refresh-indicator{position:fixed;bottom:2rem;right:2rem;background:var(--card);padding:1rem 1.5rem;border-radius:50px;box-shadow:var(--shadow);display:flex;align-items:center;gap:0.75rem;font-size:0.875rem;font-weight:600;z-index:1000;border:1px solid var(--border);}
-.refresh-dot{width:8px;height:8px;background:#10b981;border-radius:50%;animation:pulse 2s infinite;}
-.loading-spinner{text-align:center;padding:3rem;}
-.loading-spinner div{font-size:2rem;margin-bottom:1rem;}
-.error-message{text-align:center;padding:3rem;color:var(--text-light);}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Loved - Live Relationship News</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            background: #fafafa; 
+            color: #1f2937; 
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            color: white; 
+            padding: 1.5rem; 
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header h1 { font-size: 2rem; }
+        header p { opacity: 0.9; margin-top: 0.5rem; }
+        
+        .ticker-wrap {
+            background: #0f0a0a;
+            color: white;
+            padding: 0.75rem 0;
+            overflow: hidden;
+        }
+        
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 25s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .ticker-item { padding: 0 3rem; font-weight: 600; }
+        
+        .category-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+        }
+        
+        .category-pill {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .category-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .category-pill.active { background: #e11d48; color: white; border-color: #e11d48; }
+        
+        #carousel {
+            max-width: 1200px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        #carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .carousel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 3rem 2rem 2rem;
+            color: white;
+        }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active { background: white; width: 30px; border-radius: 5px; }
+        
+        #articles-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            padding: 0 1rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .article-card:hover img { transform: scale(1.05); }
+        
+        .article-content { padding: 1.5rem; }
+        
+        .article-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cat-scandal { background: #fee2e2; color: #dc2626; }
+        .cat-love { background: #d1fae5; color: #059669; }
+        .cat-drama { background: #fef3c7; color: #d97706; }
+        .cat-karma { background: #ede9fe; color: #7c3aed; }
+        
+        .article-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .article-card p { color: #6b7280; font-size: 0.95rem; margin-bottom: 1rem; }
+        
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #f3f4f6;
+        }
+        
+        .read-btn {
+            background: #e11d48;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        #loading { text-align: center; padding: 3rem; color: #6b7280; }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f4f6;
+            border-top-color: #e11d48;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #0f0a0a;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 10000;
+        }
+        .toast.show { transform: translateX(0); }
+        
+        @media (max-width: 768px) {
+            .carousel-item img { height: 250px; }
+            .category-bar { top: 70px; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Breaking News Ticker -->
-<div class="ticker-wrap">
-    <div class="ticker" id="news-ticker">
-        <div class="ticker-item"><span class="ticker-label">BREAKING</span> Cheating scandal exposed on TikTok - 5M views and counting</div>
-        <div class="ticker-item"><span class="ticker-label">KARMA</span> Cheater loses job after viral expose - instant karma delivered</div>
-        <div class="ticker-item"><span class="ticker-label">LOVE</span> Couple reunites after 10 years - second chance romance</div>
-        <div class="ticker-item"><span class="ticker-label">SCANDAL</span> Celebrity affair exposed by private investigator</div>
-        <div class="ticker-item"><span class="ticker-label">DRAMA</span> Wife discovers 3-year affair through Uber receipts</div>
-    </div>
-</div>
-
-<!-- Header -->
-<header class="header">
-    <div class="header-content">
-        <div class="logo">
-            <span class="logo-icon">💔</span>
-            <div>
-                <div class="logo-text">About Loved</div>
-                <div class="logo-tagline">Relationship News Daily</div>
-            </div>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#scandals">Scandals</a></li>
-                <li><a href="#karma">Karma</a></li>
-                <li><a href="#love">Love Stories</a></li>
-                <li><a href="#drama">Drama</a></li>
-            </ul>
-        </nav>
-        <button class="subscribe-btn" onclick="showSubscribe()">Get Alerts</button>
-    </div>
+<header>
+    <h1>About Loved</h1>
+    <p>Live Relationship & Dating News</p>
 </header>
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge">🔥 Trending Now</div>
-        <h1>Cheating, <span>Karma</span> & Second Chances</h1>
-        <p class="hero-subtitle">Real stories of betrayal, instant karma, and love that survives it all. Updated daily with the most shocking relationship news.</p>
-        <div class="hero-stats">
-            <div class="stat">
-                <div class="stat-value">50K+</div>
-                <div class="stat-label">Daily Readers</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Story Updates</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Real Drama</div>
-            </div>
-        </div>
+<div class="ticker-wrap">
+    <div class="ticker" id="ticker">
+        <div class="ticker-item">Breaking: Celebrity couple exposed in cheating scandal</div>
+        <div class="ticker-item">Wife discovers affair through Uber receipts</div>
+        <div class="ticker-item">Instant karma: Cheater loses job after viral expose</div>
+        <div class="ticker-item">Couple reunites after 15 years apart</div>
     </div>
-</section>
-
-<!-- Main Content -->
-<main class="main-content">
-    <div class="content-area">
-        <!-- Category Tabs -->
-        <div class="category-tabs">
-            <button class="category-tab active" onclick="filterCategory('all', this)" data-category="all">All News</button>
-            <button class="category-tab" onclick="filterCategory('scandal', this)" data-category="scandal">💔 Scandals</button>
-            <button class="category-tab" onclick="filterCategory('karma', this)" data-category="karma">⚡ Karma</button>
-            <button class="category-tab" onclick="filterCategory('love', this)" data-category="love">💕 Love Stories</button>
-            <button class="category-tab" onclick="filterCategory('drama', this)" data-category="drama">🔥 Drama</button>
-        </div>
-
-        <!-- Featured Article -->
-        <a href="https://www.reddit.com/r/relationship_advice/" target="_blank" class="featured-article animate-fade">
-            <div class="featured-image"></div>
-            <div class="featured-content">
-                <span class="featured-tag">Viral Story</span>
-                <h2 class="featured-title">Wife Discovers 3-Year Affair Through Uber Receipts</h2>
-                <p class="featured-excerpt">A devastating discovery leads to an epic public confrontation. The receipts don't lie, and neither does the security footage.</p>
-                <div class="featured-meta">
-                    <span>⏱️ 5 min read</span>
-                    <span>👁️ 2.4M views</span>
-                    <span>💬 15K comments</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- Articles Grid -->
-        <div class="articles-grid" id="articles-container">
-            <div class="loading-spinner">
-                <div>📰</div>
-                <div style="color:var(--text-light);">Loading stories...</div>
-            </div>
-        </div>
-        <button class="btn btn-primary" style="margin-top:2rem;width:100%;padding:1rem;background:var(--gradient-1);color:white;border:none;border-radius:12px;font-weight:600;cursor:pointer;" onclick="loadMore()">Load More Stories</button>
-    </div>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <!-- Trending Stories -->
-        <div class="sidebar-widget">
-            <h3 class="widget-title">Trending</h3>
-            <div id="trending-container">
-                <div class="trending-item"><span class="trending-rank">1</span>Cheater loses job after viral expose</div>
-                <div class="trending-item"><span class="trending-rank">2</span>Couple reunites after 10 years</div>
-                <div class="trending-item"><span class="trending-rank">3</span>Celebrity affair revealed by PI</div>
-            </div>
-        </div>
-
-        <!-- Newsletter -->
-        <div class="newsletter-widget">
-            <h3>Stay Updated</h3>
-            <p>Get breaking news and viral love stories delivered daily to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </aside>
-</main>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>About Us</h4>
-            <p>Relationship news, cheating scandals, karma, and love stories. Updated daily with real stories.</p>
-        </div>
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#scandals">Scandals</a></li>
-                <li><a href="#karma">Karma</a></li>
-                <li><a href="#love">Love</a></li>
-                <li><a href="#drama">Drama</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4>Contact</h4>
-            <ul>
-                <li>Email: contact@aboutloved.com</li>
-                <li>Phone: +46 70 123 4567</li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">© 2026 About Loved. All rights reserved.</div>
-</footer>
-
-<!-- Refresh Indicator -->
-<div class="refresh-indicator">
-    <div class="refresh-dot"></div> Live Stories
 </div>
 
-<script>
-const API_ENDPOINT = 'https://yourserver.com/api/getNews'; // Replace with your server endpoint
+<div class="category-bar">
+    <button class="category-pill active" onclick="filterCategory('all', this)">All News</button>
+    <button class="category-pill" onclick="filterCategory('scandal', this)">Scandals</button>
+    <button class="category-pill" onclick="filterCategory('karma', this)">Karma</button>
+    <button class="category-pill" onclick="filterCategory('love', this)">Love</button>
+    <button class="category-pill" onclick="filterCategory('drama', this)">Drama</button>
+</div>
 
-async function loadNews(category = 'all') {
-    const container = document.getElementById('articles-container');
-    container.innerHTML = '<div class="loading-spinner"><div>📰</div><div style="color:var(--text-light);">Loading stories...</div></div>';
+<div id="carousel">
+    <div id="carousel-track"></div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+</div>
+
+<div id="articles-container"></div>
+<div id="loading"><div class="spinner"></div>Loading...</div>
+
+<div class="toast" id="toast">New story added!</div>
+
+<script>
+const API_KEY = '89740910798f4b74ae4ad1610740423c';
+const QUERIES = {
+    all: 'relationship cheating OR breakup OR dating OR celebrity couple OR infidelity',
+    scandal: 'cheating affair infidelity scandal exposed',
+    karma: 'karma revenge cheating exposed fired',
+    love: 'love story engagement wedding reunited',
+    drama: 'breakup drama divorce messy split'
+};
+
+let currentCategory = 'all';
+let currentPage = 1;
+let carouselIndex = 0;
+let articles = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadAll();
+    window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+            fetchArticles();
+        }
+    });
+});
+
+async function loadAll() {
+    await Promise.all([fetchCarousel(), fetchArticles()]);
+}
+
+async function fetchCarousel() {
     try {
-        const res = await fetch(`${API_ENDPOINT}?category=${category}`);
+        const res = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(QUERIES.all)}&language=en&pageSize=5&sortBy=publishedAt&apiKey=${API_KEY}`);
         const data = await res.json();
-        container.innerHTML = '';
-        data.articles.forEach(article => {
-            const card = document.createElement('a');
-            card.href = article.url;
-            card.target = "_blank";
-            card.className = 'article-card animate-fade';
-            card.innerHTML = `
-                <div class="article-image" style="background-image:url('${article.urlToImage || 'https://via.placeholder.com/400x200'}');"></div>
-                <h3 class="article-title">${article.title}</h3>
-                <p class="article-excerpt">${article.description || ''}</p>
-            `;
-            container.appendChild(card);
-        });
-    } catch (err) {
-        container.innerHTML = '<div class="error-message">Failed to load stories. Please try again later.</div>';
-        console.error(err);
+        const carouselArticles = data.articles || [];
+        
+        const track = document.getElementById('carousel-track');
+        const dots = document.getElementById('carousel-dots');
+        
+        track.innerHTML = carouselArticles.map((article, i) => `
+            <div class="carousel-item" onclick="window.open('${article.url}', '_blank')">
+                <img src="${article.urlToImage || 'https://via.placeholder.com/800x400/e11d48/ffffff?text=About+Loved'}" alt="">
+                <div class="carousel-overlay">
+                    <span class="article-category cat-scandal">BREAKING</span>
+                    <h3>${article.title}</h3>
+                </div>
+            </div>
+        `).join('');
+        
+        dots.innerHTML = carouselArticles.map((_, i) => `
+            <div class="dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>
+        `).join('');
+        
+        setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % carouselArticles.length;
+            updateCarousel();
+        }, 5000);
+        
+    } catch (e) {
+        console.error('Carousel error:', e);
     }
 }
 
+function updateCarousel() {
+    document.getElementById('carousel-track').style.transform = `translateX(-${carouselIndex * 100}%)`;
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === carouselIndex);
+    });
+}
+
+function goToSlide(index) {
+    carouselIndex = index;
+    updateCarousel();
+}
+
+async function fetchArticles() {
+    const container = document.getElementById('articles-container');
+    
+    try {
+        const res = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(QUERIES[currentCategory])}&language=en&pageSize=12&page=${currentPage}&sortBy=publishedAt&apiKey=${API_KEY}`);
+        const data = await res.json();
+        
+        const newArticles = (data.articles || []).map(a => ({
+            ...a,
+            category: detectCategory(a.title + ' ' + a.description)
+        }));
+        
+        articles = [...articles, ...newArticles];
+        renderArticles(newArticles);
+        currentPage++;
+        
+    } catch (e) {
+        console.error('Fetch error:', e);
+        document.getElementById('loading').innerHTML = 'Failed to load. <button onclick="fetchArticles()">Retry</button>';
+    }
+}
+
+function detectCategory(text) {
+    text = text.toLowerCase();
+    if (text.match(/cheat|affair|infidelity|scandal/)) return 'scandal';
+    if (text.match(/karma|revenge|exposed|fired/)) return 'karma';
+    if (text.match(/love|engagement|wedding|reunited/)) return 'love';
+    return 'drama';
+}
+
+function renderArticles(newArticles) {
+    const container = document.getElementById('articles-container');
+    
+    newArticles.forEach(article => {
+        const card = document.createElement('div');
+        card.className = 'article-card';
+        card.onclick = () => window.open(article.url, '_blank');
+        
+        const categoryClass = `cat-${article.category}`;
+        
+        card.innerHTML = `
+            <img src="${article.urlToImage || 'https://via.placeholder.com/400x200/e11d48/ffffff?text=About+Loved'}" alt="" loading="lazy">
+            <div class="article-content">
+                <span class="article-category ${categoryClass}">${article.category}</span>
+                <h3>${article.title}</h3>
+                <p>${article.description?.substring(0, 100) || 'Click to read full story...'}...</p>
+                <div class="article-footer">
+                    <span style="color:#9ca3af;font-size:0.85rem;">${article.source?.name || 'News'}</span>
+                    <span class="read-btn">Read →</span>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+}
+
 function filterCategory(category, btn) {
-    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    loadNews(category);
+    
+    currentCategory = category;
+    currentPage = 1;
+    articles = [];
+    document.getElementById('articles-container').innerHTML = '';
+    fetchArticles();
+    
+    const toast = document.getElementById('toast');
+    toast.textContent = `Showing ${category} stories`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
 }
-
-function loadMore() {
-    alert('Load more functionality coming soon.'); // placeholder for pagination
-}
-
-loadNews(); // initial load
 </script>
 
 </body>
