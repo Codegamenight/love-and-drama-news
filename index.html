@@ -1249,84 +1249,109 @@
                    </div>`;
         }
 
-        async function fetchStories(category, silent = false) {
-            if (isLoading) return;
-            isLoading = true;
-            if (!silent) showLoading();
+      async function fetchStories(category, silent = false) {
+    if (isLoading) return;
+    isLoading = true;
 
-            try {
-                const cached = getCache(category);
-                if (cached && !silent) {
-                    allArticles = normalizeArticles(cached);
-                    apiFailed = false;
-                    renderArticles(true);
-                    renderTicker();
-                    renderTrending();
-                    renderLatestKarma();
-                    updateApiStatus('cached');
-                }
+    if (!silent) showLoading();
 
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 6000);
+    try {
 
-                const params = new URLSearchParams({
-                    q: CATEGORY_QUERIES[category],
-                    lang: 'en',
-                    max: '14',
-                    sortby: 'publishedAt',
-                    apikey: GNEWS_API_KEY
-                });
+        const cached = getCache(category);
 
-                const res = await fetch(`${GNEWS_BASE_URL}?${params.toString()}`, {
-                    signal: controller.signal,
-                    cache: 'no-store'
-                });
+        if (cached && !silent) {
+            allArticles = normalizeArticles(cached);
+            apiFailed = false;
 
-                clearTimeout(timeout);
+            renderArticles(true);
+            renderTicker();
+            renderTrending();
+            renderLatestKarma();
 
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-                const json = await res.json();
-                if (!json.articles || !json.articles.length) throw new Error('No articles returned');
-
-                setCache(category, json.articles);
-                allArticles = normalizeArticles(json.articles);
-                apiFailed = false;
-
-                renderArticles(true);
-                renderTicker();
-                renderTrending();
-                renderLatestKarma();
-                updateApiStatus('online');
-            } catch (err) {
-                console.error(err);
-
-                const cached = getCache(category);
-                if (cached) {
-                    allArticles = normalizeArticles(cached);
-                    apiFailed = false;
-                    renderArticles(true);
-                    renderTicker();
-                    renderTrending();
-                    renderLatestKarma();
-                    updateApiStatus('cached');
-                } else {
-                    allArticles = normalizeArticles(
-                        FALLBACK_STORIES.filter(s => category === 'all' || s.category === category)
-                    );
-                    apiFailed = true;
-                    renderArticles(true);
-                    renderTicker();
-                    renderTrending();
-                    renderLatestKarma();
-                    updateApiStatus('offline');
-                }
-
-                if (!silent) showToast('Using cached/demo stories');
-            } finally {
-                isLoading = false;
-            }
+            updateApiStatus('cached');
         }
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
+
+        const params = new URLSearchParams({
+            q: CATEGORY_QUERIES[category],
+            lang: "en",
+            max: "14",
+            sortby: "publishedAt"
+        });
+
+        /* FIXED REQUEST */
+        const res = await fetch(`${API_PROXY}?${params.toString()}`, {
+            signal: controller.signal,
+            cache: "no-store"
+        });
+
+        clearTimeout(timeout);
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const json = await res.json();
+
+        if (!json.articles || !json.articles.length)
+            throw new Error("No articles returned");
+
+        setCache(category, json.articles);
+
+        allArticles = normalizeArticles(json.articles);
+        apiFailed = false;
+
+        renderArticles(true);
+        renderTicker();
+        renderTrending();
+        renderLatestKarma();
+
+        updateApiStatus("online");
+
+    } catch (err) {
+
+        console.error(err);
+
+        const cached = getCache(category);
+
+        if (cached) {
+
+            allArticles = normalizeArticles(cached);
+            apiFailed = false;
+
+            renderArticles(true);
+            renderTicker();
+            renderTrending();
+            renderLatestKarma();
+
+            updateApiStatus("cached");
+
+        } else {
+
+            allArticles = normalizeArticles(
+                FALLBACK_STORIES.filter(
+                    s => category === "all" || s.category === category
+                )
+            );
+
+            apiFailed = true;
+
+            renderArticles(true);
+            renderTicker();
+            renderTrending();
+            renderLatestKarma();
+
+            updateApiStatus("offline");
+        }
+
+        if (!silent) showToast("Using cached/demo stories");
+
+    } finally {
+
+        isLoading = false;
+
+    }
+}
 
         function openStory(id) {
             const article = allArticles.find(a => a.id === Number(id));
@@ -1460,3 +1485,5 @@
     </script>
 </body>
 </html>
+
+
