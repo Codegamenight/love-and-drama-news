@@ -50,6 +50,11 @@
             100% { background-position: 200% 0; }
         }
 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .animate-fade { animation: fadeIn 0.6s ease-out; }
         .animate-pulse { animation: pulse 2s infinite; }
 
@@ -58,6 +63,16 @@
             background-size: 200% 100%;
             animation: skeleton 1.5s infinite;
             border-radius: 4px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
         }
 
         .ticker-wrap {
@@ -743,14 +758,9 @@
             cursor: pointer;
         }
 
-        .loading-spinner {
+        .loading-container {
             text-align: center;
             padding: 3rem;
-        }
-
-        .loading-spinner div {
-            font-size: 2rem;
-            margin-bottom: 1rem;
         }
 
         .error-message {
@@ -782,16 +792,47 @@
             transform: none;
         }
 
+        .api-status {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 1001;
+            transition: all 0.3s;
+        }
+
+        .api-status.online {
+            background: #10b981;
+            color: white;
+        }
+
+        .api-status.offline {
+            background: #ef4444;
+            color: white;
+        }
+
+        .api-status.cached {
+            background: #f59e0b;
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero-stats { flex-direction: column; gap: 1rem; }
             .nav-links { display: none; }
             .featured-article { grid-template-columns: 1fr; }
             .featured-image { min-height: 200px; }
+            .api-status { top: auto; bottom: 5rem; right: 1rem; }
         }
     </style>
 </head>
 <body>
+    <!-- API Status Indicator -->
+    <div id="api-status" class="api-status offline" style="display: none;">API Offline</div>
+
     <!-- Breaking News Ticker -->
     <div class="ticker-wrap">
         <div class="ticker" id="news-ticker">
@@ -861,9 +902,10 @@
 
             <!-- Articles Grid -->
             <div class="articles-grid" id="articles-container">
-                <div class="loading-spinner">
-                    <div>📰</div>
+                <div class="loading-container">
+                    <div class="spinner"></div>
                     <div style="color:var(--text-light);">Loading stories...</div>
+                    <div style="font-size: 0.8rem; color:var(--text-light); margin-top: 0.5rem;">Using cached data if API is slow</div>
                 </div>
             </div>
 
@@ -878,26 +920,10 @@
             <div class="sidebar-widget">
                 <h3 class="widget-title">🔥 Trending Now</h3>
                 <div id="trending-container">
-                    <a href="#" class="trending-item" onclick="filterCategory('karma'); return false;">
+                    <div class="trending-item">
                         <span class="trending-rank">1</span>
-                        <span class="trending-text">Instant karma stories going viral</span>
-                    </a>
-                    <a href="#" class="trending-item" onclick="filterCategory('scandal'); return false;">
-                        <span class="trending-rank">2</span>
-                        <span class="trending-text">Cheating scandals exposed online</span>
-                    </a>
-                    <a href="#" class="trending-item" onclick="filterCategory('love'); return false;">
-                        <span class="trending-rank">3</span>
-                        <span class="trending-text">Couples who survived betrayal</span>
-                    </a>
-                    <a href="#" class="trending-item" onclick="filterCategory('drama'); return false;">
-                        <span class="trending-rank">4</span>
-                        <span class="trending-text">Celebrity breakup drama</span>
-                    </a>
-                    <a href="#" class="trending-item" onclick="filterCategory('scandal'); return false;">
-                        <span class="trending-rank">5</span>
-                        <span class="trending-text">Workplace affair confessions</span>
-                    </a>
+                        <span class="trending-text">Loading trending stories...</span>
+                    </div>
                 </div>
             </div>
 
@@ -1008,15 +1034,95 @@
             "People Are Shocked By"
         ];
 
+        // Fallback stories if API fails
+        const FALLBACK_STORIES = [
+            {
+                title: "Wife Discovers 3-Year Affair Through Uber Receipts",
+                description: "A devastating discovery leads to an epic public confrontation. The receipts don't lie, and neither does the security footage.",
+                category: "scandal",
+                image: null,
+                source: { name: "About Loved" },
+                publishedAt: new Date().toISOString(),
+                url: "#"
+            },
+            {
+                title: "Cheating Boss Fired After Office Affair Exposed",
+                description: "HR investigation found he promoted his mistress. Both terminated immediately after anonymous tip.",
+                category: "karma",
+                image: null,
+                source: { name: "About Loved" },
+                publishedAt: new Date(Date.now() - 3600000).toISOString(),
+                url: "#"
+            },
+            {
+                title: "High School Sweethearts Reconnect After 15 Years",
+                description: "Both went through divorces, found each other on Facebook, now planning their dream wedding.",
+                category: "love",
+                image: null,
+                source: { name: "About Loved" },
+                publishedAt: new Date(Date.now() - 7200000).toISOString(),
+                url: "#"
+            },
+            {
+                title: "Girlfriend Catfishes Cheating Boyfriend",
+                description: "She created a fake profile, he took the bait, she showed up instead of the date. Viral TikTok incoming.",
+                category: "drama",
+                image: null,
+                source: { name: "About Loved" },
+                publishedAt: new Date(Date.now() - 10800000).toISOString(),
+                url: "#"
+            },
+            {
+                title: "Ex-Wife Wins Everything in Divorce After Affair",
+                description: "He cheated, she got the house, the dog, and alimony. He's renting a studio apartment now.",
+                category: "karma",
+                image: null,
+                source: { name: "About Loved" },
+                publishedAt: new Date(Date.now() - 14400000).toISOString(),
+                url: "#"
+            },
+            {
+                title: "Couple Survives Infidelity Through Radical Honesty",
+                description: "One year of therapy, full phone access, and location sharing saved the marriage against all odds.",
+                category: "love",
+                image: null,
+                source: { name: "About Loved" },
+                publishedAt: new Date(Date.now() - 18000000).toISOString(),
+                url: "#"
+            }
+        ];
+
         // State management
         let allArticles = [];
         let currentCategory = 'all';
         let displayedCount = 0;
         const ARTICLES_PER_PAGE = 10;
         let isLoading = false;
+        let apiFailed = false;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            // Try to load cached data first
+            const cached = localStorage.getItem('aboutloved_articles');
+            const cachedTime = localStorage.getItem('aboutloved_cache_time');
+            
+            if (cached && cachedTime) {
+                const age = Date.now() - parseInt(cachedTime);
+                // Use cache if less than 1 hour old
+                if (age < 3600000) {
+                    allArticles = JSON.parse(cached);
+                    renderStories();
+                    updateTicker();
+                    updateTrending();
+                    updateLatestKarma();
+                    updateApiStatus('cached');
+                    // Fetch fresh data in background
+                    setTimeout(() => loadStories(true), 2000);
+                    return;
+                }
+            }
+            
+            // Load fresh data
             loadStories();
             
             // Auto-refresh every 30 minutes
@@ -1046,25 +1152,51 @@
             }
         }
 
-        // Fetch stories from GNews API
+        // Update API status indicator
+        function updateApiStatus(status) {
+            const indicator = document.getElementById('api-status');
+            indicator.style.display = 'block';
+            indicator.className = `api-status ${status}`;
+            
+            if (status === 'online') indicator.textContent = 'Live API';
+            else if (status === 'cached') indicator.textContent = 'Cached Data';
+            else if (status === 'offline') indicator.textContent = 'Demo Mode';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 5000);
+        }
+
+        // Fetch stories from GNews API with timeout
         async function loadStories(silent = false) {
             if (isLoading) return;
             isLoading = true;
             
             if (!silent) {
                 document.getElementById('articles-container').innerHTML = `
-                    <div class="loading-spinner">
-                        <div>📰</div>
-                        <div style="color:var(--text-light);">Loading stories...</div>
+                    <div class="loading-container">
+                        <div class="spinner"></div>
+                        <div style="color:var(--text-light);">Fetching latest stories...</div>
+                        <div style="font-size: 0.8rem; color:var(--text-light); margin-top: 0.5rem;">This may take a few seconds</div>
                     </div>
                 `;
             }
 
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                
                 const query = CATEGORY_QUERIES[currentCategory];
                 const url = `${GNEWS_BASE_URL}/search?q=${encodeURIComponent(query)}&lang=en&country=us&max=50&sortby=publishedAt&apikey=${GNEWS_API_KEY}`;
                 
-                const response = await fetch(url);
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
                 const data = await response.json();
                 
                 if (data.articles && data.articles.length > 0) {
@@ -1079,17 +1211,45 @@
                         comments: generateComments()
                     }));
                     
+                    // Cache the data
+                    localStorage.setItem('aboutloved_articles', JSON.stringify(allArticles));
+                    localStorage.setItem('aboutloved_cache_time', Date.now().toString());
+                    
                     displayedCount = 0;
                     renderStories();
                     updateTicker();
                     updateTrending();
                     updateLatestKarma();
+                    updateApiStatus('online');
+                    apiFailed = false;
                 } else {
-                    showError('No stories found. Try again later.');
+                    throw new Error('No articles found');
                 }
             } catch (error) {
                 console.error('Error fetching news:', error);
-                showError('Failed to load stories. Please check your connection.');
+                apiFailed = true;
+                
+                // Use fallback data
+                allArticles = FALLBACK_STORIES.map((story, index) => ({
+                    ...story,
+                    id: index,
+                    originalTitle: story.title,
+                    displayTitle: rewriteTitle(story.title),
+                    time: formatTime(story.publishedAt),
+                    views: generateViews(),
+                    comments: generateComments()
+                }));
+                
+                displayedCount = 0;
+                renderStories();
+                updateTicker();
+                updateTrending();
+                updateLatestKarma();
+                updateApiStatus('offline');
+                
+                if (!silent) {
+                    showToast('Using demo stories (API limit reached or slow connection)');
+                }
             } finally {
                 isLoading = false;
             }
@@ -1103,7 +1263,7 @@
             
             if (content.includes('cheat') || content.includes('affair') || content.includes('infidelity') || content.includes('betray') || content.includes('scandal') || content.includes('exposed') || content.includes('secret')) {
                 return 'scandal';
-            } else if (content.includes('karma') || content.includes('revenge') || content.includes('consequences') || content.includes('exposed') || content.includes('caught') || content.includes('fired') || content.includes('dumped')) {
+            } else if (content.includes('karma') || content.includes('revenge') || content.includes('consequences') || content.includes('caught') || content.includes('fired') || content.includes('dumped')) {
                 return 'karma';
             } else if (content.includes('love') || content.includes('romance') || content.includes('wedding') || content.includes('engagement') || content.includes('anniversary') || content.includes('soulmate') || content.includes('reunite')) {
                 return 'love';
@@ -1124,9 +1284,10 @@
             const now = new Date();
             const diff = Math.floor((now - date) / 1000 / 60); // minutes
             
-            if (diff < 60) return `${diff} minutes ago`;
-            if (diff < 1440) return `${Math.floor(diff / 60)} hours ago`;
-            return `${Math.floor(diff / 1440)} days ago`;
+            if (diff < 1) return 'Just now';
+            if (diff < 60) return `${diff}m ago`;
+            if (diff < 1440) return `${Math.floor(diff / 60)}h ago`;
+            return `${Math.floor(diff / 1440)}d ago`;
         }
 
         // Generate random view count
@@ -1158,7 +1319,7 @@
                         ${featured.image ? `<img src="${featured.image}" alt="${featured.originalTitle}" onerror="this.style.display='none'">` : ''}
                     </div>
                     <div class="featured-content">
-                        <span class="featured-tag">Viral Story</span>
+                        <span class="featured-tag">${apiFailed ? 'Demo Story' : 'Viral Story'}</span>
                         <h2 class="featured-title">${featured.displayTitle}</h2>
                         <p class="featured-excerpt">${featured.description || 'Click to read the full story...'}</p>
                         <div class="featured-meta">
@@ -1235,7 +1396,7 @@
                     ${article.image ? `<img src="${article.image}" alt="${article.originalTitle}" onerror="this.style.display='none'">` : ''}
                     <p>${article.description || 'Full story content loading...'}</p>
                     <p style="font-style: italic; color: var(--text-light);">
-                        This is a summary of the breaking news story. For the complete article and additional details, visit the original source below.
+                        ${apiFailed ? 'This is demo content. Connect to GNews API for real stories.' : 'This is a summary of the breaking news story. For the complete article and additional details, visit the original source below.'}
                     </p>
                     <a href="${article.url}" target="_blank" class="subscribe-btn" style="display: inline-block; text-decoration: none; margin-top: 1rem;">
                         Read Full Story at ${article.source.name} →
@@ -1366,6 +1527,13 @@
                         <div style="font-size: 0.8rem; color: var(--text-light);">${article.time}</div>
                     </div>
                 `).join('');
+            } else {
+                container.innerHTML = `
+                    <div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border-left: 3px solid #8b5cf6;">
+                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">No karma stories yet</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light);">Check back soon</div>
+                    </div>
+                `;
             }
         }
 
@@ -1424,60 +1592,6 @@
             setTimeout(() => {
                 toast.remove();
             }, 3000);
-        }
-
-        // Generate sitemap (for download)
-        function generateSitemap() {
-            const baseUrl = window.location.origin + window.location.pathname;
-            const urls = allArticles.map(article => `
-                <url>
-                    <loc>${baseUrl}#/story/${article.id}</loc>
-                    <lastmod>${article.publishedAt}</lastmod>
-                    <changefreq>daily</changefreq>
-                    <priority>0.8</priority>
-                </url>
-            `).join('');
-            
-            const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>${baseUrl}</loc>
-        <changefreq>hourly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>${baseUrl}#/scandal</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>${baseUrl}#/karma</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>${baseUrl}#/love</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>${baseUrl}#/drama</loc>
-        <changefreq>hourly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    ${urls}
-</urlset>`;
-            
-            // Download sitemap
-            const blob = new Blob([sitemap], { type: 'application/xml' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'sitemap.xml';
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            showToast('Sitemap downloaded!');
         }
 
         // Keyboard shortcuts
