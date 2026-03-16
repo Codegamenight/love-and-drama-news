@@ -45,35 +45,12 @@
             100% { transform: translateX(-100%); }
         }
 
-        @keyframes skeleton {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        .animate-fade { animation: fadeIn 0.6s ease-out; }
-        .animate-pulse { animation: pulse 2s infinite; }
-
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: skeleton 1.5s infinite;
-            border-radius: 4px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
+        .animate-fade { animation: fadeIn 0.45s ease-out; }
 
         .ticker-wrap {
             background: var(--gradient-1);
@@ -317,11 +294,11 @@
             transition: transform 0.3s;
             text-decoration: none;
             color: inherit;
+            content-visibility: auto;
+            contain-intrinsic-size: 400px;
         }
 
-        .featured-article:hover {
-            transform: translateY(-4px);
-        }
+        .featured-article:hover { transform: translateY(-4px); }
 
         @media (max-width: 768px) {
             .featured-article { grid-template-columns: 1fr; }
@@ -329,7 +306,7 @@
 
         .featured-image {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 400px;
+            min-height: 380px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -343,16 +320,14 @@
             height: 100%;
             object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
         }
 
         .featured-image::before {
             content: '💔';
             position: absolute;
             font-size: 8rem;
-            opacity: 0.3;
-            animation: pulse 3s ease-in-out infinite;
+            opacity: 0.25;
             z-index: 1;
         }
 
@@ -385,7 +360,7 @@
 
         .featured-excerpt {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
@@ -396,12 +371,19 @@
             gap: 1rem;
             color: var(--text-light);
             font-size: 0.875rem;
+            flex-wrap: wrap;
         }
 
-        .articles-grid { 
-            display: grid; 
-            gap: 1.5rem; 
-            min-height: 400px;
+        .articles-grid {
+            display: grid;
+            gap: 1.5rem;
+            min-height: 320px;
+        }
+
+        .article-card,
+        .sidebar-widget {
+            content-visibility: auto;
+            contain-intrinsic-size: 300px;
         }
 
         .article-card {
@@ -412,8 +394,6 @@
             border: 1px solid var(--border);
             transition: all 0.3s;
             cursor: pointer;
-            text-decoration: none;
-            color: inherit;
             display: block;
         }
 
@@ -423,6 +403,11 @@
             border-color: var(--primary);
         }
 
+        .article-image,
+        .featured-image img {
+            will-change: auto;
+        }
+
         .article-image {
             width: 100%;
             height: 200px;
@@ -430,6 +415,7 @@
             border-radius: 12px;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+            display: block;
         }
 
         .article-header {
@@ -437,6 +423,7 @@
             justify-content: space-between;
             align-items: start;
             margin-bottom: 1rem;
+            gap: 1rem;
         }
 
         .article-category {
@@ -452,11 +439,11 @@
         .category-love { background: rgba(16, 185, 129, 0.1); color: #059669; }
         .category-drama { background: rgba(245, 158, 11, 0.1); color: #d97706; }
         .category-karma { background: rgba(139, 92, 246, 0.1); color: #7c3aed; }
-        .category-advice { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
 
         .article-time {
             font-size: 0.8rem;
             color: var(--text-light);
+            white-space: nowrap;
         }
 
         .article-title {
@@ -477,6 +464,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .article-stats {
@@ -484,18 +473,12 @@
             gap: 1rem;
             font-size: 0.875rem;
             color: var(--text-light);
-        }
-
-        .article-stats span {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+            flex-wrap: wrap;
         }
 
         .read-more {
             color: var(--primary);
             font-weight: 600;
-            text-decoration: none;
         }
 
         .sidebar {
@@ -526,13 +509,10 @@
             border-bottom: 1px solid var(--border);
             cursor: pointer;
             transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
             display: block;
         }
 
         .trending-item:last-child { border-bottom: none; }
-
         .trending-item:hover { color: var(--primary); }
 
         .trending-rank {
@@ -594,10 +574,7 @@
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
         }
-
-        .newsletter-form button:hover { transform: translateY(-2px); }
 
         .app-promo {
             background: var(--dark);
@@ -622,17 +599,6 @@
 
         .app-promo-content { position: relative; z-index: 1; }
 
-        .app-promo h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .app-promo p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
         .app-badge {
             display: inline-flex;
             align-items: center;
@@ -643,10 +609,7 @@
             border-radius: 12px;
             font-weight: 600;
             text-decoration: none;
-            transition: transform 0.3s;
         }
-
-        .app-badge:hover { transform: translateY(-2px); }
 
         .footer {
             background: var(--dark);
@@ -670,13 +633,11 @@
         }
 
         .footer-section ul { list-style: none; }
-
         .footer-section ul li { margin-bottom: 0.5rem; }
 
         .footer-section a {
             color: rgba(255,255,255,0.7);
             text-decoration: none;
-            transition: color 0.3s;
             cursor: pointer;
         }
 
@@ -742,7 +703,7 @@
         }
 
         .story-page p {
-            font-size: 1.125rem;
+            font-size: 1.05rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: var(--text);
@@ -758,15 +719,10 @@
             cursor: pointer;
         }
 
-        .loading-container {
-            text-align: center;
-            padding: 3rem;
-        }
-
+        .loading-container,
         .error-message {
             text-align: center;
             padding: 3rem;
-            color: var(--text-light);
         }
 
         .load-more-btn {
@@ -779,17 +735,11 @@
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .load-more-btn:hover {
-            transform: translateY(-2px);
         }
 
         .load-more-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
         }
 
         .api-status {
@@ -801,22 +751,20 @@
             font-size: 0.75rem;
             font-weight: 600;
             z-index: 1001;
-            transition: all 0.3s;
         }
 
-        .api-status.online {
-            background: #10b981;
-            color: white;
-        }
+        .api-status.online { background: #10b981; color: white; }
+        .api-status.offline { background: #ef4444; color: white; }
+        .api-status.cached { background: #f59e0b; color: white; }
 
-        .api-status.offline {
-            background: #ef4444;
-            color: white;
-        }
-
-        .api-status.cached {
-            background: #f59e0b;
-            color: white;
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 4px solid #eee;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
         }
 
         @media (max-width: 768px) {
@@ -824,23 +772,20 @@
             .hero-stats { flex-direction: column; gap: 1rem; }
             .nav-links { display: none; }
             .featured-article { grid-template-columns: 1fr; }
-            .featured-image { min-height: 200px; }
+            .featured-image { min-height: 220px; }
             .api-status { top: auto; bottom: 5rem; right: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- API Status Indicator -->
-    <div id="api-status" class="api-status offline" style="display: none;">API Offline</div>
+    <div id="api-status" class="api-status offline" style="display:none;">Offline</div>
 
-    <!-- Breaking News Ticker -->
     <div class="ticker-wrap">
         <div class="ticker" id="news-ticker">
             <div class="ticker-item"><span class="ticker-label">BREAKING</span> Loading latest relationship news...</div>
         </div>
     </div>
 
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo" onclick="goHome()">
@@ -862,7 +807,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">🔥 Trending Now</div>
@@ -870,7 +814,7 @@
             <p class="hero-subtitle">Real stories of betrayal, instant karma, and love that survives it all. Updated daily with the most shocking relationship news.</p>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-value" id="reader-count">50K+</div>
+                    <div class="stat-value">50K+</div>
                     <div class="stat-label">Daily Readers</div>
                 </div>
                 <div class="stat">
@@ -885,10 +829,8 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main class="main-content" id="main-container">
         <div class="content-area" id="content-area">
-            <!-- Category Tabs -->
             <div class="category-tabs">
                 <button class="category-tab active" onclick="filterCategory('all')" data-category="all">All News</button>
                 <button class="category-tab" onclick="filterCategory('scandal')" data-category="scandal">💔 Scandals</button>
@@ -897,26 +839,19 @@
                 <button class="category-tab" onclick="filterCategory('drama')" data-category="drama">🔥 Drama</button>
             </div>
 
-            <!-- Featured Article -->
             <div id="featured-container"></div>
 
-            <!-- Articles Grid -->
             <div class="articles-grid" id="articles-container">
                 <div class="loading-container">
                     <div class="spinner"></div>
                     <div style="color:var(--text-light);">Loading stories...</div>
-                    <div style="font-size: 0.8rem; color:var(--text-light); margin-top: 0.5rem;">Using cached data if API is slow</div>
                 </div>
             </div>
 
-            <button class="load-more-btn" id="load-more" onclick="loadMore()">
-                Load More Stories
-            </button>
+            <button class="load-more-btn" id="load-more" onclick="loadMore()">Load More Stories</button>
         </div>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- Trending Widget -->
             <div class="sidebar-widget">
                 <h3 class="widget-title">🔥 Trending Now</h3>
                 <div id="trending-container">
@@ -927,7 +862,6 @@
                 </div>
             </div>
 
-            <!-- Newsletter -->
             <div class="newsletter-widget">
                 <h3>Get The Drama First</h3>
                 <p>Fresh karma and scandal stories delivered daily. No spam, just tea.</p>
@@ -938,7 +872,6 @@
                 <p style="font-size: 0.75rem; margin-top: 1rem; opacity: 0.7;">Join 250,000+ subscribers</p>
             </div>
 
-            <!-- App Promo -->
             <div class="app-promo">
                 <div class="app-promo-content">
                     <div style="font-size: 3rem; margin-bottom: 0.5rem;">💜</div>
@@ -951,19 +884,17 @@
                 </div>
             </div>
 
-            <!-- Latest Karma -->
             <div class="sidebar-widget">
                 <h3 class="widget-title">⚡ Latest Karma</h3>
-                <div style="display: flex; flex-direction: column; gap: 1rem;" id="latest-karma">
-                    <div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border-left: 3px solid #8b5cf6;">
-                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Loading karma stories...</div>
+                <div id="latest-karma" style="display:flex;flex-direction:column;gap:1rem;">
+                    <div style="padding:1rem;background:rgba(139,92,246,0.05);border-radius:12px;border-left:3px solid #8b5cf6;">
+                        <div style="font-weight:600;font-size:0.9rem;">Loading karma stories...</div>
                     </div>
                 </div>
             </div>
         </aside>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -1002,347 +933,225 @@
         </div>
     </footer>
 
-    <!-- Auto-refresh Indicator -->
     <div class="refresh-indicator" onclick="manualRefresh()">
         <div class="refresh-dot"></div>
         <span>Live Updates</span>
     </div>
 
     <script>
-        // GNews API Configuration
-        const GNEWS_API_KEY = 'dc50a5ca77daa1c4c16b2db42913522b';
-        const GNEWS_BASE_URL = 'https://gnews.io/api/v4';
-        
-        // Search queries for each category
+        const GNEWS_API_KEY = 'REPLACE_WITH_NEW_KEY';
+        const GNEWS_BASE_URL = 'https://gnews.io/api/v4/search';
+
         const CATEGORY_QUERIES = {
             all: 'relationship OR love OR dating OR marriage OR couple OR breakup OR divorce OR cheating OR affair OR romance',
-            scandal: 'cheating OR affair OR infidelity OR betrayal OR "secret relationship" OR scandal OR exposed OR "caught cheating"',
-            karma: 'revenge OR karma OR "got what they deserved" OR "instant karma" OR "cheater exposed" OR "affair revealed" OR consequences',
-            love: 'love story OR romance OR engagement OR wedding OR "couple goals" OR "relationship goals" OR "true love" OR soulmate OR anniversary',
-            drama: 'breakup OR divorce OR "relationship drama" OR "toxic relationship" OR "crazy ex" OR "jealousy" OR "relationship fight" OR "public breakup"'
+            scandal: 'cheating OR affair OR infidelity OR betrayal OR scandal OR exposed OR "caught cheating"',
+            karma: 'karma OR revenge OR consequences OR "got what they deserved" OR "cheater exposed"',
+            love: 'love story OR romance OR wedding OR engagement OR soulmate OR anniversary',
+            drama: 'breakup OR divorce OR "relationship drama" OR jealousy OR "toxic relationship"'
         };
 
-        // SEO Headline Prefixes
-        const HEADLINE_PREFIXES = [
-            "Fans React As",
-            "Internet Explodes After",
-            "Social Media Reacts To",
-            "Trending Now:",
-            "Breaking:",
-            "Viral Story:",
-            "Just In:",
-            "People Are Shocked By"
-        ];
-
-        // Fallback stories if API fails
         const FALLBACK_STORIES = [
             {
-                title: "Wife Discovers 3-Year Affair Through Uber Receipts",
-                description: "A devastating discovery leads to an epic public confrontation. The receipts don't lie, and neither does the security footage.",
-                category: "scandal",
-                image: null,
-                source: { name: "About Loved" },
+                title: 'Wife Discovers 3-Year Affair Through Uber Receipts',
+                description: 'A devastating discovery leads to an epic public confrontation.',
+                category: 'scandal',
+                image: '',
+                source: { name: 'About Loved' },
                 publishedAt: new Date().toISOString(),
-                url: "#"
+                url: '#'
             },
             {
-                title: "Cheating Boss Fired After Office Affair Exposed",
-                description: "HR investigation found he promoted his mistress. Both terminated immediately after anonymous tip.",
-                category: "karma",
-                image: null,
-                source: { name: "About Loved" },
+                title: 'Cheating Boss Fired After Office Affair Exposed',
+                description: 'HR investigation found he promoted his mistress. Both terminated.',
+                category: 'karma',
+                image: '',
+                source: { name: 'About Loved' },
                 publishedAt: new Date(Date.now() - 3600000).toISOString(),
-                url: "#"
+                url: '#'
             },
             {
-                title: "High School Sweethearts Reconnect After 15 Years",
-                description: "Both went through divorces, found each other on Facebook, now planning their dream wedding.",
-                category: "love",
-                image: null,
-                source: { name: "About Loved" },
+                title: 'High School Sweethearts Reconnect After 15 Years',
+                description: 'Both went through divorces and found each other again.',
+                category: 'love',
+                image: '',
+                source: { name: 'About Loved' },
                 publishedAt: new Date(Date.now() - 7200000).toISOString(),
-                url: "#"
+                url: '#'
             },
             {
-                title: "Girlfriend Catfishes Cheating Boyfriend",
-                description: "She created a fake profile, he took the bait, she showed up instead of the date. Viral TikTok incoming.",
-                category: "drama",
-                image: null,
-                source: { name: "About Loved" },
+                title: 'Girlfriend Catfishes Cheating Boyfriend',
+                description: 'She created a fake profile, he took the bait, and she showed up instead.',
+                category: 'drama',
+                image: '',
+                source: { name: 'About Loved' },
                 publishedAt: new Date(Date.now() - 10800000).toISOString(),
-                url: "#"
-            },
-            {
-                title: "Ex-Wife Wins Everything in Divorce After Affair",
-                description: "He cheated, she got the house, the dog, and alimony. He's renting a studio apartment now.",
-                category: "karma",
-                image: null,
-                source: { name: "About Loved" },
-                publishedAt: new Date(Date.now() - 14400000).toISOString(),
-                url: "#"
-            },
-            {
-                title: "Couple Survives Infidelity Through Radical Honesty",
-                description: "One year of therapy, full phone access, and location sharing saved the marriage against all odds.",
-                category: "love",
-                image: null,
-                source: { name: "About Loved" },
-                publishedAt: new Date(Date.now() - 18000000).toISOString(),
-                url: "#"
+                url: '#'
             }
         ];
 
-        // State management
+        const HEADLINE_PREFIXES = [
+            'Trending Now:',
+            'Breaking:',
+            'Viral Story:',
+            'Fans React As',
+            'People Are Shocked By'
+        ];
+
+        const CACHE_TTL = 15 * 60 * 1000;
+        const INITIAL_LOAD_COUNT = 8;
+        const LOAD_MORE_COUNT = 6;
+
         let allArticles = [];
         let currentCategory = 'all';
         let displayedCount = 0;
-        const ARTICLES_PER_PAGE = 10;
         let isLoading = false;
         let apiFailed = false;
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Try to load cached data first
-            const cached = localStorage.getItem('aboutloved_articles');
-            const cachedTime = localStorage.getItem('aboutloved_cache_time');
-            
-            if (cached && cachedTime) {
-                const age = Date.now() - parseInt(cachedTime);
-                // Use cache if less than 1 hour old
-                if (age < 3600000) {
-                    allArticles = JSON.parse(cached);
-                    renderStories();
-                    updateTicker();
-                    updateTrending();
-                    updateLatestKarma();
-                    updateApiStatus('cached');
-                    // Fetch fresh data in background
-                    setTimeout(() => loadStories(true), 2000);
-                    return;
-                }
-            }
-            
-            // Load fresh data
-            loadStories();
-            
-            // Auto-refresh every 30 minutes
-            setInterval(() => {
-                loadStories(true);
-            }, 1800000);
-            
-            // Check for hash-based routing
-            handleHashRoute();
-        });
+        let els = {};
 
-        // Handle browser back/forward
-        window.addEventListener('hashchange', handleHashRoute);
-
-        function handleHashRoute() {
-            const hash = window.location.hash;
-            if (hash.startsWith('#/story/')) {
-                const articleId = hash.replace('#/story/', '');
-                showStoryPage(articleId);
-            } else if (hash.startsWith('#/')) {
-                const category = hash.replace('#/', '');
-                if (CATEGORY_QUERIES[category]) {
-                    filterCategory(category);
-                }
-            } else {
-                goHome();
-            }
+        function bindEls() {
+            els = {
+                articles: document.getElementById('articles-container'),
+                featured: document.getElementById('featured-container'),
+                ticker: document.getElementById('news-ticker'),
+                trending: document.getElementById('trending-container'),
+                karma: document.getElementById('latest-karma'),
+                loadMore: document.getElementById('load-more'),
+                status: document.getElementById('api-status')
+            };
         }
 
-        // Update API status indicator
-        function updateApiStatus(status) {
-            const indicator = document.getElementById('api-status');
-            indicator.style.display = 'block';
-            indicator.className = `api-status ${status}`;
-            
-            if (status === 'online') indicator.textContent = 'Live API';
-            else if (status === 'cached') indicator.textContent = 'Cached Data';
-            else if (status === 'offline') indicator.textContent = 'Demo Mode';
-            
-            // Hide after 5 seconds
-            setTimeout(() => {
-                indicator.style.display = 'none';
-            }, 5000);
+        function cacheKey(category) {
+            return `aboutloved_cache_${category}`;
         }
 
-        // Fetch stories from GNews API with timeout
-        async function loadStories(silent = false) {
-            if (isLoading) return;
-            isLoading = true;
-            
-            if (!silent) {
-                document.getElementById('articles-container').innerHTML = `
-                    <div class="loading-container">
-                        <div class="spinner"></div>
-                        <div style="color:var(--text-light);">Fetching latest stories...</div>
-                        <div style="font-size: 0.8rem; color:var(--text-light); margin-top: 0.5rem;">This may take a few seconds</div>
-                    </div>
-                `;
-            }
+        function setCache(category, data) {
+            localStorage.setItem(cacheKey(category), JSON.stringify({ time: Date.now(), data }));
+        }
 
+        function getCache(category) {
+            const raw = localStorage.getItem(cacheKey(category));
+            if (!raw) return null;
             try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-                
-                const query = CATEGORY_QUERIES[currentCategory];
-                const url = `${GNEWS_BASE_URL}/search?q=${encodeURIComponent(query)}&lang=en&country=us&max=50&sortby=publishedAt&apikey=${GNEWS_API_KEY}`;
-                
-                const response = await fetch(url, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if (data.articles && data.articles.length > 0) {
-                    allArticles = data.articles.map((article, index) => ({
-                        ...article,
-                        id: index,
-                        category: categorizeArticle(article),
-                        originalTitle: article.title,
-                        displayTitle: rewriteTitle(article.title),
-                        time: formatTime(article.publishedAt),
-                        views: generateViews(),
-                        comments: generateComments()
-                    }));
-                    
-                    // Cache the data
-                    localStorage.setItem('aboutloved_articles', JSON.stringify(allArticles));
-                    localStorage.setItem('aboutloved_cache_time', Date.now().toString());
-                    
-                    displayedCount = 0;
-                    renderStories();
-                    updateTicker();
-                    updateTrending();
-                    updateLatestKarma();
-                    updateApiStatus('online');
-                    apiFailed = false;
-                } else {
-                    throw new Error('No articles found');
-                }
-            } catch (error) {
-                console.error('Error fetching news:', error);
-                apiFailed = true;
-                
-                // Use fallback data
-                allArticles = FALLBACK_STORIES.map((story, index) => ({
-                    ...story,
-                    id: index,
-                    originalTitle: story.title,
-                    displayTitle: rewriteTitle(story.title),
-                    time: formatTime(story.publishedAt),
-                    views: generateViews(),
-                    comments: generateComments()
-                }));
-                
-                displayedCount = 0;
-                renderStories();
-                updateTicker();
-                updateTrending();
-                updateLatestKarma();
-                updateApiStatus('offline');
-                
-                if (!silent) {
-                    showToast('Using demo stories (API limit reached or slow connection)');
-                }
-            } finally {
-                isLoading = false;
+                const parsed = JSON.parse(raw);
+                if (Date.now() - parsed.time > CACHE_TTL) return null;
+                return parsed.data;
+            } catch {
+                return null;
             }
         }
 
-        // Categorize article based on content
-        function categorizeArticle(article) {
-            const title = article.title.toLowerCase();
-            const desc = (article.description || '').toLowerCase();
-            const content = title + ' ' + desc;
-            
-            if (content.includes('cheat') || content.includes('affair') || content.includes('infidelity') || content.includes('betray') || content.includes('scandal') || content.includes('exposed') || content.includes('secret')) {
-                return 'scandal';
-            } else if (content.includes('karma') || content.includes('revenge') || content.includes('consequences') || content.includes('caught') || content.includes('fired') || content.includes('dumped')) {
-                return 'karma';
-            } else if (content.includes('love') || content.includes('romance') || content.includes('wedding') || content.includes('engagement') || content.includes('anniversary') || content.includes('soulmate') || content.includes('reunite')) {
-                return 'love';
-            } else {
-                return 'drama';
-            }
+        function updateApiStatus(mode) {
+            if (!els.status) return;
+            els.status.style.display = 'block';
+            els.status.className = `api-status ${mode}`;
+            els.status.textContent = mode === 'online' ? 'Live API' : mode === 'cached' ? 'Cached Data' : 'Demo Mode';
+            clearTimeout(updateApiStatus._t);
+            updateApiStatus._t = setTimeout(() => { els.status.style.display = 'none'; }, 2500);
         }
 
-        // Rewrite title with SEO prefix
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+                background: var(--dark); color: white; padding: 1rem 1.25rem; border-radius: 999px;
+                font-weight: 600; z-index: 10000; box-shadow: var(--shadow);
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2200);
+        }
+
+        function escapeHtml(str = '') {
+            return str
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+
+        function formatTime(publishedAt) {
+            const date = new Date(publishedAt);
+            const diffMins = Math.max(1, Math.floor((Date.now() - date.getTime()) / 60000));
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h ago`;
+            return `${Math.floor(diffMins / 1440)}d ago`;
+        }
+
+        function generateViews() {
+            const views = Math.floor(Math.random() * 50000) + 1000;
+            return views >= 1000 ? `${(views / 1000).toFixed(1)}K` : `${views}`;
+        }
+
+        function generateComments() {
+            return Math.floor(Math.random() * 1800) + 50;
+        }
+
         function rewriteTitle(title) {
             const prefix = HEADLINE_PREFIXES[Math.floor(Math.random() * HEADLINE_PREFIXES.length)];
             return `${prefix} ${title}`;
         }
 
-        // Format publication time
-        function formatTime(publishedAt) {
-            const date = new Date(publishedAt);
-            const now = new Date();
-            const diff = Math.floor((now - date) / 1000 / 60); // minutes
-            
-            if (diff < 1) return 'Just now';
-            if (diff < 60) return `${diff}m ago`;
-            if (diff < 1440) return `${Math.floor(diff / 60)}h ago`;
-            return `${Math.floor(diff / 1440)}d ago`;
+        function categorizeArticle(article) {
+            const text = `${article.title || ''} ${article.description || ''}`.toLowerCase();
+            if (/(cheat|affair|infidelity|betray|scandal|exposed|secret)/.test(text)) return 'scandal';
+            if (/(karma|revenge|consequences|caught|fired|dumped)/.test(text)) return 'karma';
+            if (/(love story|romance|wedding|engagement|soulmate|anniversary|reunite|couple)/.test(text)) return 'love';
+            return 'drama';
         }
 
-        // Generate random view count
-        function generateViews() {
-            const views = Math.floor(Math.random() * 50000) + 1000;
-            return views > 1000 ? `${(views / 1000).toFixed(1)}K` : views;
+        function normalizeArticles(items) {
+            return items.map((article, index) => ({
+                id: index,
+                title: article.title || 'Untitled',
+                originalTitle: article.title || 'Untitled',
+                displayTitle: rewriteTitle(article.title || 'Untitled'),
+                description: article.description || 'Click to read more...',
+                image: article.image || article.urlToImage || '',
+                source: article.source || { name: 'Unknown Source' },
+                publishedAt: article.publishedAt || new Date().toISOString(),
+                time: formatTime(article.publishedAt || new Date().toISOString()),
+                url: article.url || '#',
+                category: article.category || categorizeArticle(article),
+                views: generateViews(),
+                comments: generateComments()
+            }));
         }
 
-        // Generate random comment count
-        function generateComments() {
-            return Math.floor(Math.random() * 2000) + 50;
-        }
-
-        // Render stories
-        function renderStories() {
-            const container = document.getElementById('articles-container');
-            const featuredContainer = document.getElementById('featured-container');
-            
-            if (allArticles.length === 0) {
-                showError('No stories available.');
-                return;
-            }
-
-            // Render featured article (first one)
-            const featured = allArticles[0];
-            featuredContainer.innerHTML = `
-                <div class="featured-article animate-fade" onclick="openStory(${featured.id})">
-                    <div class="featured-image">
-                        ${featured.image ? `<img src="${featured.image}" alt="${featured.originalTitle}" onerror="this.style.display='none'">` : ''}
-                    </div>
-                    <div class="featured-content">
-                        <span class="featured-tag">${apiFailed ? 'Demo Story' : 'Viral Story'}</span>
-                        <h2 class="featured-title">${featured.displayTitle}</h2>
-                        <p class="featured-excerpt">${featured.description || 'Click to read the full story...'}</p>
-                        <div class="featured-meta">
-                            <span>⏱️ ${featured.time}</span>
-                            <span>👁️ ${featured.views} views</span>
-                            <span>💬 ${featured.comments} comments</span>
-                        </div>
-                    </div>
+        function showLoading() {
+            els.articles.innerHTML = `
+                <div class="loading-container">
+                    <div class="spinner"></div>
+                    <div style="color:var(--text-light);">Loading stories...</div>
                 </div>
             `;
+        }
 
-            // Render article cards
-            const articlesToShow = allArticles.slice(1, displayedCount + ARTICLES_PER_PAGE + 1);
-            
-            container.innerHTML = articlesToShow.map(article => `
-                <div class="article-card animate-fade" onclick="openStory(${article.id})">
-                    ${article.image ? `<img src="${article.image}" class="article-image" alt="${article.originalTitle}" onerror="this.style.display='none'">` : '<div class="article-image skeleton"></div>'}
+        function showError(message) {
+            els.articles.innerHTML = `
+                <div class="error-message">
+                    <div style="font-size:2.5rem;margin-bottom:1rem;">😕</div>
+                    <div>${escapeHtml(message)}</div>
+                    <button onclick="manualRefresh()" class="subscribe-btn" style="margin-top:1rem;">Try Again</button>
+                </div>
+            `;
+        }
+
+        function articleCardHtml(article) {
+            const img = article.image
+                ? `<img src="${escapeHtml(article.image)}" class="article-image" alt="${escapeHtml(article.originalTitle)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">`
+                : `<div class="article-image"></div>`;
+
+            return `
+                <div class="article-card animate-fade" data-id="${article.id}">
+                    ${img}
                     <div class="article-header">
                         <span class="article-category category-${article.category}">${article.category.toUpperCase()}</span>
                         <span class="article-time">${article.time}</span>
                     </div>
-                    <div class="article-title">${article.displayTitle}</div>
-                    <div class="article-excerpt">${article.description || 'Click to read more...'}</div>
+                    <div class="article-title">${escapeHtml(article.displayTitle)}</div>
+                    <div class="article-excerpt">${escapeHtml(article.description)}</div>
                     <div class="article-footer">
                         <div class="article-stats">
                             <span>👁️ ${article.views}</span>
@@ -1351,258 +1160,303 @@
                         <span class="read-more">Read More →</span>
                     </div>
                 </div>
-            `).join('');
+            `;
+        }
 
-            displayedCount = articlesToShow.length;
-            
-            // Update load more button
-            const loadMoreBtn = document.getElementById('load-more');
-            if (displayedCount >= allArticles.length - 1) {
-                loadMoreBtn.textContent = 'No More Stories';
-                loadMoreBtn.disabled = true;
+        function renderFeatured() {
+            if (!allArticles.length) {
+                els.featured.innerHTML = '';
+                return;
+            }
+
+            const a = allArticles[0];
+            els.featured.innerHTML = `
+                <div class="featured-article animate-fade" data-id="${a.id}">
+                    <div class="featured-image">
+                        ${a.image ? `<img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.originalTitle)}" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : ''}
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-tag">${apiFailed ? 'Demo Story' : 'Trending Story'}</span>
+                        <h2 class="featured-title">${escapeHtml(a.displayTitle)}</h2>
+                        <p class="featured-excerpt">${escapeHtml(a.description)}</p>
+                        <div class="featured-meta">
+                            <span>⏱️ ${a.time}</span>
+                            <span>👁️ ${a.views} views</span>
+                            <span>💬 ${a.comments} comments</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderArticles(reset = true) {
+            if (!allArticles.length) {
+                showError('No stories available.');
+                return;
+            }
+
+            renderFeatured();
+
+            const start = reset ? 1 : displayedCount + 1;
+            const increment = reset ? INITIAL_LOAD_COUNT : LOAD_MORE_COUNT;
+            const slice = allArticles.slice(start, start + increment);
+
+            if (reset) {
+                els.articles.innerHTML = slice.map(articleCardHtml).join('');
+                displayedCount = slice.length;
             } else {
-                loadMoreBtn.textContent = 'Load More Stories';
-                loadMoreBtn.disabled = false;
+                els.articles.insertAdjacentHTML('beforeend', slice.map(articleCardHtml).join(''));
+                displayedCount += slice.length;
+            }
+
+            const hasMore = displayedCount < (allArticles.length - 1);
+            els.loadMore.disabled = !hasMore;
+            els.loadMore.textContent = hasMore ? 'Load More Stories' : 'No More Stories';
+        }
+
+        function renderTicker() {
+            const top = allArticles.slice(0, 5);
+            els.ticker.innerHTML = top.map(article => {
+                const label =
+                    article.category === 'scandal' ? 'BREAKING' :
+                    article.category === 'karma' ? 'KARMA' :
+                    article.category === 'love' ? 'LOVE' : 'DRAMA';
+                return `<div class="ticker-item"><span class="ticker-label">${label}</span>${escapeHtml(article.originalTitle)}</div>`;
+            }).join('');
+        }
+
+        function renderTrending() {
+            const top = allArticles.slice(0, 5);
+            els.trending.innerHTML = top.map((article, i) => `
+                <div class="trending-item" data-id="${article.id}">
+                    <span class="trending-rank">${i + 1}</span>
+                    <span class="trending-text">${escapeHtml(article.originalTitle.slice(0, 60))}${article.originalTitle.length > 60 ? '...' : ''}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderLatestKarma() {
+            const items = allArticles.filter(a => a.category === 'karma').slice(0, 2);
+            els.karma.innerHTML = items.length
+                ? items.map(article => `
+                    <div data-id="${article.id}" style="padding:1rem;background:rgba(139,92,246,0.05);border-radius:12px;border-left:3px solid #8b5cf6;cursor:pointer;">
+                        <div style="font-weight:600;font-size:0.9rem;margin-bottom:0.25rem;">${escapeHtml(article.originalTitle.slice(0, 55))}${article.originalTitle.length > 55 ? '...' : ''}</div>
+                        <div style="font-size:0.8rem;color:var(--text-light);">${article.time}</div>
+                    </div>
+                `).join('')
+                : `<div style="padding:1rem;background:rgba(139,92,246,0.05);border-radius:12px;border-left:3px solid #8b5cf6;">
+                        <div style="font-weight:600;font-size:0.9rem;margin-bottom:0.25rem;">No karma stories yet</div>
+                        <div style="font-size:0.8rem;color:var(--text-light);">Check back soon</div>
+                   </div>`;
+        }
+
+        async function fetchStories(category, silent = false) {
+            if (isLoading) return;
+            isLoading = true;
+            if (!silent) showLoading();
+
+            try {
+                const cached = getCache(category);
+                if (cached && !silent) {
+                    allArticles = normalizeArticles(cached);
+                    apiFailed = false;
+                    renderArticles(true);
+                    renderTicker();
+                    renderTrending();
+                    renderLatestKarma();
+                    updateApiStatus('cached');
+                }
+
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 6000);
+
+                const params = new URLSearchParams({
+                    q: CATEGORY_QUERIES[category],
+                    lang: 'en',
+                    max: '14',
+                    sortby: 'publishedAt',
+                    apikey: GNEWS_API_KEY
+                });
+
+                const res = await fetch(`${GNEWS_BASE_URL}?${params.toString()}`, {
+                    signal: controller.signal,
+                    cache: 'no-store'
+                });
+
+                clearTimeout(timeout);
+
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+                const json = await res.json();
+                if (!json.articles || !json.articles.length) throw new Error('No articles returned');
+
+                setCache(category, json.articles);
+                allArticles = normalizeArticles(json.articles);
+                apiFailed = false;
+
+                renderArticles(true);
+                renderTicker();
+                renderTrending();
+                renderLatestKarma();
+                updateApiStatus('online');
+            } catch (err) {
+                console.error(err);
+
+                const cached = getCache(category);
+                if (cached) {
+                    allArticles = normalizeArticles(cached);
+                    apiFailed = false;
+                    renderArticles(true);
+                    renderTicker();
+                    renderTrending();
+                    renderLatestKarma();
+                    updateApiStatus('cached');
+                } else {
+                    allArticles = normalizeArticles(
+                        FALLBACK_STORIES.filter(s => category === 'all' || s.category === category)
+                    );
+                    apiFailed = true;
+                    renderArticles(true);
+                    renderTicker();
+                    renderTrending();
+                    renderLatestKarma();
+                    updateApiStatus('offline');
+                }
+
+                if (!silent) showToast('Using cached/demo stories');
+            } finally {
+                isLoading = false;
             }
         }
 
-        // Open story page (internal)
         function openStory(id) {
-            const article = allArticles.find(a => a.id === id);
+            const article = allArticles.find(a => a.id === Number(id));
             if (!article) return;
-            
-            window.location.hash = `#/story/${id}`;
-            showStoryPage(id);
-        }
 
-        // Show story page
-        function showStoryPage(id) {
-            const article = allArticles.find(a => a.id === parseInt(id));
-            if (!article) return;
-            
-            const mainContainer = document.getElementById('main-container');
             const contentArea = document.getElementById('content-area');
-            
             contentArea.innerHTML = `
                 <div class="story-page animate-fade">
-                    <div class="back-btn" onclick="goBack()">
-                        ← Back to News
+                    <div class="back-btn" onclick="goBack()">← Back to News</div>
+                    <span class="article-category category-${article.category}" style="margin-bottom:1rem;display:inline-block;">${article.category.toUpperCase()}</span>
+                    <h1>${escapeHtml(article.displayTitle)}</h1>
+                    <div style="color:var(--text-light);margin-bottom:1.5rem;font-size:0.9rem;">
+                        Published: ${new Date(article.publishedAt).toLocaleDateString()} | Source: ${escapeHtml(article.source.name)}
                     </div>
-                    <span class="article-category category-${article.category}" style="margin-bottom: 1rem; display: inline-block;">${article.category.toUpperCase()}</span>
-                    <h1>${article.displayTitle}</h1>
-                    <div style="color: var(--text-light); margin-bottom: 1.5rem; font-size: 0.9rem;">
-                        Published: ${new Date(article.publishedAt).toLocaleDateString()} | Source: ${article.source.name}
-                    </div>
-                    ${article.image ? `<img src="${article.image}" alt="${article.originalTitle}" onerror="this.style.display='none'">` : ''}
-                    <p>${article.description || 'Full story content loading...'}</p>
-                    <p style="font-style: italic; color: var(--text-light);">
-                        ${apiFailed ? 'This is demo content. Connect to GNews API for real stories.' : 'This is a summary of the breaking news story. For the complete article and additional details, visit the original source below.'}
+                    ${article.image ? `<img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.originalTitle)}" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : ''}
+                    <p>${escapeHtml(article.description)}</p>
+                    <p style="font-style:italic;color:var(--text-light);">
+                        ${apiFailed ? 'This is demo content. Add a valid API key for live stories.' : 'This is a summary view. Open the original source below for the full article.'}
                     </p>
-                    <a href="${article.url}" target="_blank" class="subscribe-btn" style="display: inline-block; text-decoration: none; margin-top: 1rem;">
-                        Read Full Story at ${article.source.name} →
+                    <a href="${escapeHtml(article.url)}" target="_blank" rel="noopener" class="subscribe-btn" style="display:inline-block;text-decoration:none;margin-top:1rem;">
+                        Read Full Story →
                     </a>
                 </div>
             `;
-            
-            // Hide sidebar on mobile for story view
-            if (window.innerWidth <= 1024) {
-                document.querySelector('.sidebar').style.display = 'none';
-            }
-            
-            window.scrollTo(0, 0);
+
+            document.querySelector('.sidebar').style.display = window.innerWidth <= 1024 ? 'none' : 'flex';
+            window.location.hash = `#/story/${id}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Go back to home
+        function restoreHomeView() {
+            location.hash = '';
+            document.querySelector('.sidebar').style.display = 'flex';
+
+            document.getElementById('content-area').innerHTML = `
+                <div class="category-tabs">
+                    <button class="category-tab ${currentCategory === 'all' ? 'active' : ''}" onclick="filterCategory('all')" data-category="all">All News</button>
+                    <button class="category-tab ${currentCategory === 'scandal' ? 'active' : ''}" onclick="filterCategory('scandal')" data-category="scandal">💔 Scandals</button>
+                    <button class="category-tab ${currentCategory === 'karma' ? 'active' : ''}" onclick="filterCategory('karma')" data-category="karma">⚡ Karma</button>
+                    <button class="category-tab ${currentCategory === 'love' ? 'active' : ''}" onclick="filterCategory('love')" data-category="love">💕 Love Stories</button>
+                    <button class="category-tab ${currentCategory === 'drama' ? 'active' : ''}" onclick="filterCategory('drama')" data-category="drama">🔥 Drama</button>
+                </div>
+                <div id="featured-container"></div>
+                <div class="articles-grid" id="articles-container"></div>
+                <button class="load-more-btn" id="load-more" onclick="loadMore()">Load More Stories</button>
+            `;
+            bindEls();
+            renderArticles(true);
+        }
+
         function goBack() {
-            window.history.back();
+            restoreHomeView();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Go home
         function goHome() {
-            window.location.hash = '';
-            window.location.reload();
+            restoreHomeView();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Filter by category
         function filterCategory(category) {
+            if (isLoading) return;
             currentCategory = category;
-            window.location.hash = category === 'all' ? '' : `#/${category}`;
-            
-            // Update active tab
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.classList.remove('active');
-                if (tab.getAttribute('data-category') === category) {
-                    tab.classList.add('active');
-                }
-            });
-            
-            // Reset and reload
             displayedCount = 0;
-            loadStories();
+
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.category === category);
+            });
+
+            window.location.hash = category === 'all' ? '' : `#/${category}`;
+            fetchStories(category);
         }
 
-        // Load more stories
         function loadMore() {
             if (isLoading || displayedCount >= allArticles.length - 1) return;
-            
-            const container = document.getElementById('articles-container');
-            const currentCards = container.innerHTML;
-            
-            // Show loading state
-            document.getElementById('load-more').textContent = 'Loading...';
-            document.getElementById('load-more').disabled = true;
-            
-            setTimeout(() => {
-                const nextBatch = allArticles.slice(displayedCount + 1, displayedCount + ARTICLES_PER_PAGE + 1);
-                
-                const newCards = nextBatch.map(article => `
-                    <div class="article-card animate-fade" onclick="openStory(${article.id})">
-                        ${article.image ? `<img src="${article.image}" class="article-image" alt="${article.originalTitle}" onerror="this.style.display='none'">` : '<div class="article-image skeleton"></div>'}
-                        <div class="article-header">
-                            <span class="article-category category-${article.category}">${article.category.toUpperCase()}</span>
-                            <span class="article-time">${article.time}</span>
-                        </div>
-                        <div class="article-title">${article.displayTitle}</div>
-                        <div class="article-excerpt">${article.description || 'Click to read more...'}</div>
-                        <div class="article-footer">
-                            <div class="article-stats">
-                                <span>👁️ ${article.views}</span>
-                                <span>💬 ${article.comments}</span>
-                            </div>
-                            <span class="read-more">Read More →</span>
-                        </div>
-                    </div>
-                `).join('');
-
-                container.innerHTML = currentCards + newCards;
-                displayedCount += nextBatch.length;
-                
-                // Update button state
-                const loadMoreBtn = document.getElementById('load-more');
-                if (displayedCount >= allArticles.length - 1) {
-                    loadMoreBtn.textContent = 'No More Stories';
-                    loadMoreBtn.disabled = true;
-                } else {
-                    loadMoreBtn.textContent = 'Load More Stories';
-                    loadMoreBtn.disabled = false;
-                }
-            }, 500);
+            renderArticles(false);
         }
 
-        // Update ticker with latest headlines
-        function updateTicker() {
-            const ticker = document.getElementById('news-ticker');
-            const headlines = allArticles.slice(0, 5).map(article => {
-                const label = article.category === 'scandal' ? 'BREAKING' : 
-                             article.category === 'karma' ? 'KARMA' :
-                             article.category === 'love' ? 'LOVE' : 'DRAMA';
-                return `<div class="ticker-item"><span class="ticker-label">${label}</span> ${article.originalTitle}</div>`;
-            }).join('');
-            
-            ticker.innerHTML = headlines;
-        }
-
-        // Update trending sidebar
-        function updateTrending() {
-            const trending = allArticles.slice(0, 5);
-            const container = document.getElementById('trending-container');
-            
-            container.innerHTML = trending.map((article, index) => `
-                <div class="trending-item" onclick="openStory(${article.id})">
-                    <span class="trending-rank">${index + 1}</span>
-                    <span class="trending-text">${article.originalTitle.substring(0, 60)}...</span>
-                </div>
-            `).join('');
-        }
-
-        // Update latest karma sidebar
-        function updateLatestKarma() {
-            const karmaStories = allArticles.filter(a => a.category === 'karma').slice(0, 2);
-            const container = document.getElementById('latest-karma');
-            
-            if (karmaStories.length > 0) {
-                container.innerHTML = karmaStories.map(article => `
-                    <div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border-left: 3px solid #8b5cf6; cursor: pointer;" onclick="openStory(${article.id})">
-                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">${article.originalTitle.substring(0, 50)}...</div>
-                        <div style="font-size: 0.8rem; color: var(--text-light);">${article.time}</div>
-                    </div>
-                `).join('');
-            } else {
-                container.innerHTML = `
-                    <div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border-left: 3px solid #8b5cf6;">
-                        <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">No karma stories yet</div>
-                        <div style="font-size: 0.8rem; color: var(--text-light);">Check back soon</div>
-                    </div>
-                `;
-            }
-        }
-
-        // Manual refresh
         function manualRefresh() {
             showToast('Refreshing stories...');
-            loadStories();
+            fetchStories(currentCategory, true);
         }
 
-        // Show error message
-        function showError(message) {
-            document.getElementById('articles-container').innerHTML = `
-                <div class="error-message">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">😕</div>
-                    <div>${message}</div>
-                    <button onclick="loadStories()" class="subscribe-btn" style="margin-top: 1rem;">Try Again</button>
-                </div>
-            `;
-        }
-
-        // Subscribe function
         function subscribe(e) {
             e.preventDefault();
-            showToast('Welcome to About Loved! Check your inbox for confirmation.');
+            showToast('Subscribed successfully');
             e.target.reset();
         }
 
-        // Show subscribe modal
         function showSubscribe() {
             const email = prompt('Enter your email to get breaking relationship news:');
-            if (email) {
-                showToast('Subscribed! You\'ll get our daily drama digest.');
-            }
+            if (email) showToast('Subscribed successfully');
         }
 
-        // Toast notification
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                bottom: 100px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: var(--dark);
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 50px;
-                font-weight: 600;
-                z-index: 10000;
-                animation: fadeIn 0.3s ease-out;
-                box-shadow: var(--shadow);
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
+        function handleHashRoute() {
+            const hash = window.location.hash;
+            if (hash.startsWith('#/story/')) {
+                const id = hash.replace('#/story/', '');
+                openStory(id);
+                return;
+            }
+            if (hash.startsWith('#/')) {
+                const category = hash.replace('#/', '');
+                if (CATEGORY_QUERIES[category]) currentCategory = category;
+            }
+            fetchStories(currentCategory, false);
         }
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'r' && e.ctrlKey) {
-                e.preventDefault();
-                manualRefresh();
-            }
-            if (e.key === 'Escape') {
-                goBack();
-            }
+        document.addEventListener('click', (e) => {
+            const card = e.target.closest('.article-card, .featured-article, .trending-item, #latest-karma > div');
+            if (!card) return;
+            const id = card.dataset.id;
+            if (id !== undefined) openStory(id);
+        });
+
+        window.manualRefresh = manualRefresh;
+        window.filterCategory = filterCategory;
+        window.showSubscribe = showSubscribe;
+        window.subscribe = subscribe;
+        window.goHome = goHome;
+        window.goBack = goBack;
+        window.loadMore = loadMore;
+
+        window.addEventListener('hashchange', handleHashRoute);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            bindEls();
+            handleHashRoute();
+            setInterval(() => fetchStories(currentCategory, true), 30 * 60 * 1000);
         });
     </script>
 </body>
