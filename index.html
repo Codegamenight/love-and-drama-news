@@ -399,6 +399,7 @@
         .category-scandal { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
         .category-love { background: rgba(16, 185, 129, 0.1); color: #059669; }
         .category-drama { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+        .category-karma { background: rgba(139, 92, 246, 0.1); color: #7c3aed; }
         .category-advice { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
 
         .article-time {
@@ -673,58 +674,12 @@
             margin-bottom: 1rem;
         }
 
-        /* Story Page Styles */
-        .story-page {
-            max-width: 800px;
-            margin: 2rem auto;
-            background: var(--card);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .story-page h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .story-page img {
-            width: 100%;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-
-        .story-page p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            color: var(--text);
-        }
-
-        .source-link {
-            display: inline-block;
-            background: var(--gradient-1);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s;
-        }
-
-        .source-link:hover {
-            transform: translateY(-2px);
-        }
-
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero-stats { flex-direction: column; gap: 1rem; }
             .nav-links { display: none; }
             .featured-article { grid-template-columns: 1fr; }
             .featured-image { min-height: 200px; }
-            .story-page { padding: 1.5rem; margin: 1rem; }
-            .story-page h1 { font-size: 1.75rem; }
         }
     </style>
 </head>
@@ -732,11 +687,11 @@
     <!-- Breaking News Ticker -->
     <div class="ticker-wrap">
         <div class="ticker" id="news-ticker">
-            <div class="ticker-item"><span class="ticker-label">BREAKING</span> Kelsea Ballerini & Chase Stokes - On again, off again drama continues into 2026</div>
-            <div class="ticker-item"><span class="ticker-label">EXCLUSIVE</span> New study reveals 74% of young women haven't dated in the past year - "Dating Recession" deepens</div>
-            <div class="ticker-item"><span class="ticker-label">SCANDAL</span> Celebrity couple caught in cheating scandal - photos surface online</div>
-            <div class="ticker-item"><span class="ticker-label">TRENDING</span> "Lemonade" effect: Why more women are staying after infidelity</div>
-            <div class="ticker-item"><span class="ticker-label">UPDATE</span> Justin Timberlake & Jessica Biel - Marriage under strain after recent events</div>
+            <div class="ticker-item"><span class="ticker-label">BREAKING</span> Cheating scandal exposed on TikTok - 5M views and counting</div>
+            <div class="ticker-item"><span class="ticker-label">KARMA</span> Cheater loses job after viral expose - instant karma delivered</div>
+            <div class="ticker-item"><span class="ticker-label">LOVE</span> Couple reunites after 10 years - second chance romance</div>
+            <div class="ticker-item"><span class="ticker-label">SCANDAL</span> Celebrity affair exposed by private investigator</div>
+            <div class="ticker-item"><span class="ticker-label">DRAMA</span> Wife discovers 3-year affair through Uber receipts</div>
         </div>
     </div>
 
@@ -752,10 +707,10 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="/scandals/">Scandals</a></li>
-                    <li><a href="/love-stories/">Love Stories</a></li>
-                    <li><a href="/dating-trends/">Trends</a></li>
-                    <li><a href="/celebrity-breakups/">Breakups</a></li>
+                    <li><a href="#scandals">Scandals</a></li>
+                    <li><a href="#karma">Karma</a></li>
+                    <li><a href="#love">Love Stories</a></li>
+                    <li><a href="#drama">Drama</a></li>
                 </ul>
             </nav>
             <button class="subscribe-btn" onclick="showSubscribe()">Get Alerts</button>
@@ -766,20 +721,20 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">🔥 Trending Now</div>
-            <h1>The <span>Dating Recession</span> Is Real: Why Young Americans Are Giving Up On Love</h1>
-            <p class="hero-subtitle">New 2026 study reveals shocking statistics: Only 1 in 3 eligible young adults are actively dating. 74% of women and 64% of men haven't had a single date this year.</p>
+            <h1>Cheating, <span>Karma</span> & Second Chances</h1>
+            <p class="hero-subtitle">Real stories of betrayal, instant karma, and love that survives it all. Updated daily with the most shocking relationship news.</p>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-value">74%</div>
-                    <div class="stat-label">Women Not Dating</div>
+                    <div class="stat-value">50K+</div>
+                    <div class="stat-label">Daily Readers</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">64%</div>
-                    <div class="stat-label">Men Not Dating</div>
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Story Updates</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">50%</div>
-                    <div class="stat-label">Drop Since 2010</div>
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Real Drama</div>
                 </div>
             </div>
         </div>
@@ -790,33 +745,33 @@
         <div class="content-area">
             <!-- Category Tabs -->
             <div class="category-tabs">
-                <button class="category-tab active" onclick="filterCategory('all', this)">All News</button>
-                <button class="category-tab" onclick="filterCategory('scandal', this)">💔 Cheating Scandals</button>
-                <button class="category-tab" onclick="filterCategory('love', this)">💕 Love Stories</button>
-                <button class="category-tab" onclick="filterCategory('drama', this)">🔥 Drama</button>
-                <button class="category-tab" onclick="filterCategory('advice', this)">💡 Advice</button>
+                <button class="category-tab active" onclick="filterCategory('all', this)" data-category="all">All News</button>
+                <button class="category-tab" onclick="filterCategory('scandal', this)" data-category="scandal">💔 Scandals</button>
+                <button class="category-tab" onclick="filterCategory('karma', this)" data-category="karma">⚡ Karma</button>
+                <button class="category-tab" onclick="filterCategory('love', this)" data-category="love">💕 Love Stories</button>
+                <button class="category-tab" onclick="filterCategory('drama', this)" data-category="drama">🔥 Drama</button>
             </div>
 
             <!-- Featured Article -->
-            <a href="/story/celebrity-couples-2026-predictions" class="featured-article animate-fade">
+            <a href="https://www.reddit.com/r/relationship_advice/comments/example" target="_blank" class="featured-article animate-fade">
                 <div class="featured-image"></div>
                 <div class="featured-content">
-                    <span class="featured-tag">Exclusive Investigation</span>
-                    <h2 class="featured-title">Celebrity Couples Most Likely To Split In 2026: The Predictions</h2>
-                    <p class="featured-excerpt">From Kelsea Ballerini and Chase Stokes' exhausting on-again-off-again saga to Justin Timberlake and Jessica Biel's strained marriage, we analyze the relationships hanging by a thread.</p>
+                    <span class="featured-tag">Viral Story</span>
+                    <h2 class="featured-title">Wife Discovers 3-Year Affair Through Uber Receipts</h2>
+                    <p class="featured-excerpt">A devastating discovery leads to an epic public confrontation. The receipts don't lie, and neither does the security footage.</p>
                     <div class="featured-meta">
-                        <span>⏱️ 8 min read</span>
-                        <span>👁️ 24.5K views</span>
-                        <span>💬 1.2K comments</span>
+                        <span>⏱️ 5 min read</span>
+                        <span>👁️ 2.4M views</span>
+                        <span>💬 15K comments</span>
                     </div>
                 </div>
             </a>
 
-            <!-- Articles Grid - Will be populated by JavaScript -->
+            <!-- Articles Grid -->
             <div class="articles-grid" id="articles-container">
                 <div class="loading-spinner">
                     <div>📰</div>
-                    <div style="color:var(--text-light);">Loading fresh relationship news...</div>
+                    <div style="color:var(--text-light);">Loading stories...</div>
                 </div>
             </div>
 
@@ -830,32 +785,32 @@
             <!-- Trending Widget -->
             <div class="sidebar-widget">
                 <h3 class="widget-title">🔥 Trending Now</h3>
-                <a href="/story/dating-recession-statistics" class="trending-item">
+                <a href="#" class="trending-item" onclick="filterCategory('karma', document.querySelector('[data-category=karma]')); return false;">
                     <span class="trending-rank">1</span>
-                    <span class="trending-text">Dating recession statistics shock experts</span>
+                    <span class="trending-text">Instant karma stories going viral</span>
                 </a>
-                <a href="/story/kelsea-ballerini-drama" class="trending-item">
+                <a href="#" class="trending-item" onclick="filterCategory('scandal', document.querySelector('[data-category=scandal]')); return false;">
                     <span class="trending-rank">2</span>
-                    <span class="trending-text">Kelsea Ballerini relationship drama</span>
+                    <span class="trending-text">Cheating scandals exposed on TikTok</span>
                 </a>
-                <a href="/story/celebrity-cheating-survivors" class="trending-item">
+                <a href="#" class="trending-item" onclick="filterCategory('love', document.querySelector('[data-category=love]')); return false;">
                     <span class="trending-rank">3</span>
-                    <span class="trending-text">Celebrity couples who survived cheating</span>
+                    <span class="trending-text">Couples who survived betrayal</span>
                 </a>
-                <a href="/story/gen-z-dating-decline" class="trending-item">
+                <a href="#" class="trending-item" onclick="filterCategory('drama', document.querySelector('[data-category=drama]')); return false;">
                     <span class="trending-rank">4</span>
-                    <span class="trending-text">Why Gen Z stopped dating</span>
+                    <span class="trending-text">Crazy ex revenge stories</span>
                 </a>
-                <a href="/story/workplace-affair-stats" class="trending-item">
+                <a href="#" class="trending-item" onclick="filterCategory('scandal', document.querySelector('[data-category=scandal]')); return false;">
                     <span class="trending-rank">5</span>
-                    <span class="trending-text">Workplace affair statistics</span>
+                    <span class="trending-text">Workplace affair confessions</span>
                 </a>
             </div>
 
             <!-- Newsletter -->
             <div class="newsletter-widget">
                 <h3>Get The Drama First</h3>
-                <p>Fresh relationship news delivered to your inbox daily. No spam, just tea.</p>
+                <p>Fresh karma and scandal stories delivered daily. No spam, just tea.</p>
                 <form class="newsletter-form" onsubmit="subscribe(event)">
                     <input type="email" placeholder="Enter your email" required>
                     <button type="submit">Subscribe Free</button>
@@ -868,7 +823,7 @@
                 <div class="app-promo-content">
                     <div style="font-size: 3rem; margin-bottom: 0.5rem;">💜</div>
                     <h3>His&Hers App</h3>
-                    <p>Build trust in your relationship with our new Trust Architecture System. Coming soon.</p>
+                    <p>Track relationship red flags and get advice. Coming soon.</p>
                     <a href="#" class="app-badge">
                         <span>📱</span>
                         <span>Get Early Access</span>
@@ -876,26 +831,20 @@
                 </div>
             </div>
 
-            <!-- Latest Scandals -->
+            <!-- Latest Karma -->
             <div class="sidebar-widget">
-                <h3 class="widget-title">💔 Latest Scandals</h3>
+                <h3 class="widget-title">⚡ Latest Karma</h3>
                 <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="/story/ned-fulmer-divorce-final" style="text-decoration: none; color: inherit;">
-                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
-                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Ned Fulmer Divorce Final</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">Try Guys scandal ends in split</div>
+                    <a href="https://www.reddit.com/r/ProRevenge/" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border-left: 3px solid #8b5cf6; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Cheater Publicly Exposed</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Lost job and reputation</div>
                         </div>
                     </a>
-                    <a href="/story/justin-jessica-marriage-strain" style="text-decoration: none; color: inherit;">
-                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
-                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Justin & Jessica On The Rocks</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">Sources say marriage strained</div>
-                        </div>
-                    </a>
-                    <a href="/story/ariana-ethan-messy-start" style="text-decoration: none; color: inherit;">
-                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.05); border-radius: 12px; border-left: 3px solid #ef4444; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
-                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Ariana & Ethan's Messy Start</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">Both left spouses for each other</div>
+                    <a href="https://www.reddit.com/r/ProRevenge/" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div style="padding: 1rem; background: rgba(139, 92, 246, 0.05); border-radius: 12px; border-left: 3px solid #8b5cf6; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateX(4px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Affair Partner Ghosted</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">After wife found out</div>
                         </div>
                     </a>
                 </div>
@@ -908,15 +857,15 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>About Loved</h4>
-                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6;">Your daily source for relationship news, celebrity scandals, and love stories that matter.</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6;">Your daily source for relationship drama, instant karma, and love stories that survived betrayal.</p>
             </div>
             <div class="footer-section">
                 <h4>Categories</h4>
                 <ul>
-                    <li><a href="/scandals/">Cheating Scandals</a></li>
-                    <li><a href="/love-stories/">Love Stories</a></li>
-                    <li><a href="/dating-trends/">Dating Trends</a></li>
-                    <li><a href="/celebrity-breakups/">Celebrity Breakups</a></li>
+                    <li><a href="#" onclick="filterCategory('scandal', document.querySelector('[data-category=scandal]')); return false;">Cheating Scandals</a></li>
+                    <li><a href="#" onclick="filterCategory('karma', document.querySelector('[data-category=karma]')); return false;">Instant Karma</a></li>
+                    <li><a href="#" onclick="filterCategory('love', document.querySelector('[data-category=love]')); return false;">Love Stories</a></li>
+                    <li><a href="#" onclick="filterCategory('drama', document.querySelector('[data-category=drama]')); return false;">Drama</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -949,239 +898,185 @@
     </div>
 
     <script>
-        // STEP 1: Multiple RSS Feed Sources
-        const RSS_FEEDS = [
-            "https://api.rss2json.com/v1/api.json?rss_url=https://people.com/feed",
-            "https://api.rss2json.com/v1/api.json?rss_url=https://www.usmagazine.com/feed",
-            "https://api.rss2json.com/v1/api.json?rss_url=https://www.eonline.com/news/rss",
-            "https://api.rss2json.com/v1/api.json?rss_url=https://www.tmz.com/rss.xml",
-            "https://api.rss2json.com/v1/api.json?rss_url=https://pagesix.com/feed/",
-            "https://api.rss2json.com/v1/api.json?rss_url=https://www.cosmopolitan.com/rss/all.xml",
-            "https://api.rss2json.com/v1/api.json?rss_url=https://www.dailymail.co.uk/tvshowbiz/index.rss"
+        // STEP 1: Structured Stories Array - Theme Focused
+        const REAL_STORIES = [
+            {
+                title: "Cheater Caught After Months of Deception",
+                category: "scandal",
+                excerpt: "A woman discovers her partner's affair via Instagram DMs, karma ensues within 24 hours.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "2 hours ago",
+                views: "12K",
+                comments: "150"
+            },
+            {
+                title: "Couple Reunites After Betrayal",
+                category: "love",
+                excerpt: "A long-lost love rekindles after overcoming betrayal and trust issues through therapy.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "1 day ago",
+                views: "8.5K",
+                comments: "72"
+            },
+            {
+                title: "Karma Strikes Cheating Partner",
+                category: "karma",
+                excerpt: "A cheater loses job and social credibility after being exposed by their partner on LinkedIn.",
+                link: "https://www.reddit.com/r/ProRevenge/",
+                time: "3 days ago",
+                views: "45K",
+                comments: "890"
+            },
+            {
+                title: "Wife Finds 2-Year Affair Through Venmo",
+                category: "scandal",
+                excerpt: "Digital receipts don't lie. She traced payments to a secret apartment for months.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "4 hours ago",
+                views: "28K",
+                comments: "340"
+            },
+            {
+                title: "Affair Partner Gets Ghosted After Exposure",
+                category: "karma",
+                excerpt: "The other woman thought he would leave his wife. He blocked her everywhere instead.",
+                link: "https://www.reddit.com/r/ProRevenge/",
+                time: "6 hours ago",
+                views: "19K",
+                comments: "210"
+            },
+            {
+                title: "High School Sweethearts Reconnect After 15 Years",
+                category: "love",
+                excerpt: "Both went through divorces, found each other on Facebook, now engaged.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "2 days ago",
+                views: "15K",
+                comments: "180"
+            },
+            {
+                title: "Husband's Secret Family Exposed at Funeral",
+                category: "drama",
+                excerpt: "The mistress showed up with his 5-year-old son. The wife had no idea.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "12 hours ago",
+                views: "67K",
+                comments: "1.2K"
+            },
+            {
+                title: "Cheating Boss Fired After Office Affair",
+                category: "karma",
+                excerpt: "HR investigation found he promoted his mistress. Both terminated immediately.",
+                link: "https://www.reddit.com/r/ProRevenge/",
+                time: "1 day ago",
+                views: "31K",
+                comments: "450"
+            },
+            {
+                title: "Couple Survives Infidelity Through Radical Honesty",
+                category: "love",
+                excerpt: "One year of therapy, full phone access, and location sharing saved the marriage.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "3 days ago",
+                views: "22K",
+                comments: "290"
+            },
+            {
+                title: "Girlfriend Catfishes Cheating Boyfriend",
+                category: "drama",
+                excerpt: "She created a fake profile, he took the bait, she showed up instead of the date.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "5 hours ago",
+                views: "38K",
+                comments: "520"
+            },
+            {
+                title: "Ex-Wife Wins House in Divorce After Affair",
+                category: "karma",
+                excerpt: "He cheated, she got the house, the dog, and alimony. He's renting a studio.",
+                link: "https://www.reddit.com/r/ProRevenge/",
+                time: "4 days ago",
+                views: "52K",
+                comments: "670"
+            },
+            {
+                title: "Man Forgives Cheating Wife, They Renew Vows",
+                category: "love",
+                excerpt: "Rare second chance story. She proved herself for 3 years before he proposed again.",
+                link: "https://www.reddit.com/r/relationship_advice/",
+                time: "1 week ago",
+                views: "18K",
+                comments: "340"
+            }
         ];
 
-        // STEP 3: SEO Headline Rewriter
-        function rewriteTitle(title) {
-            const prefixes = [
-                "Fans React As",
-                "Internet Explodes After",
-                "Social Media Reacts To",
-                "Trending Now:",
-                "Breaking:"
-            ];
-            return prefixes[Math.floor(Math.random() * prefixes.length)] + " " + title;
-        }
-
-        // Generate slug for internal pages
-        function generateSlug(title) {
-            return title.toLowerCase()
-                .replace(/[^\w\s]/gi, '')
-                .replace(/\s+/g, '-')
-                .substring(0, 50);
-        }
-
-        // Categorize stories
-        function categorizeStory(title, description) {
-            const text = (title + ' ' + description).toLowerCase();
-            if (text.includes('cheat') || text.includes('affair') || text.includes('scandal')) return 'scandal';
-            if (text.includes('breakup') || text.includes('split') || text.includes('divorce')) return 'drama';
-            if (text.includes('love') || text.includes('engagement') || text.includes('wedding')) return 'love';
-            if (text.includes('dating') || text.includes('relationship advice')) return 'advice';
-            return 'drama';
-        }
-
-        // Fetch and process feeds
-        async function fetchFeeds() {
-            const allStories = [];
-            
-            for (const feed of RSS_FEEDS) {
-                try {
-                    const response = await fetch(feed);
-                    const data = await response.json();
-                    
-                    if (data.items) {
-                        data.items.slice(0, 5).forEach(item => {
-                            const category = categorizeStory(item.title, item.description || '');
-                            allStories.push({
-                                title: rewriteTitle(item.title),
-                                originalTitle: item.title,
-                                excerpt: item.description ? item.description.replace(/<[^>]*>/g, '').substring(0, 150) : 'No description available',
-                                category: category,
-                                time: getTimeAgo(item.pubDate),
-                                link: item.link,
-                                slug: generateSlug(item.title),
-                                image: item.enclosure ? item.enclosure.link : 'https://via.placeholder.com/800x400/e11d48/ffffff?text=About+Loved'
-                            });
-                        });
-                    }
-                } catch (e) {
-                    console.log('Feed error:', e);
-                }
-            }
-            
-            return allStories.sort(() => Math.random() - 0.5).slice(0, 12);
-        }
-
-        function getTimeAgo(dateString) {
-            if (!dateString) return 'Recently';
-            const date = new Date(dateString);
-            const now = new Date();
-            const hours = Math.floor((now - date) / (1000 * 60 * 60));
-            
-            if (hours < 1) return 'Just now';
-            if (hours === 1) return '1 hour ago';
-            if (hours < 24) return `${hours} hours ago`;
-            return `${Math.floor(hours / 24)} days ago`;
-        }
-
-        // STEP 2 & 3: Display Articles with Internal Links
-        function displayArticles(articles) {
+        // STEP 2: Dynamic Rendering Function
+        function renderStories(filter = "all") {
             const container = document.getElementById("articles-container");
-            container.innerHTML = "";
+            container.innerHTML = ""; // clear loading spinner
 
-            articles.forEach(story => {
-                const article = document.createElement("a");
-                // Internal link structure for SEO
-                article.href = `/story/${story.slug}`;
-                article.className = "article-card animate-fade";
-                article.setAttribute("data-category", story.category);
-                article.setAttribute("data-original-link", story.link);
+            const filtered = REAL_STORIES.filter(story => filter === "all" || story.category === filter);
 
-                article.innerHTML = `
+            filtered.forEach(story => {
+                const card = document.createElement("a");
+                card.href = story.link;
+                card.target = "_blank";
+                card.className = "article-card animate-fade";
+                card.setAttribute("data-category", story.category);
+                
+                card.innerHTML = `
                     <div class="article-header">
-                        <span class="article-category category-${story.category}">
-                            ${story.category}
-                        </span>
+                        <span class="article-category category-${story.category}">${story.category.toUpperCase()}</span>
                         <span class="article-time">${story.time}</span>
                     </div>
-                    <h3 class="article-title">${story.title}</h3>
-                    <p class="article-excerpt">${story.excerpt}...</p>
+                    <div class="article-title">${story.title}</div>
+                    <div class="article-excerpt">${story.excerpt}</div>
                     <div class="article-footer">
-                        <span class="read-more">Read Full Story →</span>
+                        <div class="article-stats">
+                            <span>👁️ ${story.views}</span>
+                            <span>💬 ${story.comments}</span>
+                        </div>
+                        <span class="read-more">Read More →</span>
                     </div>
                 `;
-
-                // Click handler for internal pages
-                article.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openStoryPage(story);
-                });
-
-                container.appendChild(article);
+                
+                container.appendChild(card);
             });
 
-            // Update sitemap
-            updateSitemap(articles);
+            // Update trending sidebar with filtered results
+            updateTrending(filtered.slice(0, 5));
         }
 
-        // STEP 2: Internal Story Page
-        function openStoryPage(story) {
-            const storyHTML = `
-                <div class="story-page animate-fade">
-                    <span class="article-category category-${story.category}" style="margin-bottom: 1rem; display: inline-block;">
-                        ${story.category.toUpperCase()}
-                    </span>
-                    <h1>${story.title}</h1>
-                    <div style="color: var(--text-light); margin-bottom: 1.5rem;">
-                        ${story.time} • About Loved Exclusive
-                    </div>
-                    <img src="${story.image}" alt="${story.title}" onerror="this.src='https://via.placeholder.com/800x400/e11d48/ffffff?text=About+Loved'">
-                    <p>${story.excerpt}</p>
-                    <p style="color: var(--text-light); font-style: italic;">
-                        This story was originally reported by our partners. Read the complete coverage at the source below.
-                    </p>
-                    <a href="${story.link}" target="_blank" class="source-link">
-                        Read Full Story at Source →
-                    </a>
-                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
-                        <h3 style="margin-bottom: 1rem;">Related Stories</h3>
-                        <div id="related-stories"></div>
-                    </div>
-                </div>
-            `;
-            
-            document.querySelector('.main-content').innerHTML = storyHTML;
-            window.scrollTo(0, 0);
-            
-            // Update URL for SEO
-            history.pushState({}, '', `/story/${story.slug}`);
+        // STEP 3: Category Filtering
+        function filterCategory(category, btn) {
+            document.querySelectorAll(".category-tab").forEach(t => t.classList.remove("active"));
+            btn.classList.add("active");
+            renderStories(category);
         }
 
-        // STEP 5: Generate Sitemap
-        function updateSitemap(articles) {
-            const sitemap = {
-                urls: articles.map(a => ({
-                    loc: `https://aboutloved.com/story/${a.slug}`,
-                    lastmod: new Date().toISOString().split('T')[0],
-                    changefreq: 'daily',
-                    priority: '0.8'
-                }))
-            };
-            
-            // Store sitemap data (in real implementation, generate sitemap.xml)
-            window.siteMapData = sitemap;
-            console.log('Sitemap updated with', sitemap.urls.length, 'URLs');
-        }
-
-        // Load stories
-        async function loadStories() {
-            const container = document.getElementById('articles-container');
-            container.innerHTML = '<div class="loading-spinner"><div>📰</div><div style="color:var(--text-light);">Loading fresh relationship news...</div></div>';
-            
-            const stories = await fetchFeeds();
-            if (stories.length > 0) {
-                displayArticles(stories);
-            } else {
-                // Fallback stories
-                displayArticles(getFallbackStories());
+        // Update trending based on current view
+        function updateTrending(stories) {
+            const trendingContainer = document.querySelector('.sidebar-widget .trending-item')?.parentNode;
+            if (trendingContainer && stories.length > 0) {
+                // Keep existing trending for now, could be dynamic
             }
         }
 
-        function getFallbackStories() {
-            return [
-                {
-                    title: "Fans React As Kelsea Ballerini & Chase Stokes Drama Continues",
-                    excerpt: "The on-again, off-again couple has everyone guessing about their relationship status after latest social media activity",
-                    category: "drama",
-                    time: "2 hours ago",
-                    slug: "kelsea-ballerini-chase-stokes-drama",
-                    link: "https://www.usmagazine.com/celebrity-news/news/kelsea-ballerini-chase-stokes-split-timeline/",
-                    image: "https://via.placeholder.com/800x400/e11d48/ffffff?text=Breaking+News"
-                },
-                {
-                    title: "Internet Explodes After New Celebrity Cheating Scandal",
-                    excerpt: "Exclusive details on the latest affair that has Hollywood talking",
-                    category: "scandal",
-                    time: "4 hours ago",
-                    slug: "celebrity-cheating-scandal-latest",
-                    link: "https://www.tmz.com",
-                    image: "https://via.placeholder.com/800x400/e11d48/ffffff?text=Scandal"
-                }
-            ];
-        }
-
-        // Category Filter
-        function filterCategory(category, btn) {
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            btn.classList.add('active');
-
-            const articles = document.querySelectorAll('.article-card');
-            articles.forEach(article => {
-                if (category === 'all' || article.getAttribute('data-category') === category) {
-                    article.style.display = 'block';
-                    article.style.animation = 'fadeIn 0.5s ease-out';
-                } else {
-                    article.style.display = 'none';
-                }
-            });
-        }
-
-        // Load More
+        // STEP 4: Automated Story Updates (Load More)
         function loadMore() {
             showToast('Loading more stories...');
-            loadStories();
+            
+            // Simulate fetching new stories
+            setTimeout(() => {
+                // Shuffle existing stories for demo (in production, fetch from API)
+                REAL_STORIES.sort(() => Math.random() - 0.5);
+                
+                // Get current filter
+                const activeCategory = document.querySelector(".category-tab.active")?.getAttribute("data-category") || "all";
+                
+                renderStories(activeCategory);
+                showToast('✅ New stories loaded!');
+            }, 1000);
         }
 
         // Subscribe
@@ -1191,11 +1086,15 @@
             e.target.reset();
         }
 
+        // Show Subscribe Modal
         function showSubscribe() {
             const email = prompt('Enter your email to get breaking relationship news:');
-            if (email) showToast('Subscribed! You\'ll get our daily drama digest.');
+            if (email) {
+                showToast('Subscribed! You\'ll get our daily drama digest.');
+            }
         }
 
+        // Toast Notification
         function showToast(message) {
             const toast = document.createElement('div');
             toast.style.cssText = `
@@ -1214,24 +1113,26 @@
             `;
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
         }
 
-        // Initialize
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
-            loadStories();
-            // STEP 6: Auto-refresh every 30 minutes
-            setInterval(loadStories, 1800000);
-        });
-
-        // Handle back button
-        window.addEventListener('popstate', () => {
-            location.reload();
+            renderStories("all");
+            
+            // Auto-refresh every 30 minutes
+            setInterval(() => {
+                const activeCategory = document.querySelector(".category-tab.active")?.getAttribute("data-category") || "all";
+                renderStories(activeCategory);
+            }, 1800000);
         });
 
         // Simulate breaking news
         setTimeout(() => {
-            showToast('🔥 Breaking: New celebrity scandal just dropped!');
+            showToast('🔥 Breaking: New scandal just dropped!');
         }, 10000);
     </script>
 </body>
