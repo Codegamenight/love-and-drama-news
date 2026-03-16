@@ -21,11 +21,7 @@
             --shadow: 0 10px 40px -10px rgba(0,0,0,0.15);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -52,7 +48,6 @@
         .animate-fade { animation: fadeIn 0.6s ease-out; }
         .animate-pulse { animation: pulse 2s infinite; }
 
-        /* Breaking News Ticker */
         .ticker-wrap {
             background: var(--gradient-1);
             color: white;
@@ -83,7 +78,6 @@
             text-transform: uppercase;
         }
 
-        /* Header */
         .header {
             background: var(--dark);
             color: white;
@@ -110,9 +104,7 @@
             gap: 0.75rem;
         }
 
-        .logo-icon {
-            font-size: 2rem;
-        }
+        .logo-icon { font-size: 2rem; }
 
         .logo-text {
             font-size: 1.75rem;
@@ -144,9 +136,7 @@
             font-size: 0.95rem;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .nav-links a:hover { color: var(--primary); }
 
         .subscribe-btn {
             background: var(--gradient-1);
@@ -164,7 +154,6 @@
             box-shadow: 0 10px 20px -5px rgba(225, 29, 72, 0.4);
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
             color: white;
@@ -230,9 +219,7 @@
             margin-top: 3rem;
         }
 
-        .stat {
-            text-align: center;
-        }
+        .stat { text-align: center; }
 
         .stat-value {
             font-size: 2.5rem;
@@ -247,7 +234,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* Main Content */
         .main-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -258,12 +244,9 @@
         }
 
         @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
+            .main-content { grid-template-columns: 1fr; }
         }
 
-        /* News Categories */
         .category-tabs {
             display: flex;
             gap: 1rem;
@@ -293,7 +276,6 @@
             color: var(--primary);
         }
 
-        /* Featured Article */
         .featured-article {
             background: var(--card);
             border-radius: 20px;
@@ -305,9 +287,7 @@
         }
 
         @media (max-width: 768px) {
-            .featured-article {
-                grid-template-columns: 1fr;
-            }
+            .featured-article { grid-template-columns: 1fr; }
         }
 
         .featured-image {
@@ -371,11 +351,7 @@
             font-size: 0.875rem;
         }
 
-        /* Article Cards */
-        .articles-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
+        .articles-grid { display: grid; gap: 1.5rem; }
 
         .article-card {
             background: var(--card);
@@ -452,7 +428,6 @@
             gap: 0.25rem;
         }
 
-        /* Sidebar */
         .sidebar {
             display: flex;
             flex-direction: column;
@@ -483,13 +458,9 @@
             transition: all 0.3s;
         }
 
-        .trending-item:last-child {
-            border-bottom: none;
-        }
+        .trending-item:last-child { border-bottom: none; }
 
-        .trending-item:hover {
-            color: var(--primary);
-        }
+        .trending-item:hover { color: var(--primary); }
 
         .trending-rank {
             display: inline-block;
@@ -510,7 +481,6 @@
             font-size: 0.95rem;
         }
 
-        /* Newsletter */
         .newsletter-widget {
             background: var(--gradient-2);
             color: white;
@@ -554,11 +524,8 @@
             transition: transform 0.3s;
         }
 
-        .newsletter-form button:hover {
-            transform: translateY(-2px);
-        }
+        .newsletter-form button:hover { transform: translateY(-2px); }
 
-        /* App Promo */
         .app-promo {
             background: var(--dark);
             color: white;
@@ -580,10 +547,7 @@
             animation: pulse 4s ease-in-out infinite;
         }
 
-        .app-promo-content {
-            position: relative;
-            z-index: 1;
-        }
+        .app-promo-content { position: relative; z-index: 1; }
 
         .app-promo h3 {
             font-size: 1.5rem;
@@ -609,11 +573,8 @@
             transition: transform 0.3s;
         }
 
-        .app-badge:hover {
-            transform: translateY(-2px);
-        }
+        .app-badge:hover { transform: translateY(-2px); }
 
-        /* Footer */
         .footer {
             background: var(--dark);
             color: white;
@@ -635,13 +596,9 @@
             color: var(--primary);
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
+        .footer-section ul { list-style: none; }
 
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
+        .footer-section ul li { margin-bottom: 0.5rem; }
 
         .footer-section a {
             color: rgba(255,255,255,0.7);
@@ -649,9 +606,7 @@
             transition: color 0.3s;
         }
 
-        .footer-section a:hover {
-            color: white;
-        }
+        .footer-section a:hover { color: white; }
 
         .footer-bottom {
             max-width: 1400px;
@@ -663,7 +618,6 @@
             font-size: 0.875rem;
         }
 
-        /* Refresh Indicator */
         .refresh-indicator {
             position: fixed;
             bottom: 2rem;
@@ -684,32 +638,17 @@
         .refresh-dot {
             width: 8px;
             height: 8px;
-            background: var(--success);
+            background: #10b981;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .featured-article {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-image {
-                min-height: 200px;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .nav-links { display: none; }
+            .featured-article { grid-template-columns: 1fr; }
+            .featured-image { min-height: 200px; }
         }
     </style>
 </head>
@@ -797,154 +736,15 @@
                 </div>
             </article>
 
-            <!-- Articles Grid -->
+            <!-- Articles Grid - RSS will populate this -->
             <div class="articles-grid" id="articles-container">
-                <!-- Article 1 -->
-                <article class="article-card" data-category="drama">
-                    <div class="article-header">
-                        <span class="article-category category-drama">Drama</span>
-                        <span class="article-time">2 hours ago</span>
-                    </div>
-                    <h3 class="article-title">Kelsea Ballerini & Chase Stokes: The Never-Ending Breakup Saga</h3>
-                    <p class="article-excerpt">They broke up in September, reconciled in November, posted New Year's kisses, then deleted all photos. Sources say the emotional rollercoaster is "exhausting everyone."</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 15.2K</span>
-                            <span>💬 892</span>
-                            <span>🔄 3.1K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article class="article-card" data-category="scandal">
-                    <div class="article-header">
-                        <span class="article-category category-scandal">Scandal</span>
-                        <span class="article-time">4 hours ago</span>
-                    </div>
-                    <h3 class="article-title">The Try Guys Ned Fulmer: Where Are They Now After The Affair?</h3>
-                    <p class="article-excerpt">Two years after the workplace affair scandal that rocked YouTube, Ned and Ariel Fulmer have officially parted ways. Inside the divorce and the fall of an empire.</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 22.8K</span>
-                            <span>💬 1.5K</span>
-                            <span>🔄 5.2K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="article-card" data-category="love">
-                    <div class="article-header">
-                        <span class="article-category category-love">Love Story</span>
-                        <span class="article-time">6 hours ago</span>
-                    </div>
-                    <h3 class="article-title">Couples Who Survived Cheating: 15 Stories That Defied The Odds</h3>
-                    <p class="article-excerpt">From Beyoncé and Jay-Z's "Lemonade" era to David Boreanaz and Jaime Bergman's reconciliation, these couples proved that some relationships can survive even the ultimate betrayal.</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 31.4K</span>
-                            <span>💬 2.1K</span>
-                            <span>🔄 8.7K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 4 -->
-                <article class="article-card" data-category="scandal">
-                    <div class="article-header">
-                        <span class="article-category category-scandal">Scandal</span>
-                        <span class="article-time">8 hours ago</span>
-                    </div>
-                    <h3 class="article-title">Adam Levine's Alleged Affairs: One Year Later, The Marriage Survives</h3>
-                    <p class="article-excerpt">After multiple women came forward in 2022, Behati Prinsloo stood by her man. Sources say they're "weathering the storm" and focusing on their three children.</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 18.9K</span>
-                            <span>💬 956</span>
-                            <span>🔄 2.8K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 5 -->
-                <article class="article-card" data-category="advice">
-                    <div class="article-header">
-                        <span class="article-category category-advice">Advice</span>
-                        <span class="article-time">12 hours ago</span>
-                    </div>
-                    <h3 class="article-title">Why "Netflix And Chill" Died: The Real Reason Gen Z Stopped Dating</h3>
-                    <p class="article-excerpt">Experts point to social anxiety, digital addiction, and fear of vulnerability. Only 36% of young adults feel confident reading social cues on dates.</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 45.6K</span>
-                            <span>💬 3.2K</span>
-                            <span>🔄 12.1K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 6 -->
-                <article class="article-card" data-category="drama">
-                    <div class="article-header">
-                        <span class="article-category category-drama">Drama</span>
-                        <span class="article-time">14 hours ago</span>
-                    </div>
-                    <h3 class="article-title">Ariana Grande & Ethan Slater: Will The Scandalous Start End Badly?</h3>
-                    <p class="article-excerpt">Both left spouses for each other during "Wicked" filming. Now that press tours are over, sources say there's "no professional reason to stay together."</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 28.3K</span>
-                            <span>💬 1.8K</span>
-                            <span>🔄 6.4K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 7 -->
-                <article class="article-card" data-category="love">
-                    <div class="article-header">
-                        <span class="article-category category-love">Love Story</span>
-                        <span class="article-time">16 hours ago</span>
-                    </div>
-                    <h3 class="article-title">Workplace Romances: 60% Of Adults Have Done It, 40% Involved Cheating</h3>
-                    <p class="article-excerpt">New Forbes survey reveals the office is still the #1 place affairs begin. Why do we keep falling for colleagues when the risks are so high?</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 19.7K</span>
-                            <span>💬 1.1K</span>
-                            <span>🔄 4.2K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
-
-                <!-- Article 8 -->
-                <article class="article-card" data-category="scandal">
-                    <div class="article-header">
-                        <span class="article-category category-scandal">Scandal</span>
-                        <span class="article-time">18 hours ago</span>
-                    </div>
-                    <h3 class="article-title">The Most Shocking Celebrity Cheating Scandals Of All Time</h3>
-                    <p class="article-excerpt">From Kristen Stewart and Rupert Sanders' infamous photos to Tiger Woods' epic fall from grace, we count down the affairs that broke the internet.</p>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>🔥 52.1K</span>
-                            <span>💬 4.5K</span>
-                            <span>🔄 15.3K</span>
-                        </div>
-                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                    </div>
-                </article>
+                <div style="text-align:center;padding:3rem;">
+                    <div style="font-size:2rem;margin-bottom:1rem;">📰</div>
+                    <div style="color:var(--text-light);">Loading fresh relationship news...</div>
+                </div>
             </div>
 
-            <button class="btn btn-primary" style="margin-top: 2rem; width: 100%; padding: 1rem;" onclick="loadMore()">
+            <button class="btn btn-primary" style="margin-top: 2rem; width: 100%; padding: 1rem; background: var(--gradient-1); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;" onclick="loadMore()">
                 Load More Stories
             </button>
         </div>
@@ -1066,16 +866,143 @@
         <span>Live Updates</span>
     </div>
 
+    <!-- RSS Auto-Load Script -->
     <script>
+        // RSS Feed Loader
+        async function loadRSSNews() {
+            const container = document.getElementById('articles-container');
+            
+            try {
+                const feeds = [
+                    'https://www.usmagazine.com/celebrity-news/feed/',
+                    'https://people.com/celebrity/feed/',
+                    'https://www.eonline.com/news/rss'
+                ];
+                
+                let allArticles = [];
+                
+                for (const feed of feeds) {
+                    try {
+                        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`);
+                        const data = await response.json();
+                        
+                        if (data.items) {
+                            const relationshipItems = data.items.filter(item => {
+                                const text = (item.title + ' ' + item.description).toLowerCase();
+                                return text.includes('cheating') || 
+                                       text.includes('divorce') || 
+                                       text.includes('dating') ||
+                                       text.includes('boyfriend') ||
+                                       text.includes('girlfriend') ||
+                                       text.includes('breakup') ||
+                                       text.includes('affair') ||
+                                       text.includes('relationship') ||
+                                       text.includes('marriage');
+                            });
+                            allArticles.push(...relationshipItems);
+                        }
+                    } catch (e) {
+                        console.log('Feed error:', e);
+                    }
+                }
+                
+                // Sort by date
+                allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+                
+                // Display top 10
+                if (allArticles.length > 0) {
+                    displayArticles(allArticles.slice(0, 10));
+                } else {
+                    showFallbackArticles();
+                }
+                
+            } catch (error) {
+                console.error('Error loading news:', error);
+                showFallbackArticles();
+            }
+        }
+
+        function displayArticles(articles) {
+            const container = document.getElementById('articles-container');
+            container.innerHTML = '';
+            
+            articles.forEach(article => {
+                const category = article.title.toLowerCase().includes('cheat') || 
+                                article.title.toLowerCase().includes('affair') ? 'scandal' : 'drama';
+                const timeAgo = getTimeAgo(article.pubDate);
+                const excerpt = article.description ? article.description.replace(/<[^>]*>/g, '').substring(0, 150) : 'No description available';
+                
+                const html = `
+                    <article class="article-card animate-fade" data-category="${category}">
+                        <div class="article-header">
+                            <span class="article-category category-${category}">${category === 'scandal' ? 'Scandal' : 'Drama'}</span>
+                            <span class="article-time">${timeAgo}</span>
+                        </div>
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${excerpt}...</p>
+                        <div class="article-footer">
+                            <div class="article-stats">
+                                <span>🔥 ${Math.floor(Math.random() * 40 + 10)}K</span>
+                                <span>💬 ${Math.floor(Math.random() * 800 + 100)}</span>
+                            </div>
+                            <a href="${article.link}" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: none;">Read More →</a>
+                        </div>
+                    </article>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        function showFallbackArticles() {
+            // Static fallback if RSS fails
+            const container = document.getElementById('articles-container');
+            container.innerHTML = `
+                <article class="article-card" data-category="drama">
+                    <div class="article-header">
+                        <span class="article-category category-drama">Drama</span>
+                        <span class="article-time">2 hours ago</span>
+                    </div>
+                    <h3 class="article-title">Kelsea Ballerini & Chase Stokes: The Never-Ending Breakup Saga</h3>
+                    <p class="article-excerpt">They broke up in September, reconciled in November, posted New Year's kisses, then deleted all photos. Sources say the emotional rollercoaster is "exhausting everyone."</p>
+                    <div class="article-footer">
+                        <div class="article-stats"><span>🔥 15.2K</span><span>💬 892</span></div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+                <article class="article-card" data-category="scandal">
+                    <div class="article-header">
+                        <span class="article-category category-scandal">Scandal</span>
+                        <span class="article-time">4 hours ago</span>
+                    </div>
+                    <h3 class="article-title">The Try Guys Ned Fulmer: Where Are They Now After The Affair?</h3>
+                    <p class="article-excerpt">Two years after the workplace affair scandal that rocked YouTube, Ned and Ariel Fulmer have officially parted ways. Inside the divorce and the fall of an empire.</p>
+                    <div class="article-footer">
+                        <div class="article-stats"><span>🔥 22.8K</span><span>💬 1.5K</span></div>
+                        <span style="color: var(--primary); font-weight: 600;">Read More →</span>
+                    </div>
+                </article>
+            `;
+        }
+
+        function getTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const hours = Math.floor((now - date) / (1000 * 60 * 60));
+            
+            if (hours < 1) return 'Just now';
+            if (hours === 1) return '1 hour ago';
+            if (hours < 24) return `${hours} hours ago`;
+            return `${Math.floor(hours / 24)} days ago`;
+        }
+
         // Category Filter
         function filterCategory(category, btn) {
-            // Update active tab
             document.querySelectorAll('.category-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             btn.classList.add('active');
 
-            // Filter articles
             const articles = document.querySelectorAll('.article-card');
             articles.forEach(article => {
                 if (category === 'all' || article.dataset.category === category) {
@@ -1094,62 +1021,8 @@
 
         // Load More
         function loadMore() {
-            const container = document.getElementById('articles-container');
-            const newArticles = [
-                {
-                    category: 'scandal',
-                    title: 'Sebastian Lletget & Becky G: Back Together After Cheating Scandal',
-                    excerpt: 'The soccer star and singer reconciled after a 10-month split following extortion and cheating allegations.',
-                    time: '20 hours ago',
-                    stats: { fire: '12.4K', comments: '678', shares: '2.1K' }
-                },
-                {
-                    category: 'love',
-                    title: 'Oliver Hudson Admits Cheating Before Wedding - Still Married 18 Years Later',
-                    excerpt: 'The actor revealed he was unfaithful shortly before marrying Erinn Bartlett in 2006. They worked through it.',
-                    time: '22 hours ago',
-                    stats: { fire: '9.8K', comments: '445', shares: '1.8K' }
-                },
-                {
-                    category: 'drama',
-                    title: 'Michelle Branch & Patrick Carney: Arrest, Divorce Filing, Then Reconciliation',
-                    excerpt: 'The full timeline of their rollercoaster 2022: cheating accusations, a slap, divorce papers, and ultimately staying together.',
-                    time: '1 day ago',
-                    stats: { fire: '16.7K', comments: '923', shares: '3.4K' }
-                }
-            ];
-
-            newArticles.forEach(article => {
-                const categoryClass = 'category-' + article.category;
-                const categoryLabels = {
-                    'scandal': 'Scandal',
-                    'love': 'Love Story',
-                    'drama': 'Drama',
-                    'advice': 'Advice'
-                };
-
-                const html = `
-                    <article class="article-card animate-fade" data-category="${article.category}">
-                        <div class="article-header">
-                            <span class="article-category ${categoryClass}">${categoryLabels[article.category]}</span>
-                            <span class="article-time">${article.time}</span>
-                        </div>
-                        <h3 class="article-title">${article.title}</h3>
-                        <p class="article-excerpt">${article.excerpt}</p>
-                        <div class="article-footer">
-                            <div class="article-stats">
-                                <span>🔥 ${article.stats.fire}</span>
-                                <span>💬 ${article.stats.comments}</span>
-                                <span>🔄 ${article.stats.shares}</span>
-                            </div>
-                            <span style="color: var(--primary); font-weight: 600;">Read More →</span>
-                        </div>
-                    </article>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-
-            showToast('More stories loaded!');
+            showToast('Loading more stories...');
+            loadRSSNews();
         }
 
         // Subscribe
@@ -1192,23 +1065,17 @@
             }, 3000);
         }
 
-        // Auto-refresh simulation
-        setInterval(() => {
-            const ticker = document.getElementById('news-ticker');
-            // In a real implementation, this would fetch new news
-            console.log('Checking for updates...');
-        }, 60000); // Check every minute
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRSSNews();
+            // Refresh every 30 minutes
+            setInterval(loadRSSNews, 30 * 60 * 1000);
+        });
 
-        // Simulate live updates
+        // Simulate breaking news
         setTimeout(() => {
             showToast('🔥 Breaking: New celebrity scandal just dropped!');
         }, 10000);
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Love & Drama - Relationship News Daily');
-            console.log('Powered by His&Hers Trust Architecture System');
-        });
     </script>
 </body>
 </html>
