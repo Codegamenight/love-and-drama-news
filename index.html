@@ -1,1489 +1,1199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Loved - Relationship News Daily | Powered by His&Hers</title>
-    <meta name="description" content="Fresh relationship news, celebrity cheating scandals, viral love stories, and dating trends updated daily">
+    <title>AboutLoved | The Future of Relationship Trust</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #e11d48;
-            --primary-dark: #be123c;
-            --secondary: #6366f1;
-            --accent: #f59e0b;
-            --dark: #0f0a0a;
-            --card: #ffffff;
-            --text: #1f2937;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-            --gradient-1: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
-            --gradient-2: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            --shadow: 0 10px 40px -10px rgba(0,0,0,0.15);
+            --rose-gold: #e8b4b8;
+            --deep-rose: #d4848c;
+            --warm-cream: #faf7f5;
+            --charcoal: #1a1a1a;
+            --soft-gray: #f5f5f5;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(180deg, #fafafa 0%, #f3f4f6 100%);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-cream);
+            overflow-x: hidden;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .animate-fade { animation: fadeIn 0.45s ease-out; }
-
-        .ticker-wrap {
-            background: var(--gradient-1);
-            color: white;
-            padding: 0.75rem 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ticker {
-            display: flex;
-            white-space: nowrap;
-            animation: ticker 30s linear infinite;
-        }
-
-        .ticker-item {
-            padding: 0 3rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .ticker-label {
-            background: white;
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            margin-right: 0.5rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .header {
-            background: var(--dark);
-            color: white;
-            padding: 1.5rem;
-            position: sticky;
+        
+        /* Aurora Background Effect */
+        .aurora {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-        }
-
-        .logo-icon { font-size: 2rem; }
-
-        .logo-text {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-tagline {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover { color: var(--primary); }
-
-        .subscribe-btn {
-            background: var(--gradient-1);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .subscribe-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(225, 29, 72, 0.4);
-        }
-
-        .hero {
-            background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
-            color: white;
-            padding: 4rem 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(225, 29, 72, 0.3) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-
-        .hero h1 span {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .stat { text-align: center; }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: rgba(255,255,255,0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .main-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 3rem;
-        }
-
-        @media (max-width: 1024px) {
-            .main-content { grid-template-columns: 1fr; }
-        }
-
-        .category-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .category-tab {
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            border: 2px solid var(--border);
-            background: white;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .category-tab.active {
-            background: var(--gradient-1);
-            color: white;
-            border-color: transparent;
-        }
-
-        .category-tab:hover:not(.active) {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .featured-article {
-            background: var(--card);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            cursor: pointer;
-            transition: transform 0.3s;
-            text-decoration: none;
-            color: inherit;
-            content-visibility: auto;
-            contain-intrinsic-size: 400px;
-        }
-
-        .featured-article:hover { transform: translateY(-4px); }
-
-        @media (max-width: 768px) {
-            .featured-article { grid-template-columns: 1fr; }
-        }
-
-        .featured-image {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 380px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .featured-image img {
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            position: absolute;
-            inset: 0;
-        }
-
-        .featured-image::before {
-            content: '💔';
-            position: absolute;
-            font-size: 8rem;
-            opacity: 0.25;
-            z-index: 1;
-        }
-
-        .featured-content {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .featured-tag {
-            display: inline-block;
-            background: var(--gradient-1);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            width: fit-content;
-        }
-
-        .featured-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .featured-excerpt {
-            color: var(--text-light);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .featured-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text-light);
-            font-size: 0.875rem;
-            flex-wrap: wrap;
-        }
-
-        .articles-grid {
-            display: grid;
-            gap: 1.5rem;
-            min-height: 320px;
-        }
-
-        .article-card,
-        .sidebar-widget {
-            content-visibility: auto;
-            contain-intrinsic-size: 300px;
-        }
-
-        .article-card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-            display: block;
-        }
-
-        .article-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-            border-color: var(--primary);
-        }
-
-        .article-image,
-        .featured-image img {
-            will-change: auto;
-        }
-
-        .article-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
-            display: block;
-        }
-
-        .article-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-            gap: 1rem;
-        }
-
-        .article-category {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .category-scandal { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
-        .category-love { background: rgba(16, 185, 129, 0.1); color: #059669; }
-        .category-drama { background: rgba(245, 158, 11, 0.1); color: #d97706; }
-        .category-karma { background: rgba(139, 92, 246, 0.1); color: #7c3aed; }
-
-        .article-time {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            white-space: nowrap;
-        }
-
-        .article-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            line-height: 1.3;
-        }
-
-        .article-excerpt {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .article-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .article-stats {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-light);
-            flex-wrap: wrap;
-        }
-
-        .read-more {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .sidebar-widget {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
-        }
-
-        .widget-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .trending-item {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.3s;
-            display: block;
-        }
-
-        .trending-item:last-child { border-bottom: none; }
-        .trending-item:hover { color: var(--primary); }
-
-        .trending-rank {
-            display: inline-block;
-            width: 28px;
-            height: 28px;
-            background: var(--gradient-1);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 28px;
-            font-weight: 700;
-            font-size: 0.875rem;
-            margin-right: 0.75rem;
-        }
-
-        .trending-text {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-widget {
-            background: var(--gradient-2);
-            color: white;
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .newsletter-widget h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .newsletter-widget p {
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .newsletter-form input {
-            padding: 0.875rem 1rem;
-            border-radius: 12px;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .newsletter-form button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.875rem;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .app-promo {
-            background: var(--dark);
-            color: white;
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
+            z-index: -1;
+            background: linear-gradient(135deg, #faf7f5 0%, #f5ebe0 50%, #faf7f5 100%);
             overflow: hidden;
         }
-
-        .app-promo::before {
-            content: '';
+        
+        .aurora-blob {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(225, 29, 72, 0.2) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .app-promo-content { position: relative; z-index: 1; }
-
-        .app-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            color: var(--dark);
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 1.5rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .footer-section ul { list-style: none; }
-        .footer-section ul li { margin-bottom: 0.5rem; }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .footer-section a:hover { color: white; }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.875rem;
-        }
-
-        .refresh-indicator {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--card);
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            z-index: 1000;
-            border: 1px solid var(--border);
-            cursor: pointer;
-        }
-
-        .refresh-dot {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
             border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,180,184,0.4) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212,132,140,0.3) 0%, transparent 70%);
+            top: 40%;
+            right: -10%;
+            animation-delay: 5s;
+        }
+        
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200,170,180,0.3) 0%, transparent 70%);
+            bottom: -10%;
+            left: 30%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        /* Glass Morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .glass-dark {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* News Ticker Animation */
+        .news-ticker {
+            animation: ticker 30s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Card Hover Effects */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #d4848c 0%, #b06c79 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Scroll Progress */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #d4848c, #e8b4b8);
+            z-index: 100;
+            transition: width 0.1s;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--warm-cream);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #d4848c;
+            border-radius: 4px;
+        }
+        
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Pulse Animation for Live Indicator */
+        .pulse-dot {
             animation: pulse 2s infinite;
         }
-
-        .story-page {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
-
-        .story-page h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .story-page img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-        }
-
-        .story-page p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .loading-container,
-        .error-message {
-            text-align: center;
-            padding: 3rem;
-        }
-
-        .load-more-btn {
-            margin-top: 2rem;
-            width: 100%;
-            padding: 1rem;
-            background: var(--gradient-1);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .load-more-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .api-status {
+        
+        /* Reading Progress Indicator */
+        .read-progress {
             position: fixed;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 1001;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-
-        .api-status.online { background: #10b981; color: white; }
-        .api-status.offline { background: #ef4444; color: white; }
-        .api-status.cached { background: #f59e0b; color: white; }
-
-        .spinner {
-            width: 36px;
-            height: 36px;
-            border: 4px solid #eee;
-            border-top: 4px solid var(--primary);
+        
+        .read-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+            background: rgba(212, 132, 140, 0.3);
+            transition: all 0.3s;
+            cursor: pointer;
         }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero-stats { flex-direction: column; gap: 1rem; }
-            .nav-links { display: none; }
-            .featured-article { grid-template-columns: 1fr; }
-            .featured-image { min-height: 220px; }
-            .api-status { top: auto; bottom: 5rem; right: 1rem; }
+        
+        .read-dot.active {
+            background: #d4848c;
+            transform: scale(1.3);
+        }
+        
+        /* Infinite Scroll Loader */
+        .loader-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .loader-dot {
+            width: 12px;
+            height: 12px;
+            background: #d4848c;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        
+        .loader-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loader-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        /* Sticky Section Headers */
+        .sticky-header {
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Typing Effect */
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Magnetic Button Effect */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* News Card Image Zoom */
+        .img-zoom {
+            overflow: hidden;
+        }
+        
+        .img-zoom img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .img-zoom:hover img {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body>
-    <div id="api-status" class="api-status offline" style="display:none;">Offline</div>
+<body class="text-gray-800 antialiased">
 
-    <div class="ticker-wrap">
-        <div class="ticker" id="news-ticker">
-            <div class="ticker-item"><span class="ticker-label">BREAKING</span> Loading latest relationship news...</div>
-        </div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Aurora Background -->
+    <div class="aurora">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
     </div>
 
-    <header class="header">
-        <div class="header-content">
-            <div class="logo" onclick="goHome()">
-                <span class="logo-icon">💔</span>
-                <div>
-                    <div class="logo-text">About Loved</div>
-                    <div class="logo-tagline">Relationship News Daily</div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/20 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center text-white font-bold text-xl">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-bold serif text-gray-900">AboutLoved</span>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#news" class="text-sm font-medium text-gray-600 hover:text-rose-600 transition">Live News</a>
+                    <a href="#philosophy" class="text-sm font-medium text-gray-600 hover:text-rose-600 transition">Philosophy</a>
+                    <a href="#features" class="text-sm font-medium text-gray-600 hover:text-rose-600 transition">Features</a>
+                    <a href="#roadmap" class="text-sm font-medium text-gray-600 hover:text-rose-600 transition">Roadmap</a>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 pulse-dot"></span>
+                        Live Updates
+                    </div>
+                    <button onclick="document.getElementById('waitlist').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn px-6 py-2.5 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition shadow-lg hover:shadow-xl">
+                        Join Waitlist
+                    </button>
                 </div>
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a onclick="filterCategory('scandal')">Scandals</a></li>
-                    <li><a onclick="filterCategory('karma')">Karma</a></li>
-                    <li><a onclick="filterCategory('love')">Love Stories</a></li>
-                    <li><a onclick="filterCategory('drama')">Drama</a></li>
-                </ul>
-            </nav>
-            <button class="subscribe-btn" onclick="showSubscribe()">Get Alerts</button>
         </div>
-    </header>
+    </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">🔥 Trending Now</div>
-            <h1>Cheating, <span>Karma</span> & Second Chances</h1>
-            <p class="hero-subtitle">Real stories of betrayal, instant karma, and love that survives it all. Updated daily with the most shocking relationship news.</p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-value">50K+</div>
-                    <div class="stat-label">Daily Readers</div>
+    <!-- Reading Progress Dots -->
+    <div class="read-progress hidden lg:flex">
+        <div class="read-dot active" onclick="scrollToSection('hero')"></div>
+        <div class="read-dot" onclick="scrollToSection('news')"></div>
+        <div class="read-dot" onclick="scrollToSection('philosophy')"></div>
+        <div class="read-dot" onclick="scrollToSection('features')"></div>
+        <div class="read-dot" onclick="scrollToSection('roadmap')"></div>
+        <div class="read-dot" onclick="scrollToSection('waitlist')"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 reveal active">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-rose-700 border-rose-200">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 pulse-dot"></span>
+                        Soft Launch 2026
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold serif leading-tight text-gray-900">
+                        Trust is built, <br>
+                        <span class="gradient-text italic">not assumed.</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 leading-relaxed max-w-lg">
+                        AboutLoved is revolutionizing how couples build transparency. Join <span id="subscriberCount" class="font-bold text-rose-600">2,847</span> others waiting for the future of relationship architecture.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="document.getElementById('waitlist').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn px-8 py-4 rounded-full bg-gray-900 text-white font-medium hover:bg-gray-800 transition shadow-xl hover:shadow-2xl flex items-center gap-2">
+                            Get Early Access
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="document.getElementById('news').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 rounded-full glass text-gray-700 font-medium hover:bg-white/80 transition flex items-center gap-2">
+                            <i data-lucide="newspaper" class="w-5 h-5"></i>
+                            Read Latest
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 pt-4">
+                        <div class="flex -space-x-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="User">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-rose-100 flex items-center justify-center text-xs font-bold text-rose-600">+2k</div>
+                        </div>
+                        <p class="text-sm text-gray-500">Join couples already on the waitlist</p>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label">Story Updates</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Real Drama</div>
+                
+                <div class="relative reveal active">
+                    <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl hover-lift">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=1000&fit=crop" alt="Couple Connection" class="w-full h-[600px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        
+                        <!-- Floating Card -->
+                        <div class="absolute bottom-8 left-8 right-8 glass rounded-2xl p-6 shadow-xl">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-rose-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1">Trust Architecture</h3>
+                                    <p class="text-sm text-gray-600">Building transparency without surveillance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-rose-200 rounded-full blur-3xl opacity-50"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <main class="main-content" id="main-container">
-        <div class="content-area" id="content-area">
-            <div class="category-tabs">
-                <button class="category-tab active" onclick="filterCategory('all')" data-category="all">All News</button>
-                <button class="category-tab" onclick="filterCategory('scandal')" data-category="scandal">💔 Scandals</button>
-                <button class="category-tab" onclick="filterCategory('karma')" data-category="karma">⚡ Karma</button>
-                <button class="category-tab" onclick="filterCategory('love')" data-category="love">💕 Love Stories</button>
-                <button class="category-tab" onclick="filterCategory('drama')" data-category="drama">🔥 Drama</button>
-            </div>
-
-            <div id="featured-container"></div>
-
-            <div class="articles-grid" id="articles-container">
-                <div class="loading-container">
-                    <div class="spinner"></div>
-                    <div style="color:var(--text-light);">Loading stories...</div>
+    <!-- Live News Hub Section -->
+    <section id="news" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="sticky-header glass rounded-2xl p-6 mb-12 shadow-lg">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold serif text-gray-900 flex items-center gap-3">
+                            <span class="w-3 h-3 rounded-full bg-rose-500 pulse-dot"></span>
+                            Relationship Intelligence Hub
+                        </h2>
+                        <p class="text-gray-600 mt-2">Auto-curated news & insights on love, trust, and connection</p>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <select id="categoryFilter" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm focus:outline-none focus:border-rose-400">
+                            <option value="all">All Topics</option>
+                            <option value="communication">Communication</option>
+                            <option value="trust">Trust Building</option>
+                            <option value="intimacy">Intimacy</option>
+                            <option value="conflict">Conflict Resolution</option>
+                        </select>
+                        
+                        <button onclick="refreshNews()" class="p-2 rounded-full hover:bg-gray-100 transition" title="Refresh">
+                            <i data-lucide="refresh-cw" class="w-5 h-5 text-gray-600" id="refreshIcon"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-            <button class="load-more-btn" id="load-more" onclick="loadMore()">Load More Stories</button>
-        </div>
-
-        <aside class="sidebar">
-            <div class="sidebar-widget">
-                <h3 class="widget-title">🔥 Trending Now</h3>
-                <div id="trending-container">
-                    <div class="trending-item">
-                        <span class="trending-rank">1</span>
-                        <span class="trending-text">Loading trending stories...</span>
+                
+                <!-- Live Ticker -->
+                <div class="mt-4 overflow-hidden border-t border-gray-200 pt-4">
+                    <div class="flex items-center gap-4 text-sm">
+                        <span class="font-semibold text-rose-600 flex-shrink-0">LATEST:</span>
+                        <div class="overflow-hidden flex-1 relative h-6">
+                            <div id="newsTicker" class="news-ticker absolute whitespace-nowrap flex gap-8 text-gray-600">
+                                <span>Loading latest relationship insights...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="newsletter-widget">
-                <h3>Get The Drama First</h3>
-                <p>Fresh karma and scandal stories delivered daily. No spam, just tea.</p>
-                <form class="newsletter-form" onsubmit="subscribe(event)">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe Free</button>
+            <!-- News Grid -->
+            <div id="newsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- News cards will be injected here -->
+                <div class="col-span-full text-center py-20">
+                    <div class="loader-dots">
+                        <div class="loader-dot"></div>
+                        <div class="loader-dot"></div>
+                        <div class="loader-dot"></div>
+                    </div>
+                    <p class="text-gray-500 mt-4">Fetching latest relationship insights...</p>
+                </div>
+            </div>
+            
+            <!-- Infinite Scroll Trigger -->
+            <div id="loadMoreTrigger" class="h-20 flex items-center justify-center">
+                <button onclick="loadMoreNews()" class="px-8 py-3 rounded-full border-2 border-gray-300 text-gray-600 font-medium hover:border-rose-400 hover:text-rose-600 transition flex items-center gap-2">
+                    Load More Stories
+                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-rose-600 font-medium tracking-wider text-sm uppercase">Our Philosophy</span>
+                <h2 class="text-4xl md:text-5xl font-bold serif mt-4 mb-6 text-gray-900">
+                    Three Layers of <span class="gradient-text">Trust Architecture</span>
+                </h2>
+                <p class="text-xl text-gray-600">
+                    We don't catch cheaters. We create conditions where cheating is harder to sustain and healthy transparency is easier to choose.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Layer 1 -->
+                <div class="group reveal">
+                    <div class="glass rounded-3xl p-8 h-full hover-lift relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-rose-100 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition"></div>
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-2xl bg-rose-100 flex items-center justify-center mb-6 text-rose-600">
+                                <i data-lucide="file-signature" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold serif mb-4 text-gray-900">Commitment Verification</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Structured conversation prompts covering monogamy definitions, emotional affair boundaries, and transparency expectations. AI identifies semantic gaps before they become fractures.
+                            </p>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-rose-500"></i>
+                                    Living relationship contracts
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-rose-500"></i>
+                                    Expectation mapping surveys
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-rose-500"></i>
+                                    Quarterly alignment reviews
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Layer 2 -->
+                <div class="group reveal" style="transition-delay: 100ms;">
+                    <div class="glass rounded-3xl p-8 h-full hover-lift relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition"></div>
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center mb-6 text-blue-600">
+                                <i data-lucide="eye" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold serif mb-4 text-gray-900">Behavioral Transparency</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Voluntary logging of social interactions and communication rhythms. Pattern asymmetries surface naturally without surveillance or content access.
+                            </p>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-blue-500"></i>
+                                    Mutual presence ledger
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-blue-500"></i>
+                                    Communication rhythm analysis
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-blue-500"></i>
+                                    Randomized trust checks
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Layer 3 -->
+                <div class="group reveal" style="transition-delay: 200ms;">
+                    <div class="glass rounded-3xl p-8 h-full hover-lift relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-100 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition"></div>
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center mb-6 text-emerald-600">
+                                <i data-lucide="heart-crack" class="w-7 h-7"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold serif mb-4 text-gray-900">Post-Breach Recovery</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                If trust is broken, structured 90-day transparency protocols help verify genuine reconciliation without enabling controlling behaviors.
+                            </p>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+                                    Reconstruction mode
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+                                    Accountability partner network
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+                                    Pattern-based verification
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-20 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="text-rose-600 font-medium tracking-wider text-sm uppercase">Features</span>
+                    <h2 class="text-4xl md:text-5xl font-bold serif mt-4 mb-6 text-gray-900">
+                        Tools for <span class="italic">modern</span> love
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Every feature designed to increase the cost of deception and lower the barrier to honest conversation.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-200 transition">
+                                <i data-lucide="message-circle" class="w-6 h-6 text-rose-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">AI-Facilitated Dialogue</h4>
+                                <p class="text-gray-600 text-sm">Guided conversations that surface misalignment before it becomes betrayal.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-200 transition">
+                                <i data-lucide="activity" class="w-6 h-6 text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Relationship Health Metrics</h4>
+                                <p class="text-gray-600 text-sm">Track emotional connection, communication quality, and alignment over time.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-200 transition">
+                                <i data-lucide="users" class="w-6 h-6 text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Therapist Integration</h4>
+                                <p class="text-gray-600 text-sm">Direct connection to vetted relationship counselors when patterns indicate need.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-200 transition">
+                                <i data-lucide="lock" class="w-6 h-6 text-amber-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Zero-Knowledge Architecture</h4>
+                                <p class="text-gray-600 text-sm">End-to-end encrypted. We can't read your data, and neither can anyone else.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4 mt-8">
+                            <div class="glass rounded-2xl p-6 hover-lift">
+                                <div class="text-3xl font-bold text-rose-600 mb-1">94%</div>
+                                <p class="text-sm text-gray-600">Early conflict detection rate</p>
+                            </div>
+                            <div class="glass rounded-2xl p-6 hover-lift bg-rose-50/50">
+                                <div class="text-3xl font-bold text-gray-900 mb-1">Zero</div>
+                                <p class="text-sm text-gray-600">Surveillance features</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="glass rounded-2xl p-6 hover-lift bg-blue-50/50">
+                                <div class="text-3xl font-bold text-blue-600 mb-1">30-day</div>
+                                <p class="text-sm text-gray-600">Reconciliation protocols</p>
+                            </div>
+                            <div class="glass rounded-2xl p-6 hover-lift">
+                                <div class="text-3xl font-bold text-emerald-600 mb-1">E2E</div>
+                                <p class="text-sm text-gray-600">Encrypted by default</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Preview Card -->
+                    <div class="absolute -bottom-8 -right-8 glass-dark rounded-2xl p-6 text-white shadow-2xl max-w-xs hidden lg:block">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-rose-500 flex items-center justify-center">
+                                <i data-lucide="bell" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sm">Trust Check</p>
+                                <p class="text-xs text-gray-400">Daily at 8:00 PM</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-300">"Is there anything you're holding back from sharing?"</p>
+                        <div class="mt-4 flex gap-2">
+                            <button class="flex-1 py-2 rounded-lg bg-rose-500 text-sm font-medium">Respond</button>
+                            <button class="flex-1 py-2 rounded-lg bg-white/10 text-sm">Snooze</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-rose-600 font-medium tracking-wider text-sm uppercase">Roadmap</span>
+                <h2 class="text-4xl md:text-5xl font-bold serif mt-4 text-gray-900">Building in public</h2>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-rose-400 to-transparent hidden md:block"></div>
+                
+                <div class="space-y-12">
+                    <!-- Phase 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center reveal">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                            <div class="glass rounded-2xl p-6 inline-block text-left hover-lift">
+                                <span class="text-rose-600 font-bold text-sm">NOW</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Soft Launch</h3>
+                                <p class="text-gray-600 text-sm">Brand story, waitlist capture, and this news hub live now.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-lg hidden md:block"></div>
+                        <div class="md:w-1/2 md:pl-12"></div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center reveal">
+                        <div class="md:w-1/2 md:pr-12"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gray-300 border-4 border-white shadow-lg hidden md:block"></div>
+                        <div class="md:w-1/2 md:pl-12 mb-4 md:mb-0">
+                            <div class="glass rounded-2xl p-6 inline-block hover-lift">
+                                <span class="text-gray-500 font-bold text-sm">Q2 2026</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Audience Building</h3>
+                                <p class="text-gray-600 text-sm">Blog, relationship quizzes, and content funnels tied to social.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center reveal">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                            <div class="glass rounded-2xl p-6 inline-block text-left hover-lift">
+                                <span class="text-gray-500 font-bold text-sm">Q3 2026</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">Validation</h3>
+                                <p class="text-gray-600 text-sm">Beta testing with founding members, feature validation.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gray-300 border-4 border-white shadow-lg hidden md:block"></div>
+                        <div class="md:w-1/2 md:pl-12"></div>
+                    </div>
+                    
+                    <!-- Phase 4 -->
+                    <div class="relative flex flex-col md:flex-row items-center reveal">
+                        <div class="md:w-1/2 md:pr-12"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gray-300 border-4 border-white shadow-lg hidden md:block"></div>
+                        <div class="md:w-1/2 md:pl-12 mb-4 md:mb-0">
+                            <div class="glass rounded-2xl p-6 inline-block hover-lift">
+                                <span class="text-gray-500 font-bold text-sm">Q4 2026</span>
+                                <h3 class="text-xl font-bold mt-2 mb-2">App Launch</h3>
+                                <p class="text-gray-600 text-sm">Full product release to waitlist members first.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist CTA Section -->
+    <section id="waitlist" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gray-900"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,114,182,0.2),transparent_50%)]"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="reveal">
+                <h2 class="text-4xl md:text-6xl font-bold serif text-white mb-6">
+                    Start with clarity.<br>
+                    <span class="text-rose-400">End with trust.</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                    Join the waitlist for early access to the first trust architecture platform designed for modern relationships.
+                </p>
+                
+                <form id="waitlistForm" class="max-w-md mx-auto space-y-4" onsubmit="handleWaitlistSubmit(event)">
+                    <div class="relative">
+                        <input 
+                            type="email" 
+                            id="emailInput"
+                            placeholder="Enter your email" 
+                            class="w-full px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-rose-400 transition backdrop-blur-sm"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="flex gap-4 justify-center">
+                        <label class="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
+                            <input type="checkbox" class="rounded border-gray-600 text-rose-500 focus:ring-rose-500 bg-transparent" checked>
+                            <span>I'm a couple</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
+                            <input type="checkbox" class="rounded border-gray-600 text-rose-500 focus:ring-rose-500 bg-transparent">
+                            <span>I'm a therapist</span>
+                        </label>
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        id="submitBtn"
+                        class="w-full px-8 py-4 rounded-full bg-rose-500 text-white font-semibold hover:bg-rose-600 transition shadow-lg hover:shadow-rose-500/25 flex items-center justify-center gap-2"
+                    >
+                        <span>Join 2,847 others</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
                 </form>
-                <p style="font-size: 0.75rem; margin-top: 1rem; opacity: 0.7;">Join 250,000+ subscribers</p>
-            </div>
-
-            <div class="app-promo">
-                <div class="app-promo-content">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">💜</div>
-                    <h3>His&Hers App</h3>
-                    <p>Track relationship red flags and get advice. Coming soon.</p>
-                    <a href="#" class="app-badge">
-                        <span>📱</span>
-                        <span>Get Early Access</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="sidebar-widget">
-                <h3 class="widget-title">⚡ Latest Karma</h3>
-                <div id="latest-karma" style="display:flex;flex-direction:column;gap:1rem;">
-                    <div style="padding:1rem;background:rgba(139,92,246,0.05);border-radius:12px;border-left:3px solid #8b5cf6;">
-                        <div style="font-weight:600;font-size:0.9rem;">Loading karma stories...</div>
+                
+                <div id="successMessage" class="hidden mt-8 p-6 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300">
+                    <div class="flex items-center justify-center gap-2 mb-2">
+                        <i data-lucide="check-circle" class="w-6 h-6"></i>
+                        <span class="font-semibold">You're on the list!</span>
                     </div>
+                    <p class="text-sm">Check your inbox for confirmation. Welcome to the future of trust.</p>
                 </div>
-            </div>
-        </aside>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>About Loved</h4>
-                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6;">Your daily source for relationship drama, instant karma, and love stories that survived betrayal.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Categories</h4>
-                <ul>
-                    <li><a onclick="filterCategory('scandal')">Cheating Scandals</a></li>
-                    <li><a onclick="filterCategory('karma')">Instant Karma</a></li>
-                    <li><a onclick="filterCategory('love')">Love Stories</a></li>
-                    <li><a onclick="filterCategory('drama')">Drama</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">His&Hers App</a></li>
-                    <li><a href="#">Advertise</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                </ul>
+                
+                <p class="mt-8 text-sm text-gray-500">
+                    No spam. Unsubscribe anytime. We never share your data.
+                </p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 About Loved. All rights reserved. Powered by His&Hers.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-rose-500 flex items-center justify-center text-white">
+                            <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xl font-bold serif text-white">AboutLoved</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-sm">
+                        Building the trust architecture for modern relationships. Transparency without surveillance. Clarity without control.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-rose-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition">Philosophy</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition">Security</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-rose-400 transition">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-rose-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2026 AboutLoved. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-gray-300 transition">Privacy</a>
+                    <a href="#" class="hover:text-gray-300 transition">Terms</a>
+                    <a href="#" class="hover:text-gray-300 transition">Ethics</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <div class="refresh-indicator" onclick="manualRefresh()">
-        <div class="refresh-dot"></div>
-        <span>Live Updates</span>
-    </div>
-
     <script>
-        const API_PROXY = "https://aboutloved-news.victor-olaye.workers.dev";
-
-        const CATEGORY_QUERIES = {
-            all: 'relationship OR love OR dating OR marriage OR couple OR breakup OR divorce OR cheating OR affair OR romance',
-            scandal: 'cheating OR affair OR infidelity OR betrayal OR scandal OR exposed OR "caught cheating"',
-            karma: 'karma OR revenge OR consequences OR "got what they deserved" OR "cheater exposed"',
-            love: 'love story OR romance OR wedding OR engagement OR soulmate OR anniversary',
-            drama: 'breakup OR divorce OR "relationship drama" OR jealousy OR "toxic relationship"'
-        };
-
-        const FALLBACK_STORIES = [
-            {
-                title: 'Wife Discovers 3-Year Affair Through Uber Receipts',
-                description: 'A devastating discovery leads to an epic public confrontation.',
-                category: 'scandal',
-                image: '',
-                source: { name: 'About Loved' },
-                publishedAt: new Date().toISOString(),
-                url: '#'
-            },
-            {
-                title: 'Cheating Boss Fired After Office Affair Exposed',
-                description: 'HR investigation found he promoted his mistress. Both terminated.',
-                category: 'karma',
-                image: '',
-                source: { name: 'About Loved' },
-                publishedAt: new Date(Date.now() - 3600000).toISOString(),
-                url: '#'
-            },
-            {
-                title: 'High School Sweethearts Reconnect After 15 Years',
-                description: 'Both went through divorces and found each other again.',
-                category: 'love',
-                image: '',
-                source: { name: 'About Loved' },
-                publishedAt: new Date(Date.now() - 7200000).toISOString(),
-                url: '#'
-            },
-            {
-                title: 'Girlfriend Catfishes Cheating Boyfriend',
-                description: 'She created a fake profile, he took the bait, and she showed up instead.',
-                category: 'drama',
-                image: '',
-                source: { name: 'About Loved' },
-                publishedAt: new Date(Date.now() - 10800000).toISOString(),
-                url: '#'
-            }
-        ];
-
-        const HEADLINE_PREFIXES = [
-            'Trending Now:',
-            'Breaking:',
-            'Viral Story:',
-            'Fans React As',
-            'People Are Shocked By'
-        ];
-
-        const CACHE_TTL = 15 * 60 * 1000;
-        const INITIAL_LOAD_COUNT = 8;
-        const LOAD_MORE_COUNT = 6;
-
-        let allArticles = [];
-        let currentCategory = 'all';
-        let displayedCount = 0;
-        let isLoading = false;
-        let apiFailed = false;
-
-        let els = {};
-
-        function bindEls() {
-            els = {
-                articles: document.getElementById('articles-container'),
-                featured: document.getElementById('featured-container'),
-                ticker: document.getElementById('news-ticker'),
-                trending: document.getElementById('trending-container'),
-                karma: document.getElementById('latest-karma'),
-                loadMore: document.getElementById('load-more'),
-                status: document.getElementById('api-status')
-            };
-        }
-
-        function cacheKey(category) {
-            return `aboutloved_cache_${category}`;
-        }
-
-        function setCache(category, data) {
-            localStorage.setItem(cacheKey(category), JSON.stringify({ time: Date.now(), data }));
-        }
-
-        function getCache(category) {
-            const raw = localStorage.getItem(cacheKey(category));
-            if (!raw) return null;
-            try {
-                const parsed = JSON.parse(raw);
-                if (Date.now() - parsed.time > CACHE_TTL) return null;
-                return parsed.data;
-            } catch {
-                return null;
-            }
-        }
-
-        function updateApiStatus(mode) {
-            if (!els.status) return;
-            els.status.style.display = 'block';
-            els.status.className = `api-status ${mode}`;
-            els.status.textContent = mode === 'online' ? 'Live API' : mode === 'cached' ? 'Cached Data' : 'Demo Mode';
-            clearTimeout(updateApiStatus._t);
-            updateApiStatus._t = setTimeout(() => { els.status.style.display = 'none'; }, 2500);
-        }
-
-        function showToast(message) {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
-                background: var(--dark); color: white; padding: 1rem 1.25rem; border-radius: 999px;
-                font-weight: 600; z-index: 10000; box-shadow: var(--shadow);
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2200);
-        }
-
-        function escapeHtml(str = '') {
-            return str
-                .replaceAll('&', '&amp;')
-                .replaceAll('<', '&lt;')
-                .replaceAll('>', '&gt;')
-                .replaceAll('"', '&quot;')
-                .replaceAll("'", '&#039;');
-        }
-
-        function formatTime(publishedAt) {
-            const date = new Date(publishedAt);
-            const diffMins = Math.max(1, Math.floor((Date.now() - date.getTime()) / 60000));
-            if (diffMins < 60) return `${diffMins}m ago`;
-            if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h ago`;
-            return `${Math.floor(diffMins / 1440)}d ago`;
-        }
-
-        function generateViews() {
-            const views = Math.floor(Math.random() * 50000) + 1000;
-            return views >= 1000 ? `${(views / 1000).toFixed(1)}K` : `${views}`;
-        }
-
-        function generateComments() {
-            return Math.floor(Math.random() * 1800) + 50;
-        }
-
-        function rewriteTitle(title) {
-            const prefix = HEADLINE_PREFIXES[Math.floor(Math.random() * HEADLINE_PREFIXES.length)];
-            return `${prefix} ${title}`;
-        }
-
-        function categorizeArticle(article) {
-            const text = `${article.title || ''} ${article.description || ''}`.toLowerCase();
-            if (/(cheat|affair|infidelity|betray|scandal|exposed|secret)/.test(text)) return 'scandal';
-            if (/(karma|revenge|consequences|caught|fired|dumped)/.test(text)) return 'karma';
-            if (/(love story|romance|wedding|engagement|soulmate|anniversary|reunite|couple)/.test(text)) return 'love';
-            return 'drama';
-        }
-
-        function normalizeArticles(items) {
-            return items.map((article, index) => ({
-                id: index,
-                title: article.title || 'Untitled',
-                originalTitle: article.title || 'Untitled',
-                displayTitle: rewriteTitle(article.title || 'Untitled'),
-                description: article.description || 'Click to read more...',
-                image: article.image || article.urlToImage || '',
-                source: article.source || { name: 'Unknown Source' },
-                publishedAt: article.publishedAt || new Date().toISOString(),
-                time: formatTime(article.publishedAt || new Date().toISOString()),
-                url: article.url || '#',
-                category: article.category || categorizeArticle(article),
-                views: generateViews(),
-                comments: generateComments()
-            }));
-        }
-
-        function showLoading() {
-            els.articles.innerHTML = `
-                <div class="loading-container">
-                    <div class="spinner"></div>
-                    <div style="color:var(--text-light);">Loading stories...</div>
-                </div>
-            `;
-        }
-
-        function showError(message) {
-            els.articles.innerHTML = `
-                <div class="error-message">
-                    <div style="font-size:2.5rem;margin-bottom:1rem;">😕</div>
-                    <div>${escapeHtml(message)}</div>
-                    <button onclick="manualRefresh()" class="subscribe-btn" style="margin-top:1rem;">Try Again</button>
-                </div>
-            `;
-        }
-
-        function articleCardHtml(article) {
-            const img = article.image
-                ? `<img src="${escapeHtml(article.image)}" class="article-image" alt="${escapeHtml(article.originalTitle)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">`
-                : `<div class="article-image"></div>`;
-
-            return `
-                <div class="article-card animate-fade" data-id="${article.id}">
-                    ${img}
-                    <div class="article-header">
-                        <span class="article-category category-${article.category}">${article.category.toUpperCase()}</span>
-                        <span class="article-time">${article.time}</span>
-                    </div>
-                    <div class="article-title">${escapeHtml(article.displayTitle)}</div>
-                    <div class="article-excerpt">${escapeHtml(article.description)}</div>
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <span>👁️ ${article.views}</span>
-                            <span>💬 ${article.comments}</span>
-                        </div>
-                        <span class="read-more">Read More →</span>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderFeatured() {
-            if (!allArticles.length) {
-                els.featured.innerHTML = '';
-                return;
-            }
-
-            const a = allArticles[0];
-            els.featured.innerHTML = `
-                <div class="featured-article animate-fade" data-id="${a.id}">
-                    <div class="featured-image">
-                        ${a.image ? `<img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.originalTitle)}" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : ''}
-                    </div>
-                    <div class="featured-content">
-                        <span class="featured-tag">${apiFailed ? 'Demo Story' : 'Trending Story'}</span>
-                        <h2 class="featured-title">${escapeHtml(a.displayTitle)}</h2>
-                        <p class="featured-excerpt">${escapeHtml(a.description)}</p>
-                        <div class="featured-meta">
-                            <span>⏱️ ${a.time}</span>
-                            <span>👁️ ${a.views} views</span>
-                            <span>💬 ${a.comments} comments</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderArticles(reset = true) {
-            if (!allArticles.length) {
-                showError('No stories available.');
-                return;
-            }
-
-            renderFeatured();
-
-            const start = reset ? 1 : displayedCount + 1;
-            const increment = reset ? INITIAL_LOAD_COUNT : LOAD_MORE_COUNT;
-            const slice = allArticles.slice(start, start + increment);
-
-            if (reset) {
-                els.articles.innerHTML = slice.map(articleCardHtml).join('');
-                displayedCount = slice.length;
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + "%";
+            
+            // Navbar transparency
+            const navbar = document.getElementById('navbar');
+            if (winScroll > 50) {
+                navbar.classList.add('shadow-lg');
             } else {
-                els.articles.insertAdjacentHTML('beforeend', slice.map(articleCardHtml).join(''));
-                displayedCount += slice.length;
+                navbar.classList.remove('shadow-lg');
             }
-
-            const hasMore = displayedCount < (allArticles.length - 1);
-            els.loadMore.disabled = !hasMore;
-            els.loadMore.textContent = hasMore ? 'Load More Stories' : 'No More Stories';
-        }
-
-        function renderTicker() {
-            const top = allArticles.slice(0, 5);
-            els.ticker.innerHTML = top.map(article => {
-                const label =
-                    article.category === 'scandal' ? 'BREAKING' :
-                    article.category === 'karma' ? 'KARMA' :
-                    article.category === 'love' ? 'LOVE' : 'DRAMA';
-                return `<div class="ticker-item"><span class="ticker-label">${label}</span>${escapeHtml(article.originalTitle)}</div>`;
-            }).join('');
-        }
-
-        function renderTrending() {
-            const top = allArticles.slice(0, 5);
-            els.trending.innerHTML = top.map((article, i) => `
-                <div class="trending-item" data-id="${article.id}">
-                    <span class="trending-rank">${i + 1}</span>
-                    <span class="trending-text">${escapeHtml(article.originalTitle.slice(0, 60))}${article.originalTitle.length > 60 ? '...' : ''}</span>
-                </div>
-            `).join('');
-        }
-
-        function renderLatestKarma() {
-            const items = allArticles.filter(a => a.category === 'karma').slice(0, 2);
-            els.karma.innerHTML = items.length
-                ? items.map(article => `
-                    <div data-id="${article.id}" style="padding:1rem;background:rgba(139,92,246,0.05);border-radius:12px;border-left:3px solid #8b5cf6;cursor:pointer;">
-                        <div style="font-weight:600;font-size:0.9rem;margin-bottom:0.25rem;">${escapeHtml(article.originalTitle.slice(0, 55))}${article.originalTitle.length > 55 ? '...' : ''}</div>
-                        <div style="font-size:0.8rem;color:var(--text-light);">${article.time}</div>
-                    </div>
-                `).join('')
-                : `<div style="padding:1rem;background:rgba(139,92,246,0.05);border-radius:12px;border-left:3px solid #8b5cf6;">
-                        <div style="font-weight:600;font-size:0.9rem;margin-bottom:0.25rem;">No karma stories yet</div>
-                        <div style="font-size:0.8rem;color:var(--text-light);">Check back soon</div>
-                   </div>`;
-        }
-
-      async function fetchStories(category, silent = false) {
-    if (isLoading) return;
-    isLoading = true;
-
-    if (!silent) showLoading();
-
-    try {
-
-        const cached = getCache(category);
-
-        if (cached && !silent) {
-            allArticles = normalizeArticles(cached);
-            apiFailed = false;
-
-            renderArticles(true);
-            renderTicker();
-            renderTrending();
-            renderLatestKarma();
-
-            updateApiStatus('cached');
-        }
-
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000);
-
-        const params = new URLSearchParams({
-            q: CATEGORY_QUERIES[category],
-            lang: "en",
-            max: "14",
-            sortby: "publishedAt"
+            
+            // Update reading dots
+            updateReadingDots();
         });
-
-        /* FIXED REQUEST */
-        const res = await fetch(`${API_PROXY}?${params.toString()}`, {
-            signal: controller.signal,
-            cache: "no-store"
-        });
-
-        clearTimeout(timeout);
-
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-        const json = await res.json();
-
-        if (!json.articles || !json.articles.length)
-            throw new Error("No articles returned");
-
-        setCache(category, json.articles);
-
-        allArticles = normalizeArticles(json.articles);
-        apiFailed = false;
-
-        renderArticles(true);
-        renderTicker();
-        renderTrending();
-        renderLatestKarma();
-
-        updateApiStatus("online");
-
-    } catch (err) {
-
-        console.error(err);
-
-        const cached = getCache(category);
-
-        if (cached) {
-
-            allArticles = normalizeArticles(cached);
-            apiFailed = false;
-
-            renderArticles(true);
-            renderTicker();
-            renderTrending();
-            renderLatestKarma();
-
-            updateApiStatus("cached");
-
-        } else {
-
-            allArticles = normalizeArticles(
-                FALLBACK_STORIES.filter(
-                    s => category === "all" || s.category === category
-                )
-            );
-
-            apiFailed = true;
-
-            renderArticles(true);
-            renderTicker();
-            renderTrending();
-            renderLatestKarma();
-
-            updateApiStatus("offline");
-        }
-
-        if (!silent) showToast("Using cached/demo stories");
-
-    } finally {
-
-        isLoading = false;
-
-    }
-}
-
-        function openStory(id) {
-            const article = allArticles.find(a => a.id === Number(id));
-            if (!article) return;
-
-            const contentArea = document.getElementById('content-area');
-            contentArea.innerHTML = `
-                <div class="story-page animate-fade">
-                    <div class="back-btn" onclick="goBack()">← Back to News</div>
-                    <span class="article-category category-${article.category}" style="margin-bottom:1rem;display:inline-block;">${article.category.toUpperCase()}</span>
-                    <h1>${escapeHtml(article.displayTitle)}</h1>
-                    <div style="color:var(--text-light);margin-bottom:1.5rem;font-size:0.9rem;">
-                        Published: ${new Date(article.publishedAt).toLocaleDateString()} | Source: ${escapeHtml(article.source.name)}
-                    </div>
-                    ${article.image ? `<img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.originalTitle)}" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : ''}
-                    <p>${escapeHtml(article.description)}</p>
-                    <p style="font-style:italic;color:var(--text-light);">
-                        ${apiFailed ? 'This is demo content. Add a valid API key for live stories.' : 'This is a summary view. Open the original source below for the full article.'}
-                    </p>
-                    <a href="${escapeHtml(article.url)}" target="_blank" rel="noopener" class="subscribe-btn" style="display:inline-block;text-decoration:none;margin-top:1rem;">
-                        Read Full Story →
-                    </a>
-                </div>
-            `;
-
-            document.querySelector('.sidebar').style.display = window.innerWidth <= 1024 ? 'none' : 'flex';
-            window.location.hash = `#/story/${id}`;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function restoreHomeView() {
-            location.hash = '';
-            document.querySelector('.sidebar').style.display = 'flex';
-
-            document.getElementById('content-area').innerHTML = `
-                <div class="category-tabs">
-                    <button class="category-tab ${currentCategory === 'all' ? 'active' : ''}" onclick="filterCategory('all')" data-category="all">All News</button>
-                    <button class="category-tab ${currentCategory === 'scandal' ? 'active' : ''}" onclick="filterCategory('scandal')" data-category="scandal">💔 Scandals</button>
-                    <button class="category-tab ${currentCategory === 'karma' ? 'active' : ''}" onclick="filterCategory('karma')" data-category="karma">⚡ Karma</button>
-                    <button class="category-tab ${currentCategory === 'love' ? 'active' : ''}" onclick="filterCategory('love')" data-category="love">💕 Love Stories</button>
-                    <button class="category-tab ${currentCategory === 'drama' ? 'active' : ''}" onclick="filterCategory('drama')" data-category="drama">🔥 Drama</button>
-                </div>
-                <div id="featured-container"></div>
-                <div class="articles-grid" id="articles-container"></div>
-                <button class="load-more-btn" id="load-more" onclick="loadMore()">Load More Stories</button>
-            `;
-            bindEls();
-            renderArticles(true);
-        }
-
-        function goBack() {
-            restoreHomeView();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function goHome() {
-            restoreHomeView();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filterCategory(category) {
-            if (isLoading) return;
-            currentCategory = category;
-            displayedCount = 0;
-
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.classList.toggle('active', tab.dataset.category === category);
+        
+        // Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
-
-            window.location.hash = category === 'all' ? '' : `#/${category}`;
-            fetchStories(category);
+        }, observerOptions);
+        
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        
+        // Reading Dots Navigation
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
-
-        function loadMore() {
-            if (isLoading || displayedCount >= allArticles.length - 1) return;
-            renderArticles(false);
+        
+        function updateReadingDots() {
+            const sections = ['hero', 'news', 'philosophy', 'features', 'roadmap', 'waitlist'];
+            const dots = document.querySelectorAll('.read-dot');
+            
+            sections.forEach((section, index) => {
+                const el = document.getElementById(section);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        dots.forEach(d => d.classList.remove('active'));
+                        if (dots[index]) dots[index].classList.add('active');
+                    }
+                }
+            });
         }
-
-        function manualRefresh() {
-            showToast('Refreshing stories...');
-            fetchStories(currentCategory, true);
+        
+        // News Hub Functionality
+        let newsPage = 1;
+        let isLoading = false;
+        let allNews = [];
+        
+        // Your Cloudflare Worker endpoint
+        const WORKER_URL = 'https://aboutloved-news.victoromonolaye.workers.dev';
+        
+        // Fallback news data for demo/development
+        const fallbackNews = [
+            {
+                title: "The Science of Trust: Why Verification Beats Surveillance",
+                description: "New research shows that structured transparency protocols reduce relationship anxiety by 64% compared to monitoring apps.",
+                category: "trust",
+                image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=400&fit=crop",
+                source: "Relationship Science Journal",
+                time: "2 hours ago"
+            },
+            {
+                title: "Digital Boundaries: How Modern Couples Navigate Privacy",
+                description: "A comprehensive survey of 10,000 couples reveals the new rules for phone access, social media, and ex-communication.",
+                category: "communication",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
+                source: "Digital Ethics Review",
+                time: "4 hours ago"
+            },
+            {
+                title: "Post-Affair Recovery: The 90-Day Transparency Protocol",
+                description: "Therapists weigh in on structured reconciliation methods that actually work versus those that create new resentment.",
+                category: "conflict",
+                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=400&fit=crop",
+                source: "Therapy Today",
+                time: "6 hours ago"
+            },
+            {
+                title: "Emotional Affairs: The Gray Zone Everyone Ignores",
+                description: "Why workplace friendships cross the line and how to have the conversation before it's too late.",
+                category: "intimacy",
+                image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop",
+                source: "Modern Love",
+                time: "8 hours ago"
+            },
+            {
+                title: "The 'Exit Interview': Why Couples Need Closure Protocols",
+                description: "Structured separation processes reduce long-term trauma. Here's the data behind conscious uncoupling 2.0.",
+                category: "communication",
+                image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=400&fit=crop",
+                source: "Psychology Weekly",
+                time: "12 hours ago"
+            },
+            {
+                title: "Zero-Knowledge Architecture in Relationship Apps",
+                description: "How end-to-end encryption protects your most intimate conversations from everyone, including the platform.",
+                category: "trust",
+                image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop",
+                source: "Tech Ethics Daily",
+                time: "1 day ago"
+            }
+        ];
+        
+        async function fetchNews() {
+            if (isLoading) return;
+            isLoading = true;
+            
+            try {
+                // Attempt to fetch from your Cloudflare Worker
+                const response = await fetch(`${WORKER_URL}?page=${newsPage}&category=all`);
+                
+                if (!response.ok) throw new Error('Worker fetch failed');
+                
+                const data = await response.json();
+                
+                if (data.articles && data.articles.length > 0) {
+                    allNews = [...allNews, ...data.articles];
+                    renderNews(data.articles);
+                    updateTicker(data.articles.slice(0, 5));
+                } else {
+                    throw new Error('No articles returned');
+                }
+            } catch (error) {
+                console.log('Using fallback news data:', error);
+                // Use fallback data with slight randomization
+                const shuffled = [...fallbackNews].sort(() => 0.5 - Math.random());
+                allNews = [...allNews, ...shuffled];
+                renderNews(shuffled);
+                updateTicker(shuffled.slice(0, 5));
+            }
+            
+            isLoading = false;
         }
-
-        function subscribe(e) {
+        
+        function renderNews(articles) {
+            const grid = document.getElementById('newsGrid');
+            
+            // Remove loading state if present
+            if (newsPage === 1) {
+                grid.innerHTML = '';
+            }
+            
+            articles.forEach((article, index) => {
+                const card = document.createElement('article');
+                card.className = 'glass rounded-2xl overflow-hidden hover-lift reveal img-zoom cursor-pointer group';
+                card.style.animationDelay = `${index * 100}ms`;
+                
+                const categoryColors = {
+                    trust: 'bg-rose-100 text-rose-700',
+                    communication: 'bg-blue-100 text-blue-700',
+                    intimacy: 'bg-purple-100 text-purple-700',
+                    conflict: 'bg-amber-100 text-amber-700'
+                };
+                
+                const color = categoryColors[article.category] || 'bg-gray-100 text-gray-700';
+                
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold ${color}">
+                                ${article.category || 'General'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                            <span>${article.source}</span>
+                            <span>•</span>
+                            <span>${article.time}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-rose-600 transition">
+                            ${article.title}
+                        </h3>
+                        <p class="text-sm text-gray-600 line-clamp-3 mb-4">
+                            ${article.description}
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                            <span class="text-xs font-medium text-rose-600 flex items-center gap-1">
+                                Read more
+                                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                            </span>
+                            <button class="p-2 rounded-full hover:bg-gray-100 transition" onclick="saveArticle('${article.title}')">
+                                <i data-lucide="bookmark" class="w-4 h-4 text-gray-400 hover:text-rose-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            // Re-initialize icons for new content
+            lucide.createIcons();
+            
+            // Observe new elements
+            document.querySelectorAll('.reveal:not(.active)').forEach((el) => observer.observe(el));
+        }
+        
+        function updateTicker(articles) {
+            const ticker = document.getElementById('newsTicker');
+            const headlines = articles.map(a => `<span class="hover:text-rose-600 transition cursor-pointer">${a.title}</span>`).join('');
+            ticker.innerHTML = headlines + headlines; // Duplicate for seamless loop
+        }
+        
+        function refreshNews() {
+            const icon = document.getElementById('refreshIcon');
+            icon.classList.add('animate-spin');
+            
+            newsPage = 1;
+            allNews = [];
+            document.getElementById('newsGrid').innerHTML = `
+                <div class="col-span-full text-center py-20">
+                    <div class="loader-dots">
+                        <div class="loader-dot"></div>
+                        <div class="loader-dot"></div>
+                        <div class="loader-dot"></div>
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                fetchNews();
+                icon.classList.remove('animate-spin');
+            }, 500);
+        }
+        
+        function loadMoreNews() {
+            newsPage++;
+            fetchNews();
+        }
+        
+        function saveArticle(title) {
+            // Visual feedback only - could integrate with localStorage
+            event.stopPropagation();
+            const btn = event.currentTarget;
+            btn.innerHTML = '<i data-lucide="check" class="w-4 h-4 text-emerald-500"></i>';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i data-lucide="bookmark" class="w-4 h-4 text-gray-400 hover:text-rose-500"></i>';
+                lucide.createIcons();
+            }, 2000);
+        }
+        
+        // Category Filter
+        document.getElementById('categoryFilter')?.addEventListener('change', (e) => {
+            const category = e.target.value;
+            const cards = document.querySelectorAll('#newsGrid > article');
+            
+            cards.forEach(card => {
+                const cat = card.querySelector('.rounded-full').textContent.trim().toLowerCase();
+                if (category === 'all' || cat === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Infinite Scroll
+        const loadMoreObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isLoading) {
+                    loadMoreNews();
+                }
+            });
+        }, { rootMargin: '100px' });
+        
+        loadMoreObserver.observe(document.getElementById('loadMoreTrigger'));
+        
+        // Waitlist Form Handler
+        function handleWaitlistSubmit(e) {
             e.preventDefault();
-            showToast('Subscribed successfully');
-            e.target.reset();
+            const btn = document.getElementById('submitBtn');
+            const email = document.getElementById('emailInput').value;
+            
+            // Loading state
+            btn.innerHTML = '<div class="loader-dots inline-flex"><div class="loader-dot bg-white"></div><div class="loader-dot bg-white"></div><div class="loader-dot bg-white"></div></div>';
+            btn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('waitlistForm').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+                
+                // Update counter
+                const counter = document.getElementById('subscriberCount');
+                counter.textContent = '2,848';
+                counter.classList.add('text-emerald-600');
+                
+                // Could integrate with your backend here
+                console.log('New subscriber:', email);
+            }, 1500);
         }
-
-        function showSubscribe() {
-            const email = prompt('Enter your email to get breaking relationship news:');
-            if (email) showToast('Subscribed successfully');
-        }
-
-        function handleHashRoute() {
-            const hash = window.location.hash;
-            if (hash.startsWith('#/story/')) {
-                const id = hash.replace('#/story/', '');
-                openStory(id);
-                return;
-            }
-            if (hash.startsWith('#/')) {
-                const category = hash.replace('#/', '');
-                if (CATEGORY_QUERIES[category]) currentCategory = category;
-            }
-            fetchStories(currentCategory, false);
-        }
-
-        document.addEventListener('click', (e) => {
-            const card = e.target.closest('.article-card, .featured-article, .trending-item, #latest-karma > div');
-            if (!card) return;
-            const id = card.dataset.id;
-            if (id !== undefined) openStory(id);
+        
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
         });
-
-        window.manualRefresh = manualRefresh;
-        window.filterCategory = filterCategory;
-        window.showSubscribe = showSubscribe;
-        window.subscribe = subscribe;
-        window.goHome = goHome;
-        window.goBack = goBack;
-        window.loadMore = loadMore;
-
-        window.addEventListener('hashchange', handleHashRoute);
-
+        
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            bindEls();
-            handleHashRoute();
-            setInterval(() => fetchStories(currentCategory, true), 30 * 60 * 1000);
+            fetchNews();
+            
+            // Simulate live counter updates
+            setInterval(() => {
+                const counter = document.getElementById('subscriberCount');
+                if (counter && !counter.classList.contains('text-emerald-600')) {
+                    const current = parseInt(counter.textContent.replace(',', ''));
+                    if (Math.random() > 0.7) {
+                        counter.textContent = (current + 1).toLocaleString();
+                    }
+                }
+            }, 10000);
         });
+        
+        // Service Worker for PWA capabilities (optional enhancement)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript,').catch(() => {
+                // Silent fail - not critical for functionality
+            });
+        }
     </script>
 </body>
 </html>
-
-
